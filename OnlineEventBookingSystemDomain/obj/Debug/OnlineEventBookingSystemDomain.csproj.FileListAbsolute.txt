@@ -1,0 +1,6 @@
+C:\Project\OnlineEventBookingSystemDomain\bin\Debug\OnlineEventBookingSystemDomain.dll
+C:\Project\OnlineEventBookingSystemDomain\bin\Debug\OnlineEventBookingSystemDomain.pdb
+C:\Project\OnlineEventBookingSystemDomain\obj\Debug\OnlineEventBookingSystemDomain.csproj.AssemblyReference.cache
+C:\Project\OnlineEventBookingSystemDomain\obj\Debug\OnlineEventBookingSystemDomain.csproj.CoreCompileInputs.cache
+C:\Project\OnlineEventBookingSystemDomain\obj\Debug\OnlineEventBookingSystemDomain.dll
+C:\Project\OnlineEventBookingSystemDomain\obj\Debug\OnlineEventBookingSystemDomain.pdb

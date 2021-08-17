@@ -1,0 +1,93 @@
+﻿@model OnlineEventBookingSystem.Models.RegistrationViewModel
+
+@{
+    ViewBag.Title = "Registration";
+}
+
+<h2>Registration</h2>
+
+<!DOCTYPE html>
+
+<html>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+
+        <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
+        width: 450px; margin: auto; display: table;">
+            <table>
+                <tr>
+                    <td valign="top">
+                        @Html.LabelFor(model => model.User_Name)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.User_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        <div style="height: 20px;">
+                            @Html.ValidationMessageFor(model => model.User_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        @Html.LabelFor(model => model.User_Password)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.User_Password, new { htmlAttributes = new { @class = "form-control" } })
+                        <div style="height: 20px;">
+                            @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td valign="top">
+                        @Html.LabelFor(model => model.User_Email)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.User_Email, new { htmlAttributes = new { @class = "form-control" } })
+                        <div style="height: 20px;">
+                            @Html.ValidationMessageFor(model => model.User_Email, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        @Html.LabelFor(model => model.User_Address)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.User_Address, new { htmlAttributes = new { @class = "form-control" } })
+                        <div style="height: 20px;">
+                            @Html.ValidationMessageFor(model => model.User_Address, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        @Html.LabelFor(model => model.User_PhoneNo)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.User_PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                        <div style="height: 20px;">
+                            @Html.ValidationMessageFor(model => model.User_PhoneNo, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input type="submit" value="Register" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            @Html.ActionLink("Click here to login", "Login")
+        </div>
+    }
+</body>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+</html>
+

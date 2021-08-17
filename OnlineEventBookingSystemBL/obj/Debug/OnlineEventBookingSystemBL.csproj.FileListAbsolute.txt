@@ -1,0 +1,14 @@
+C:\Project\OnlineEventBookingSystemBL\bin\Debug\OnlineEventBookingSystemBL.dll
+C:\Project\OnlineEventBookingSystemBL\bin\Debug\OnlineEventBookingSystemBL.pdb
+C:\Project\OnlineEventBookingSystemBL\bin\Debug\EntityFramework.dll
+C:\Project\OnlineEventBookingSystemBL\bin\Debug\OnlineEventBookingSystemDAL.dll
+C:\Project\OnlineEventBookingSystemBL\bin\Debug\OnlineEventBookingSystemDomain.dll
+C:\Project\OnlineEventBookingSystemBL\bin\Debug\OnlineEventBookingSystemDAL.pdb
+C:\Project\OnlineEventBookingSystemBL\bin\Debug\OnlineEventBookingSystemDAL.dll.config
+C:\Project\OnlineEventBookingSystemBL\bin\Debug\OnlineEventBookingSystemDomain.pdb
+C:\Project\OnlineEventBookingSystemBL\bin\Debug\EntityFramework.xml
+C:\Project\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.csproj.AssemblyReference.cache
+C:\Project\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.csproj.CoreCompileInputs.cache
+C:\Project\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.csproj.CopyComplete
+C:\Project\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.dll
+C:\Project\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.pdb

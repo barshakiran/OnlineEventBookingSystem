@@ -1,0 +1,409 @@
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.dll.config
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.pdb
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\csc.exe
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\csc.exe.config
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\csc.rsp
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\csi.exe
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\csi.exe.config
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\csi.rsp
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.AppContext.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Collections.Immutable.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Console.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Globalization.Calendars.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.Compression.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.FileSystem.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Net.Http.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Net.Sockets.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Reflection.Metadata.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.ValueTuple.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.XPath.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\vbc.exe
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\vbc.exe.config
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\vbc.rsp
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\VBCSCompiler.exe
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\roslyn\VBCSCompiler.exe.config
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\Antlr3.Runtime.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\Microsoft.Web.Infrastructure.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\Newtonsoft.Json.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Net.Http.Formatting.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.Helpers.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.Http.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.Http.WebHost.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.Mvc.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.Optimization.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.Razor.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Deployment.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Razor.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\WebGrease.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\Newtonsoft.Json.xml
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Net.Http.Formatting.xml
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.Helpers.xml
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.Http.xml
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.Http.WebHost.xml
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.Mvc.xml
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.Optimization.xml
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.Razor.xml
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.xml
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Deployment.xml
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Razor.xml
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\Antlr3.Runtime.pdb
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.AssemblyReference.cache
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.CoreCompileInputs.cache
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.CopyComplete
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.dll
+C:\Project\Backups\4 layers\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.pdb
+C:\Project\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.dll.config
+C:\Project\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.pdb
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\csc.exe
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\csc.exe.config
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\csc.rsp
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\csi.exe
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\csi.exe.config
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\csi.rsp
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.AppContext.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Collections.Immutable.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Console.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Globalization.Calendars.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.Compression.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.FileSystem.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Net.Http.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Net.Sockets.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Reflection.Metadata.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.ValueTuple.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.XPath.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\vbc.exe
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\vbc.exe.config
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\vbc.rsp
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\VBCSCompiler.exe
+C:\Project\OnlineEventBookingSystemAPI\bin\roslyn\VBCSCompiler.exe.config
+C:\Project\OnlineEventBookingSystemAPI\bin\Antlr3.Runtime.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\AutoMapper.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\EntityFramework.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\EntityFramework.SqlServer.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\Microsoft.Web.Infrastructure.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\Newtonsoft.Json.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemBL.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDAL.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDomain.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Net.Http.Formatting.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.Helpers.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.Http.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.Http.WebHost.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.Mvc.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.Optimization.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.Razor.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Deployment.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Razor.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\Unity.Abstractions.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\Unity.Container.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\WebGrease.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Threading.Tasks.Extensions.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemBL.pdb
+C:\Project\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDAL.pdb
+C:\Project\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDAL.dll.config
+C:\Project\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDomain.pdb
+C:\Project\OnlineEventBookingSystemAPI\bin\AutoMapper.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\EntityFramework.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\EntityFramework.SqlServer.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\Newtonsoft.Json.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Net.Http.Formatting.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.Helpers.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.Http.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.Http.WebHost.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.Mvc.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.Optimization.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.Razor.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Deployment.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Razor.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\Unity.Abstractions.pdb
+C:\Project\OnlineEventBookingSystemAPI\bin\Unity.Container.pdb
+C:\Project\OnlineEventBookingSystemAPI\bin\Antlr3.Runtime.pdb
+C:\Project\OnlineEventBookingSystemAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Project\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.AssemblyReference.cache
+C:\Project\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.CoreCompileInputs.cache
+C:\Project\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.CopyComplete
+C:\Project\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.dll
+C:\Project\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.pdb
+C:\Project\OnlineEventBookingSystemAPI\bin\WebActivatorEx.dll
+C:\Project\OnlineEventBookingSystemAPI\bin\System.Threading.Tasks.Extensions.xml
+C:\Project\OnlineEventBookingSystemAPI\bin\Unity.WebApi.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.dll.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\csc.exe
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\csc.exe.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\csc.rsp
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\csi.exe
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\csi.exe.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\csi.rsp
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.AppContext.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Collections.Immutable.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Console.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Globalization.Calendars.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.Compression.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.FileSystem.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Net.Http.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Net.Sockets.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Reflection.Metadata.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.ValueTuple.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.XPath.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\vbc.exe
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\vbc.exe.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\vbc.rsp
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\VBCSCompiler.exe
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\VBCSCompiler.exe.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Antlr3.Runtime.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\AutoMapper.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\EntityFramework.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\EntityFramework.SqlServer.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Microsoft.Web.Infrastructure.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Newtonsoft.Json.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemBL.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDAL.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDomain.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Net.Http.Formatting.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Threading.Tasks.Extensions.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Helpers.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Http.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Http.WebHost.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Mvc.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Optimization.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Razor.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Deployment.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Razor.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Unity.Abstractions.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Unity.Container.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Unity.WebApi.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\WebActivatorEx.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\WebGrease.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemBL.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDAL.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDAL.dll.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDomain.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\AutoMapper.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\EntityFramework.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\EntityFramework.SqlServer.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Threading.Tasks.Extensions.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Newtonsoft.Json.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Net.Http.Formatting.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Helpers.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Http.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Http.WebHost.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Mvc.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Optimization.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Razor.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Deployment.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Razor.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Unity.Abstractions.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Unity.Container.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Antlr3.Runtime.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.AssemblyReference.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.CoreCompileInputs.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.CopyComplete
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.dll.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\csc.exe
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\csc.exe.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\csc.rsp
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\csi.exe
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\csi.exe.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\csi.rsp
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.AppContext.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Collections.Immutable.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Console.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Globalization.Calendars.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.Compression.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.FileSystem.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Net.Http.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Net.Sockets.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Reflection.Metadata.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.ValueTuple.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.XPath.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\vbc.exe
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\vbc.exe.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\vbc.rsp
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\VBCSCompiler.exe
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\roslyn\VBCSCompiler.exe.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Antlr3.Runtime.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\AutoMapper.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\EntityFramework.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\EntityFramework.SqlServer.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Microsoft.Web.Infrastructure.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Newtonsoft.Json.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemBL.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDAL.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDomain.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Net.Http.Formatting.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Threading.Tasks.Extensions.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Helpers.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Http.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Http.WebHost.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Mvc.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Optimization.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Razor.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Deployment.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Razor.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Unity.Abstractions.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Unity.Container.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Unity.WebApi.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\WebActivatorEx.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\WebGrease.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemBL.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDAL.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDAL.dll.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemDomain.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\AutoMapper.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\EntityFramework.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\EntityFramework.SqlServer.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Threading.Tasks.Extensions.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Newtonsoft.Json.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Net.Http.Formatting.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Helpers.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Http.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Http.WebHost.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Mvc.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Optimization.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.Razor.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Deployment.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\System.Web.WebPages.Razor.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Unity.Abstractions.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Unity.Container.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Antlr3.Runtime.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.AssemblyReference.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.CoreCompileInputs.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.CopyComplete
