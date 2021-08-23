@@ -10,8 +10,16 @@ namespace OnlineEventBookingSystemBL.Interface
   public  interface IOnlineEventBusiness
     {
 
-         string GetUser(int userId);
-        List<UserDomainModel> GetAllUsers();
-         string AddUser(UserDomainModel user);
+        // string GetUser(int userId);
+        List<UserRegistrationDomainModel> GetAllUsers();
+        string AddUser(UserRegistrationDomainModel user);
+        UserRegistrationDomainModel WhereUser(string username);
+       // List<UserLoginDomainModel> CheckLogin(string email, string password);
+        UserLoginDomainModel CheckLogin(UserLoginDomainModel model);
+        UserRegistrationDomainModel FindUser(int id);
+        bool DeleteUser(int id);
+        string UpdateUser(UserRegistrationDomainModel userDModel);
+
+
     }
 }

@@ -19,7 +19,7 @@ namespace OnlineEventBookingSystem.Models
 
         [Display(Name = " Password :  ")]
         [Required(ErrorMessage = "This field is Required")]
-        [DataType(DataType.Password)]
+       
         public string User_Password { get; set; }
 
         [Display(Name = " E-Mail :  ")]

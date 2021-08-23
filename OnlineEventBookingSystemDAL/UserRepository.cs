@@ -11,6 +11,8 @@ namespace OnlineEventBookingSystemDAL
     public class UserRepository : BaseRepository<UserDetail>
     {
         public UserRepository(IUnitOfWork unitOfWork) : base(unitOfWork) 
-        { }
+        {
+            
+        }
     }
 }

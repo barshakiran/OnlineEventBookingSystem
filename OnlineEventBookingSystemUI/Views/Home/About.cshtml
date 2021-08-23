@@ -4,4 +4,13 @@
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p> Welcome @User.Identity.Name, to our event booking system.Please @Html.ActionLink("Register", "Registration", "Repo") to book events....</p>
+}
+else
+{
+    <p> Welcome Guest, to our event booking system.Please @Html.ActionLink("Register", "Registration", "Repo") to book events....</p>
+}
+

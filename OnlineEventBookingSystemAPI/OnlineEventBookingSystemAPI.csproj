@@ -190,25 +190,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\EventBookingSystem.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EventBookingSystem.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EventBookingSystem.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EventBookingSystem.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EventBookingSystem.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EventBookingSystem.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserDetail.cs">
-      <DependentUpon>EventBookingSystem.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserDetailModel.cs" />
+    <Compile Include="Models\UserRegistrationModel.cs" />
+    <Compile Include="Models\UserLoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -220,16 +203,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\EventBookingSystem.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EventBookingSystem.Context.cs</LastGenOutput>
-      <DependentUpon>EventBookingSystem.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\EventBookingSystem.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EventBookingSystem.edmx</DependentUpon>
-      <LastGenOutput>EventBookingSystem.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -251,13 +224,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\EventBookingSystem.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EventBookingSystem.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\EventBookingSystem.edmx.diagram">
-      <DependentUpon>EventBookingSystem.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

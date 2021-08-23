@@ -23,29 +23,39 @@
         <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
         width: 350px; margin: auto; display: table;">
             <table>
-               
+
                 <tr>
                     <td valign="top">
-                        @Html.LabelFor(model => model.UserName)
+                        @Html.LabelFor(model => model.User_Name)
                     </td>
                     <td>
-                        @Html.EditorFor(model => model.UserName)
+                        @Html.EditorFor(model => model.User_Name)
                         <div style="height: 20px;">
-                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.User_Name, "", new { @class = "text-danger" })
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td valign="top">
-                        @Html.LabelFor(model => model.Password)
+                        @Html.LabelFor(model => model.User_Password)
                     </td>
                     <td>
-                        @Html.EditorFor(model => model.Password)
+                        @Html.EditorFor(model => model.User_Password)
                         <div style="height: 20px;">
-                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" })
                         </div>
                     </td>
                 </tr>
+
+                <tr>
+
+                    <td height="10" colspan="2">@Html.HiddenFor(model => model.User_Id)</td>
+                </tr>
+                <tr>
+
+                    <td height="10" colspan="2">@Html.HiddenFor(model => model.IsAdmin)</td>
+                </tr>
+
                 <tr>
                     <td>
                     </td>
@@ -60,7 +70,7 @@
         <div>
             @if(Session["UserName"]== null)
             { 
-            @Html.ActionLink("Click here to sign up", "SignUp")
+            @Html.ActionLink("Click here to Register", "Registration")
             }
         </div>
     }

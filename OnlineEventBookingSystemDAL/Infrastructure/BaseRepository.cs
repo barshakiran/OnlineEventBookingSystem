@@ -54,7 +54,15 @@ using OnlineEventBookingSystemDAL.Infrastructure.Contract;
 
             public virtual void Update(T entity)
             {
-                dbSet.Attach(entity);
+
+            var local = _unitOfWork.Db.Set<T>()
+                    .Local
+                    .FirstOrDefault();
+            if (local != null)
+            {
+                _unitOfWork.Db.Entry(local).State = EntityState.Detached;
+            }
+            dbSet.Attach(entity);
                 _unitOfWork.Db.Entry(entity).State = EntityState.Modified;
                 this._unitOfWork.Db.SaveChanges();
 
@@ -119,5 +127,11 @@ using OnlineEventBookingSystemDAL.Infrastructure.Contract;
             {
                 return dbSet.SqlQuery(query, parameters);
             }
-        }
+
+            public IEnumerable<T> Where(Expression<Func<T, bool>> whereCondition)
+            {
+                return dbSet.Where(whereCondition);
+            }
+           
+    }
     }

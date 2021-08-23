@@ -10,3 +10,11 @@ C:\Project\OnlineEventBookingSystemDAL\obj\Debug\OnlineEventBookingSystemDAL.csp
 C:\Project\OnlineEventBookingSystemDAL\obj\Debug\OnlineEventBookingSystemDAL.csproj.CopyComplete
 C:\Project\OnlineEventBookingSystemDAL\obj\Debug\OnlineEventBookingSystemDAL.dll
 C:\Project\OnlineEventBookingSystemDAL\obj\Debug\OnlineEventBookingSystemDAL.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemDAL\bin\Debug\OnlineEventBookingSystemDAL.dll.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemDAL\bin\Debug\OnlineEventBookingSystemDAL.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemDAL\bin\Debug\OnlineEventBookingSystemDAL.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemDAL\obj\Debug\OnlineEventBookingSystemDAL.csproj.AssemblyReference.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemDAL\obj\Debug\OnlineEventBookingSystemDAL.csproj.CoreCompileInputs.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemDAL\obj\Debug\OnlineEventBookingSystemDAL.csproj.CopyComplete
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemDAL\obj\Debug\OnlineEventBookingSystemDAL.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemDAL\obj\Debug\OnlineEventBookingSystemDAL.pdb

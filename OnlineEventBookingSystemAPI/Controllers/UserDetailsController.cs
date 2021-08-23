@@ -19,7 +19,6 @@ namespace OnlineEventBookingSystemAPI.Controllers
 {
     public class UserDetailsController : ApiController
     {
-        private EventBookingSystemEntities db = new EventBookingSystemEntities();
 
         // GET: api/UserDetails
 
@@ -30,107 +29,161 @@ namespace OnlineEventBookingSystemAPI.Controllers
         public UserDetailsController(IOnlineEventBusiness _userBusiness)
         {
              userBusiness = _userBusiness;
-             config = new MapperConfiguration(x =>x.CreateMap<UserDomainModel, UserDetailModel>().ReverseMap());
+             config = new MapperConfiguration(x =>x.CreateMap<UserRegistrationDomainModel, UserRegistrationModel>().ReverseMap());
              mapper = new Mapper(config);
         }
-        public List<UserDetailModel> GetUserDetails()
+        public List<UserRegistrationModel> GetUserDetails()
         {
             
-            List<UserDomainModel> list = userBusiness.GetAllUsers();
-            List<UserDetailModel> listViewModel = new List<UserDetailModel>();
+            List<UserRegistrationDomainModel> list = userBusiness.GetAllUsers();
+            List<UserRegistrationModel> listViewModel = new List<UserRegistrationModel>();
             var user = mapper.Map(list, listViewModel);          
             return listViewModel;
         }
 
-        // GET: api/UserDetails/5
-        [ResponseType(typeof(UserDetail))]
-        public IHttpActionResult GetUserDetail(int id)
-        {
-            UserDetail userDetail = db.UserDetails.Find(id);
-            if (userDetail == null)
-            {
-                return NotFound();
-            }
+        //public UserLoginModel CheckAdminAndLogin(UserLoginModel model)
+        //{
+        //    var check = userBusiness.CheckLogin(model.User_Name, model.User_Password);
+        //    if (check != null)
+        //    {
+        //        if(check.)
+        //        return  model;
+        //    }
 
-            return Ok(userDetail);
-        }
+        //    return null;
 
+
+
+        //}
+        //{
+
+        //    List<UserRegistrationDomainModel> list = userBusiness.GetAllUsers();
+        //    List<UserRegistrationModel> listViewModel = new List<UserRegistrationModel>();
+        //    var user = mapper.Map(list, listViewModel);
+        //    return listViewModel;
+        //}
 
 
         // POST: api/UserDetails
-        [ResponseType(typeof(UserDetailModel))]
-        public IHttpActionResult PostUserDetail(UserDetailModel userDetailModel)
+
+
+        [ResponseType(typeof(UserRegistrationModel))]
+        public IHttpActionResult PostUserDetail(UserRegistrationModel userDetailModel)
         {
-            UserDomainModel userDomainModel = new UserDomainModel();
-            mapper.Map(userDetailModel, userDomainModel);
-            userBusiness.AddUser(userDomainModel);
-            return Ok("inserted");
+            UserRegistrationDomainModel userDomainModel = new UserRegistrationDomainModel();
+            var check = userBusiness.WhereUser(userDetailModel.User_Name);
+           
+            if (check == null)
+            {
+                mapper.Map(userDetailModel, userDomainModel);
+                userBusiness.AddUser(userDomainModel);
+                return Ok("inserted");
+            }
+         
+            else
+            {
+                return BadRequest();
+            }
         }
 
-        // PUT: api/UserDetails/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutUserDetail(int id, UserDetail userDetail)
+        // POST: api/UserDetails
+        [ResponseType(typeof(UserLoginDomainModel))]
+        public UserLoginModel UserLogin(UserLoginModel userDetailModel)
         {
+            UserLoginDomainModel userDomainModel = new UserLoginDomainModel();
+            config = new MapperConfiguration(x => x.CreateMap<UserLoginModel, UserLoginDomainModel>().ReverseMap());
+            mapper = new Mapper(config);
+            mapper.Map(userDetailModel, userDomainModel);
+            // var check = userBusiness.CheckLogin(userDetailModel.User_Name, userDetailModel.User_Password);
+
+            var check = userBusiness.CheckLogin(userDomainModel);
+            //mapper.Map(check, userDetailModel);
+            userDetailModel.IsAdmin = check.IsAdmin;
+            if (check == null)
+            {
+                return null;
+                
+            }
+
+            else
+            {
+                return userDetailModel;
+            }
+        }
+
+
+        public IHttpActionResult GetDetails(int id)
+        {
+            UserRegistrationModel userRegistrationModel = new UserRegistrationModel();
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+            UserRegistrationDomainModel userDetail = userBusiness.FindUser(id);
+            if (userDetail == null)
+            {
+                return BadRequest();
+            }
+            mapper.Map(userDetail, userRegistrationModel);
+            return Ok(userRegistrationModel);
+        }
+
+        [HttpPost]
+        // PUT: api/UserDetails
+        [ResponseType(typeof(UserRegistrationModel))]
+        public IHttpActionResult UserDetail(UserRegistrationModel userDetailModel)
+        {
+            UserRegistrationDomainModel userDomainModel = new UserRegistrationDomainModel();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            var check = userBusiness.FindUser(userDetailModel.User_Id);
 
-            if (id != userDetail.User_Id)
+            if (check != null)
+            {
+                mapper.Map(userDetailModel, userDomainModel);
+                userBusiness.UpdateUser(userDomainModel);
+                return Ok("inserted");
+            }
+
+            else
             {
                 return BadRequest();
             }
+        
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!UserDetailExists(userDetailModel.User_Id))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
 
-            db.Entry(userDetail).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserDetailExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
+           // return StatusCode(HttpStatusCode.NoContent);
         }
 
-
-        // DELETE: api/UserDetails/5
-        [ResponseType(typeof(UserDetail))]
-        public IHttpActionResult DeleteUserDetail(int id)
+        [HttpPost]
+        public IHttpActionResult Delete(int id)
         {
-            UserDetail userDetail = db.UserDetails.Find(id);
-            if (userDetail == null)
+            var check = userBusiness.FindUser(id);
+
+            if (check != null)
             {
-                return NotFound();
+               // mapper.Map(userDetailModel, userDomainModel);
+                userBusiness.DeleteUser(id);
+                return Ok();
             }
 
-            db.UserDetails.Remove(userDetail);
-            db.SaveChanges();
-
-            return Ok(userDetail);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
+            else
             {
-                db.Dispose();
+                return BadRequest();
             }
-            base.Dispose(disposing);
         }
 
-        private bool UserDetailExists(int id)
-        {
-            return db.UserDetails.Count(e => e.User_Id == id) > 0;
-        }
     }
 }

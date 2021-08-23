@@ -16,23 +16,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Online Event Booking System", "Login", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Online Event Booking System", "Index", "Repo", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "MovieDetails")</li>
-                </ul>
+               
 
                 <ul class="nav navbar-nav" style="float:right !important">
-                    @if (Session["Username"] != null)
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+
+                    @if (User.Identity.IsAuthenticated)
                     {
-                        <li><p style="color:#fff; margin-top:15px;">Hello @Session["UserName"]</p></li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                        if (User.IsInRole("admin"))
+                        {
+                            <li>@Html.ActionLink("GetDetails", "Index", "Repo")</li>
+                        }
+                        <li>@Html.ActionLink("Register", "Registration", "Repo")</li>
+
+                        <li><a>Hello - @User.Identity.Name</a> </li>
+                        <li>@Html.ActionLink("LogOut", "Logout", "Repo")</li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("SignUp", "SignUp", "Home")</li>
-                        <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                        <li>@Html.ActionLink("Login", "Login", "Repo")</li>
                     }
 
                 </ul>
