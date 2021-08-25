@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineEventBookingSystem.Test.API", "OnlineEventBookingSystem.Test.API\OnlineEventBookingSystem.Test.API.csproj", "{FB60EBBA-647F-4E40-938F-BE7D3DCB32BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineEventBookingSystem.Test.BL", "OnlineEventBookingSystem.Test.BL\OnlineEventBookingSystem.Test.BL.csproj", "{35A9DD0C-D96C-4AC3-8412-8F5AA5D67209}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB60EBBA-647F-4E40-938F-BE7D3DCB32BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB60EBBA-647F-4E40-938F-BE7D3DCB32BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB60EBBA-647F-4E40-938F-BE7D3DCB32BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB60EBBA-647F-4E40-938F-BE7D3DCB32BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A9DD0C-D96C-4AC3-8412-8F5AA5D67209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A9DD0C-D96C-4AC3-8412-8F5AA5D67209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A9DD0C-D96C-4AC3-8412-8F5AA5D67209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A9DD0C-D96C-4AC3-8412-8F5AA5D67209}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F5AAE2E-C10E-4AF4-B4B1-3831B675CF6B}
+	EndGlobalSection
+EndGlobal
