@@ -139,6 +139,7 @@ C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Antlr3.Runtime.d
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\AutoMapper.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\EntityFramework.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\EntityFramework.SqlServer.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.Web.Infrastructure.dll
@@ -163,6 +164,7 @@ C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\WebGrease.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\AutoMapper.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\EntityFramework.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\EntityFramework.SqlServer.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\System.Buffers.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\System.Memory.xml
@@ -188,5 +190,3 @@ C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\obj\Debug\OnlineEven
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\obj\Debug\OnlineEventBookingSystemUI.csproj.CopyComplete
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\obj\Debug\OnlineEventBookingSystemUI.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\obj\Debug\OnlineEventBookingSystemUI.pdb
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.AspNet.Identity.Core.xml

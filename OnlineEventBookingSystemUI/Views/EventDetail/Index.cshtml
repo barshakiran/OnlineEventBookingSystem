@@ -1,0 +1,104 @@
+﻿@model OnlineEventBookingSystemUI.Models.EventDetailViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Event Details</h2>
+
+<script type="text/javascript">
+    function fileCheck(obj) {
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp','jfif'];
+        if ($.inArray($(obj).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            alert("Only '.jfif','.jpeg','.jpg', '.png', '.gif', '.bmp' formats are allowed.");
+        }
+    }
+</script>
+<!DOCTYPE html>
+
+<html>
+
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
+        width: 650px; margin: auto; display: table;">
+        <table cellpadding="2" cellspacing="2">
+            
+            <tr>
+                <td>                   
+                    @Html.LabelFor(model => model.Event_Name)                  
+                </td>
+                <td>                    
+                        @Html.EditorFor(model => model.Event_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        <div style="height: 20px;">
+                            @Html.ValidationMessageFor(model => model.Event_Name, "", new { @class = "text-danger" })
+                        </div>                    
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    @Html.LabelFor(model => model.Event_Type)
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.Event_Type, new List<SelectListItem>
+                   { new SelectListItem{Text="Movie", Value="M"},
+                     new SelectListItem{Text="Stand up comedy", Value="M"},
+                     new SelectListItem{Text="Play", Value="F"}}, "Please select--",
+                     new { htmlAttributes = new { @class = "form-control" } }
+                    )
+
+                    <div style="height: 20px;">
+                        @Html.ValidationMessageFor(model => model.Event_Type, "", new { @class = "text-danger" })
+                    </div>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td valign="top">
+                    @Html.LabelFor(model => model.Event_Description)
+                </td>
+                <td>
+                    @Html.TextAreaFor(model => model.Event_Description, new { htmlAttributes = new { @class = "form-control" } })
+                    <div style="height: 20px;">
+                        @Html.ValidationMessageFor(model => model.Event_Description, "", new { @class = "text-danger" })
+                    </div>
+
+
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    @Html.LabelFor(model => model.Event_Picture)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.Event_Picture, new { type = "file" })
+                    @*<input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);" />*@
+                    <div style="height: 20px;">
+                        @Html.ValidationMessageFor(model => model.Event_Picture, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                </td>
+                <td><input type="submit" value="Save" class="btn btn-default" /></td>
+            </tr>
+        </table>
+    </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+</html>
+

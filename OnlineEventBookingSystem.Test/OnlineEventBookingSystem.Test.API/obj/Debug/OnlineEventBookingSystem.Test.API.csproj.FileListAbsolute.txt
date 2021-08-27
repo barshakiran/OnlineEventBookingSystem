@@ -1,0 +1,14 @@
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\OnlineEventBookingSystem.Test.API.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\OnlineEventBookingSystem.Test.API.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\obj\Debug\OnlineEventBookingSystem.Test.API.csproj.AssemblyReference.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\obj\Debug\OnlineEventBookingSystem.Test.API.csproj.CoreCompileInputs.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\obj\Debug\OnlineEventBookingSystem.Test.API.csproj.CopyComplete
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\obj\Debug\OnlineEventBookingSystem.Test.API.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\obj\Debug\OnlineEventBookingSystem.Test.API.pdb

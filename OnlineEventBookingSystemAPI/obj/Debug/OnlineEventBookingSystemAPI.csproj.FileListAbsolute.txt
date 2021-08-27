@@ -299,6 +299,8 @@ C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSyst
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.CopyComplete
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.AssemblyReference.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.CoreCompileInputs.cache
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.dll.config
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\OnlineEventBookingSystemAPI.pdb
@@ -402,8 +404,6 @@ C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Unity.Abstracti
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Unity.Container.pdb
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Antlr3.Runtime.pdb
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.AssemblyReference.cache
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.CoreCompileInputs.cache
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.csproj.CopyComplete
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemAPI\obj\Debug\OnlineEventBookingSystemAPI.pdb

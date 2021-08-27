@@ -66,6 +66,9 @@ namespace  OnlineEventBookingSystemDAL.Infrastructure.Contract
         /// <returns></returns>
         bool Exists(Expression<Func<T, bool>> whereCondition);
 
+
+        IEnumerable<T> Where(Expression<Func<T, bool>> whereCondition);
+
     }
 
 }

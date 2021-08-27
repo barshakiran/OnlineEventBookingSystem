@@ -24,10 +24,10 @@ C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\System.Web
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\System.Web.WebPages.Deployment.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\System.Web.WebPages.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\AutoMapper.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\OnlineEventBookingSystemDAL.pdb
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\OnlineEventBookingSystemDAL.dll.config
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\OnlineEventBookingSystemDomain.pdb
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\AutoMapper.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\System.Web.Helpers.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\System.Web.Mvc.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\System.Web.Razor.xml

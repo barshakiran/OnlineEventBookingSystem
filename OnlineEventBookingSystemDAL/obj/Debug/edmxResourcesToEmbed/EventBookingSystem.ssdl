@@ -1,5 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="EventBookingSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BookingDetails">
+    <Key>
+      <PropertyRef Name="Booking_Id" />
+    </Key>
+    <Property Name="Booking_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Booking_SeatNo" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Booking_Date" Type="smalldatetime" Nullable="false" />
+    <Property Name="Event_Id" Type="int" Nullable="false" />
+    <Property Name="Booking_TicketCount" Type="int" Nullable="false" />
+    <Property Name="Booking_TotalAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="IsConfirmationSent" Type="bit" Nullable="false" />
+    <Property Name="Booking_Loc" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EventDetails">
+    <Key>
+      <PropertyRef Name="Event_Id" />
+    </Key>
+    <Property Name="Event_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Event_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Event_Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Event_Description" Type="text" />
+    <Property Name="Event_Picture" Type="nvarchar" MaxLength="550" />
+  </EntityType>
+  <EntityType Name="EventLocation">
+    <Key>
+      <PropertyRef Name="Location_Id" />
+      <PropertyRef Name="Event_Id" />
+    </Key>
+    <Property Name="Location_Id" Type="int" Nullable="false" />
+    <Property Name="Event_Id" Type="int" Nullable="false" />
+    <Property Name="EventLocation_Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="EventLocation_DateAndTime" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Location_Id" />
+    </Key>
+    <Property Name="Location_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Location_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Location_Address" Type="text" />
+  </EntityType>
   <EntityType Name="UserDetails">
     <Key>
       <PropertyRef Name="User_Id" />
@@ -12,7 +54,75 @@
     <Property Name="User_Address" Type="text" />
     <Property Name="IsAdmin" Type="bit" Nullable="false" />
   </EntityType>
+  <Association Name="FK__BookingDe__Event__33D4B598">
+    <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="1" />
+    <End Role="BookingDetails" Type="Self.BookingDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventDetails">
+        <PropertyRef Name="Event_Id" />
+      </Principal>
+      <Dependent Role="BookingDetails">
+        <PropertyRef Name="Event_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingDe__User___32E0915F">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
+    <End Role="BookingDetails" Type="Self.BookingDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="BookingDetails">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EventLoca__Event__2D27B809">
+    <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="1" />
+    <End Role="EventLocation" Type="Self.EventLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventDetails">
+        <PropertyRef Name="Event_Id" />
+      </Principal>
+      <Dependent Role="EventLocation">
+        <PropertyRef Name="Event_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EventLoca__Locat__2C3393D0">
+    <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
+    <End Role="EventLocation" Type="Self.EventLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations">
+        <PropertyRef Name="Location_Id" />
+      </Principal>
+      <Dependent Role="EventLocation">
+        <PropertyRef Name="Location_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="EventBookingSystemModelStoreContainer">
+    <EntitySet Name="BookingDetails" EntityType="Self.BookingDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventDetails" EntityType="Self.EventDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventLocation" EntityType="Self.EventLocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BookingDe__Event__33D4B598" Association="Self.FK__BookingDe__Event__33D4B598">
+      <End Role="EventDetails" EntitySet="EventDetails" />
+      <End Role="BookingDetails" EntitySet="BookingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingDe__User___32E0915F" Association="Self.FK__BookingDe__User___32E0915F">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="BookingDetails" EntitySet="BookingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EventLoca__Event__2D27B809" Association="Self.FK__EventLoca__Event__2D27B809">
+      <End Role="EventDetails" EntitySet="EventDetails" />
+      <End Role="EventLocation" EntitySet="EventLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EventLoca__Locat__2C3393D0" Association="Self.FK__EventLoca__Locat__2C3393D0">
+      <End Role="Locations" EntitySet="Locations" />
+      <End Role="EventLocation" EntitySet="EventLocation" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

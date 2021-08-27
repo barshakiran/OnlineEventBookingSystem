@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Description;
 using OnlineEventBookingSystemAPI.Models;
-using OnlineEventBookingSystemBL;
 using OnlineEventBookingSystemBL.Interface;
 using AutoMapper;
 using OnlineEventBookingSystemDomain;
-
+using OnlineEventBookingSystemAPI.Security;
 
 namespace OnlineEventBookingSystemAPI.Controllers
 {
@@ -21,17 +13,18 @@ namespace OnlineEventBookingSystemAPI.Controllers
     {
 
         // GET: api/UserDetails
-
-        private IOnlineEventBusiness userBusiness;
+        private IUserBusiness userBusiness;
         private MapperConfiguration config;
         private Mapper mapper;
 
-        public UserDetailsController(IOnlineEventBusiness _userBusiness)
+        public UserDetailsController(IUserBusiness _userBusiness)
         {
              userBusiness = _userBusiness;
              config = new MapperConfiguration(x =>x.CreateMap<UserRegistrationDomainModel, UserRegistrationModel>().ReverseMap());
              mapper = new Mapper(config);
         }
+
+        [BasicAuthentication]
         public List<UserRegistrationModel> GetUserDetails()
         {
             
@@ -40,77 +33,6 @@ namespace OnlineEventBookingSystemAPI.Controllers
             var user = mapper.Map(list, listViewModel);          
             return listViewModel;
         }
-
-        //public UserLoginModel CheckAdminAndLogin(UserLoginModel model)
-        //{
-        //    var check = userBusiness.CheckLogin(model.User_Name, model.User_Password);
-        //    if (check != null)
-        //    {
-        //        if(check.)
-        //        return  model;
-        //    }
-
-        //    return null;
-
-
-
-        //}
-        //{
-
-        //    List<UserRegistrationDomainModel> list = userBusiness.GetAllUsers();
-        //    List<UserRegistrationModel> listViewModel = new List<UserRegistrationModel>();
-        //    var user = mapper.Map(list, listViewModel);
-        //    return listViewModel;
-        //}
-
-
-        // POST: api/UserDetails
-
-
-        [ResponseType(typeof(UserRegistrationModel))]
-        public IHttpActionResult PostUserDetail(UserRegistrationModel userDetailModel)
-        {
-            UserRegistrationDomainModel userDomainModel = new UserRegistrationDomainModel();
-            var check = userBusiness.WhereUser(userDetailModel.User_Name);
-           
-            if (check == null)
-            {
-                mapper.Map(userDetailModel, userDomainModel);
-                userBusiness.AddUser(userDomainModel);
-                return Ok("inserted");
-            }
-         
-            else
-            {
-                return BadRequest();
-            }
-        }
-
-        // POST: api/UserDetails
-        [ResponseType(typeof(UserLoginDomainModel))]
-        public UserLoginModel UserLogin(UserLoginModel userDetailModel)
-        {
-            UserLoginDomainModel userDomainModel = new UserLoginDomainModel();
-            config = new MapperConfiguration(x => x.CreateMap<UserLoginModel, UserLoginDomainModel>().ReverseMap());
-            mapper = new Mapper(config);
-            mapper.Map(userDetailModel, userDomainModel);
-            // var check = userBusiness.CheckLogin(userDetailModel.User_Name, userDetailModel.User_Password);
-
-            var check = userBusiness.CheckLogin(userDomainModel);
-            //mapper.Map(check, userDetailModel);
-            userDetailModel.IsAdmin = check.IsAdmin;
-            if (check == null)
-            {
-                return null;
-                
-            }
-
-            else
-            {
-                return userDetailModel;
-            }
-        }
-
 
         public IHttpActionResult GetDetails(int id)
         {
@@ -167,6 +89,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
            // return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // DELETE: api/UserDetails
         [HttpPost]
         public IHttpActionResult Delete(int id)
         {
@@ -184,6 +107,5 @@ namespace OnlineEventBookingSystemAPI.Controllers
                 return BadRequest();
             }
         }
-
     }
 }

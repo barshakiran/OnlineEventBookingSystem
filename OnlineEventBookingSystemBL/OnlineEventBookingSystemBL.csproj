@@ -40,6 +40,12 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="OnlineEventBookingSystemDAL">
+      <HintPath>..\OnlineEventBookingSystemDAL\bin\Debug\OnlineEventBookingSystemDAL.dll</HintPath>
+    </Reference>
+    <Reference Include="OnlineEventBookingSystemDomain">
+      <HintPath>..\OnlineEventBookingSystemDomain\bin\Debug\OnlineEventBookingSystemDomain.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -68,19 +74,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IOnlineEventBusiness.cs" />
-    <Compile Include="OnlineEventBusiness.cs" />
+    <Compile Include="EventDetailBusiness.cs" />
+    <Compile Include="Interface\IEventDetailBusiness.cs" />
+    <Compile Include="Interface\IUserBusiness.cs" />
+    <Compile Include="UserBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OnlineEventBookingSystemDAL\OnlineEventBookingSystemDAL.csproj">
-      <Project>{7995ed0a-a48e-424d-a3c4-2cc2f959a447}</Project>
-      <Name>OnlineEventBookingSystemDAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OnlineEventBookingSystemDomain\OnlineEventBookingSystemDomain.csproj">
-      <Project>{c8892856-c64e-47df-8e74-0ffb6234c499}</Project>
-      <Name>OnlineEventBookingSystemDomain</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

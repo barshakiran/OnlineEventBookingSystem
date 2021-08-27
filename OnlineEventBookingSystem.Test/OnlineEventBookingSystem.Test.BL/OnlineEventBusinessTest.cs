@@ -46,7 +46,7 @@ namespace OnlineEventBookingSystem.Tests.BL
             var mockUnitOfWork = new Mock<IUnitOfWork>();
             var mockRepository = new Mock<IOnlineEventBusiness>();
             var userRepositoryMock = new Mock<IBaseRepository<UserRepository>>();
-            //mockRepository.Setup(m => m.FindUser(It.IsAny<int>())).Returns(e => dbdata.Where(x => x.User_Id == i).Single());
+            mockRepository.Setup(m => m.FindUser(It.IsAny<int>())).Returns(e => dbdata.Where(x => x.User_Id == i).Single());
             mockUnitOfWork.Setup(x => x.Db.Set<UserRegistrationDomainModel>()).Verifiable();
             //Act
 

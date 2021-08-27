@@ -26,5 +26,9 @@ namespace OnlineEventBookingSystemDAL
         }
     
         public virtual DbSet<UserDetail> UserDetails { get; set; }
+        public virtual DbSet<BookingDetail> BookingDetails { get; set; }
+        public virtual DbSet<EventDetail> EventDetails { get; set; }
+        public virtual DbSet<EventLocation> EventLocations { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
     }
 }

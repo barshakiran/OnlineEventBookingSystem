@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookingDetail.cs">
+      <DependentUpon>EventBookingSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="EventBookingSystem.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -65,15 +68,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EventBookingSystem.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EventDetail.cs">
+      <DependentUpon>EventBookingSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IEventDetailDataHandler.cs" />
+    <Compile Include="EventDetailDataHandler.cs" />
+    <Compile Include="EventLocation.cs">
+      <DependentUpon>EventBookingSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\BaseRepository.cs" />
     <Compile Include="Infrastructure\Contract\IBaseRepository.cs" />
     <Compile Include="Infrastructure\Contract\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="IUserDataHandler.cs" />
+    <Compile Include="Location.cs">
+      <DependentUpon>EventBookingSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserDetail.cs">
       <DependentUpon>EventBookingSystem.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserRepository.cs" />
+    <Compile Include="UserDataHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

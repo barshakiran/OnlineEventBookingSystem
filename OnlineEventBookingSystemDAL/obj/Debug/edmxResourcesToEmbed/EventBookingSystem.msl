@@ -14,5 +14,50 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="BookingDetails">
+      <EntityTypeMapping TypeName="EventBookingSystemModel.BookingDetail">
+        <MappingFragment StoreEntitySet="BookingDetails">
+          <ScalarProperty Name="Booking_Loc" ColumnName="Booking_Loc" />
+          <ScalarProperty Name="IsConfirmationSent" ColumnName="IsConfirmationSent" />
+          <ScalarProperty Name="Booking_TotalAmount" ColumnName="Booking_TotalAmount" />
+          <ScalarProperty Name="Booking_TicketCount" ColumnName="Booking_TicketCount" />
+          <ScalarProperty Name="Event_Id" ColumnName="Event_Id" />
+          <ScalarProperty Name="Booking_Date" ColumnName="Booking_Date" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Booking_SeatNo" ColumnName="Booking_SeatNo" />
+          <ScalarProperty Name="Booking_Id" ColumnName="Booking_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventDetails">
+      <EntityTypeMapping TypeName="EventBookingSystemModel.EventDetail">
+        <MappingFragment StoreEntitySet="EventDetails">
+          <ScalarProperty Name="Event_Picture" ColumnName="Event_Picture" />
+          <ScalarProperty Name="Event_Description" ColumnName="Event_Description" />
+          <ScalarProperty Name="Event_Type" ColumnName="Event_Type" />
+          <ScalarProperty Name="Event_Name" ColumnName="Event_Name" />
+          <ScalarProperty Name="Event_Id" ColumnName="Event_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventLocations">
+      <EntityTypeMapping TypeName="EventBookingSystemModel.EventLocation">
+        <MappingFragment StoreEntitySet="EventLocation">
+          <ScalarProperty Name="EventLocation_DateAndTime" ColumnName="EventLocation_DateAndTime" />
+          <ScalarProperty Name="EventLocation_Price" ColumnName="EventLocation_Price" />
+          <ScalarProperty Name="Event_Id" ColumnName="Event_Id" />
+          <ScalarProperty Name="Location_Id" ColumnName="Location_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="EventBookingSystemModel.Location">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="Location_Address" ColumnName="Location_Address" />
+          <ScalarProperty Name="Location_Name" ColumnName="Location_Name" />
+          <ScalarProperty Name="Location_Id" ColumnName="Location_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
