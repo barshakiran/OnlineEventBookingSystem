@@ -18,17 +18,25 @@ namespace OnlineEventBookingSystem.Controllers
         private string controller = "api/UserDetails";
         private HttpResponseMessage response;
 
-        
         public ActionResult Index()
         {
             List<RegistrationViewModel> listViewModel;
             response = GlobalVariables.WebApiClient.GetAsync(controller + "/GetUserDetails").Result;
-            listViewModel = response.Content.ReadAsAsync<List<RegistrationViewModel>>().Result;
-            ViewBag.UserList = listViewModel;
-            return View();
+            if (response.IsSuccessStatusCode)
+            {
+                listViewModel = response.Content.ReadAsAsync<List<RegistrationViewModel>>().Result;
+                ViewBag.UserList = listViewModel;
+                return View();
+            }
+            else
+            {
+                var statusCode = response.ReasonPhrase;
+                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
+                return View();
+
+            }
 
         }  
-
  
         public ActionResult Registration()
         {
@@ -36,15 +44,15 @@ namespace OnlineEventBookingSystem.Controllers
             return View(new RegistrationViewModel { });
 
         }       
-        [HttpPost]
 
+        [HttpPost]
         public ActionResult Registration(RegistrationViewModel model)
         {
             var consume = GlobalVariables.WebApiClient.PostAsJsonAsync<RegistrationViewModel>("api/Login" + "/PostUserDetail", model);
-            var displayRecord = consume.Result;
+           // var displayRecord = consume.Result;
             if (ModelState.IsValid)
             {
-                if (displayRecord.IsSuccessStatusCode)
+                if (consume.Result.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Login");
                 }
@@ -56,12 +64,11 @@ namespace OnlineEventBookingSystem.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+                ModelState.AddModelError(string.Empty, consume.Result.StatusCode + "...Server Error. Please contact administrator.");
                 return View(model);
             }
 
         }
-
        
         public ActionResult Login()
         {
@@ -69,15 +76,16 @@ namespace OnlineEventBookingSystem.Controllers
             return View(new LoginViewModel { });
 
         }      
-        [HttpPost]
-        
+
+        [HttpPost]        
         public ActionResult Login(LoginViewModel loginViewModel)
         {
             var consume = GlobalVariables.WebApiClient.PostAsJsonAsync<LoginViewModel>("api/Login" + "/UserLogin", loginViewModel).Result;
-            loginViewModel = consume.Content.ReadAsAsync<LoginViewModel>().Result;
-            if (ModelState.IsValid)
+            
+            if (consume.IsSuccessStatusCode && ModelState.IsValid)
             {
-                if (loginViewModel.User_Name != null)
+                loginViewModel = consume.Content.ReadAsAsync<LoginViewModel>().Result;
+                if (loginViewModel != null)
                 {
                     FormsAuthentication.SetAuthCookie(loginViewModel.User_Name, false);
                     if (loginViewModel.IsAdmin == true)
@@ -98,13 +106,13 @@ namespace OnlineEventBookingSystem.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+                var statusCode = consume.ReasonPhrase;
+                ModelState.AddModelError(string.Empty, statusCode + ".Server Error. Please contact administrator.");
                 return View(loginViewModel);
+
             }
 
         }
-
-
 
         // GET: UserDetails/Edit/5
         public ActionResult Edit(int id)
@@ -125,10 +133,9 @@ namespace OnlineEventBookingSystem.Controllers
 
         // POST: UserDetails/Edit/5
         [HttpPost]
-
         public ActionResult Edit(RegistrationViewModel userDetail)
         {
-            var consume = GlobalVariables.WebApiClient.PostAsJsonAsync<RegistrationViewModel>(controller + "/UserDetail", userDetail);
+            var consume = GlobalVariables.WebApiClient.PostAsJsonAsync<RegistrationViewModel>(controller + "/UpdateUserDetail", userDetail);
             var displayRecord = consume.Result;
             if (ModelState.IsValid)
             {
@@ -152,7 +159,6 @@ namespace OnlineEventBookingSystem.Controllers
            
            // return RedirectToAction("Index");
         }
-
         
         public ActionResult Details(int id)
         {
@@ -172,7 +178,6 @@ namespace OnlineEventBookingSystem.Controllers
 
         // POST: UserDetails/Delete/5
         [HttpPost, ActionName("Delete")]
-
         // [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -213,6 +218,7 @@ namespace OnlineEventBookingSystem.Controllers
             }
             return View(registrationVM);
         }
+
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
@@ -225,7 +231,6 @@ namespace OnlineEventBookingSystem.Controllers
             return View();
                         
         }
-
 
         public ActionResult WelcomePage()
         {

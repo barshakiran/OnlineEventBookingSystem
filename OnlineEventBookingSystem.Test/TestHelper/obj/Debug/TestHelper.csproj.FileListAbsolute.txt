@@ -1,0 +1,9 @@
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\TestHelper\bin\Debug\TestHelper.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\TestHelper\bin\Debug\TestHelper.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\TestHelper\bin\Debug\OnlineEventBookingSystemDomain.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\TestHelper\bin\Debug\OnlineEventBookingSystemDomain.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\TestHelper\obj\Debug\TestHelper.csproj.AssemblyReference.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\TestHelper\obj\Debug\TestHelper.csproj.CoreCompileInputs.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\TestHelper\obj\Debug\TestHelper.csproj.CopyComplete
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\TestHelper\obj\Debug\TestHelper.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\TestHelper\obj\Debug\TestHelper.pdb

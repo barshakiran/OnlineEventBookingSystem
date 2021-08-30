@@ -34,10 +34,18 @@ namespace OnlineEventBookingSystemBL
 
         public string AddUser(UserRegistrationDomainModel userDModel)
         {
-            UserDetail user = new UserDetail();
-            mapper.Map(userDModel, user);
-            userDataHandler.Insert(user);
-            return "Inserted";
+            UserDetail user;
+            if (userDModel != null)
+            {
+                user = new UserDetail();
+                mapper.Map(userDModel, user);
+                userDataHandler.Insert(user);
+                return "Inserted";
+            }
+            else
+            {
+                return null;
+            }
         }
       
         public UserRegistrationDomainModel WhereUser(string username)
@@ -57,18 +65,33 @@ namespace OnlineEventBookingSystemBL
         }
 
         public string UpdateUser(UserRegistrationDomainModel userDModel)
-        {
-            UserDetail user = new UserDetail();
-            mapper.Map(userDModel ,user);
-            userDataHandler.Update(user);
-            return "Inserted";
+        { 
+            UserDetail user;
+            if (userDModel != null)
+            {
+                user = new UserDetail();
+                mapper.Map(userDModel, user);
+                userDataHandler.Update(user);
+                return "Updated";
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public UserLoginDomainModel CheckLogin(UserLoginDomainModel model)
         {
             var data = userDataHandler.Where(s => s.User_Name == model.User_Name & s.User_Password == model.User_Password);
-            model.IsAdmin = data.First().IsAdmin;
-            return model;
+            if(data.Count() != 0)
+            {
+                model.IsAdmin = data.First().IsAdmin;
+                return model;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public UserRegistrationDomainModel FindUser(int id)

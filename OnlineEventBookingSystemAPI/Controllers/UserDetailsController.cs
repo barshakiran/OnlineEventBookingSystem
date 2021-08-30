@@ -6,6 +6,9 @@ using OnlineEventBookingSystemBL.Interface;
 using AutoMapper;
 using OnlineEventBookingSystemDomain;
 using OnlineEventBookingSystemAPI.Security;
+using OnlineEventBookingSystemAPI.CustomException;
+using System.Net;
+using System.Net.Http;
 
 namespace OnlineEventBookingSystemAPI.Controllers
 {
@@ -23,15 +26,28 @@ namespace OnlineEventBookingSystemAPI.Controllers
              config = new MapperConfiguration(x =>x.CreateMap<UserRegistrationDomainModel, UserRegistrationModel>().ReverseMap());
              mapper = new Mapper(config);
         }
-
-        [BasicAuthentication]
+        //[CustomExceptionFilterApi]
+       // [BasicAuthentication]
         public List<UserRegistrationModel> GetUserDetails()
         {
             
             List<UserRegistrationDomainModel> list = userBusiness.GetAllUsers();
-            List<UserRegistrationModel> listViewModel = new List<UserRegistrationModel>();
-            var user = mapper.Map(list, listViewModel);          
-            return listViewModel;
+            List<UserRegistrationModel> listViewModel;
+            if(list !=null)
+            {
+                listViewModel = new List<UserRegistrationModel>();
+                var user = mapper.Map(list, listViewModel);
+                return listViewModel;
+            }
+            else
+            {
+                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Data not found in the table")),
+                    ReasonPhrase = "Data not found"
+                };
+                throw new HttpResponseException(response);
+            }
         }
 
         public IHttpActionResult GetDetails(int id)
@@ -44,7 +60,14 @@ namespace OnlineEventBookingSystemAPI.Controllers
             UserRegistrationDomainModel userDetail = userBusiness.FindUser(id);
             if (userDetail == null)
             {
-                return BadRequest();
+                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Data not found for the Id: {0}",id)),
+                    ReasonPhrase = "Data not found"
+                };
+
+                throw new HttpResponseException(response);
+                //return NotFound();
             }
             mapper.Map(userDetail, userRegistrationModel);
             return Ok(userRegistrationModel);
@@ -53,7 +76,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
         [HttpPost]
         // PUT: api/UserDetails
         [ResponseType(typeof(UserRegistrationModel))]
-        public IHttpActionResult UserDetail(UserRegistrationModel userDetailModel)
+        public IHttpActionResult UpdateUserDetail(UserRegistrationModel userDetailModel)
         {
             UserRegistrationDomainModel userDomainModel = new UserRegistrationDomainModel();
             if (!ModelState.IsValid)
@@ -66,27 +89,20 @@ namespace OnlineEventBookingSystemAPI.Controllers
             {
                 mapper.Map(userDetailModel, userDomainModel);
                 userBusiness.UpdateUser(userDomainModel);
-                return Ok("inserted");
+                return Ok("Updated");
             }
 
             else
             {
-                return BadRequest();
-            }
-        
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!UserDetailExists(userDetailModel.User_Id))
-            //    {
-            //        return NotFound();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
+                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Data not found for the Id: {0}", userDetailModel.User_Id)),
+                    ReasonPhrase = "Data not found"
+                };
 
-           // return StatusCode(HttpStatusCode.NoContent);
+                throw new HttpResponseException(response);
+                //return NotFound();
+            }
         }
 
         // DELETE: api/UserDetails
@@ -94,17 +110,28 @@ namespace OnlineEventBookingSystemAPI.Controllers
         public IHttpActionResult Delete(int id)
         {
             var check = userBusiness.FindUser(id);
-
+            //bool isDeleted = false;
             if (check != null)
             {
-               // mapper.Map(userDetailModel, userDomainModel);
-                userBusiness.DeleteUser(id);
-                return Ok();
+               if(userBusiness.DeleteUser(id) == true)
+                {
+                    return Ok(true);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
-
             else
             {
-                return BadRequest();
+                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Data not found for the Id: {0}", id)),
+                    ReasonPhrase = "Data not found"
+                };
+
+                throw new HttpResponseException(response);
+                //return BadRequest();
             }
         }
     }

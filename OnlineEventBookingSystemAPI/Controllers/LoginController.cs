@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using AutoMapper;
-
+using OnlineEventBookingSystemAPI.CustomException;
 namespace OnlineEventBookingSystemAPI.Controllers
 {
     public class LoginController : ApiController
@@ -30,22 +30,42 @@ namespace OnlineEventBookingSystemAPI.Controllers
         public IHttpActionResult PostUserDetail(UserRegistrationModel userDetailModel)
         {
             UserRegistrationDomainModel userDomainModel = new UserRegistrationDomainModel();
-            var check = userBusiness.WhereUser(userDetailModel.User_Name);
-
-            if (check == null)
+            if (userDetailModel == null)
             {
-                mapper.Map(userDetailModel, userDomainModel);
-                userBusiness.AddUser(userDomainModel);
-                return Ok("inserted");
+                var message = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Data not found")),
+                    ReasonPhrase = "Data not found"
+                };
+                throw new HttpResponseException(message);
             }
-
             else
             {
-                return BadRequest();
+                var check = userBusiness.WhereUser(userDetailModel.User_Name);
+
+                if (check == null)
+                {
+                    mapper.Map(userDetailModel, userDomainModel);
+                    userBusiness.AddUser(userDomainModel);
+                    return Ok("inserted");
+                }
+
+                else
+                {
+                    //return BadRequest();
+                    var response = new HttpResponseMessage(HttpStatusCode.Found)
+                    {
+                        Content = new StringContent(string.Format("Username  {0} already exists ", userDetailModel.User_Name)),
+                        ReasonPhrase = "Data already exists"
+                    };
+                    throw new HttpResponseException(response);
+                }
             }
+                
         }
 
         // POST: api/UserDetails
+        [CustomExceptionFilterApi]
         [ResponseType(typeof(UserLoginDomainModel))]
         public UserLoginModel UserLogin(UserLoginModel userDetailModel)
         {
@@ -54,14 +74,21 @@ namespace OnlineEventBookingSystemAPI.Controllers
             mapper = new Mapper(config);
             mapper.Map(userDetailModel, userDomainModel);
             var check = userBusiness.CheckLogin(userDomainModel);
-            userDetailModel.IsAdmin = check.IsAdmin;
+            
             if (check == null)
             {
-                return null;
+                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Username or password is wrong")),
+                    ReasonPhrase = "Data not found"
+                };
+                throw new HttpResponseException(response);
+                //return NotFound();
             }
 
             else
             {
+                userDetailModel.IsAdmin = check.IsAdmin;
                 return userDetailModel;
             }
         }
