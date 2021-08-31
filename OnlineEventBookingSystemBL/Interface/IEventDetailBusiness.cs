@@ -1,5 +1,5 @@
 ﻿using OnlineEventBookingSystemDomain;
-
+using System.Collections.Generic;
 
 namespace OnlineEventBookingSystemBL.Interface
 {
@@ -7,5 +7,9 @@ namespace OnlineEventBookingSystemBL.Interface
     {
         //Event CRUD operations
         string AddEventDetails(EventDetailDomainModel eventDModel);
+        List<EventDetailDomainModel> DisplayEventDetails();
+        EventDetailDomainModel DisplayEvent(int eventId);
+        string UpdateEventDetails(EventDetailDomainModel eventDModel);
+        bool DeleteEvent(int id);
     }
 }

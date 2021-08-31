@@ -32,59 +32,30 @@ namespace OnlineEventBookingSystemAPI.Controllers
             mapper = new Mapper(config);
         }
         // GET: api/EventDetails
-        public IQueryable<EventDetail> GetEventDetails()
+        public List<EventDetailModel> GetEventDetails()
         {
-            return db.EventDetails;
-        }
+           // return db.EventDetails
 
-        // GET: api/EventDetails/5
-        [ResponseType(typeof(EventDetail))]
-        public IHttpActionResult GetEventDetail(int id)
-        {
-            EventDetail eventDetail = db.EventDetails.Find(id);
-            if (eventDetail == null)
+            List<EventDetailDomainModel> list = eventDetailBusiness.DisplayEventDetails();
+            List<EventDetailModel> listViewModel;
+            if (list != null)
             {
-                return NotFound();
+                listViewModel = new List<EventDetailModel>();
+                var user = mapper.Map(list, listViewModel);
+                return listViewModel;
             }
-
-            return Ok(eventDetail);
-        }
-
-        // PUT: api/EventDetails/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutEventDetail(int id, EventDetail eventDetail)
-        {
-            if (!ModelState.IsValid)
+            else
             {
-                return BadRequest(ModelState);
-            }
-
-            if (id != eventDetail.Event_Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(eventDetail).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EventDetailExists(id))
+                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
                 {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                    Content = new StringContent(string.Format("Data not found in the table")),
+                    ReasonPhrase = "Data not found"
+                };
+                throw new HttpResponseException(response);
             }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [HttpPost]
         // POST: api/EventDetails
         [ResponseType(typeof(EventDetailModel))]
         public IHttpActionResult PostEventDetail(EventDetailModel eventDetail)
@@ -92,7 +63,13 @@ namespace OnlineEventBookingSystemAPI.Controllers
             EventDetailDomainModel eventDetailDModel;
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                var response = new HttpResponseMessage(HttpStatusCode.BadRequest)
+                {
+                    Content = new StringContent(string.Format("Server error.")),
+                    ReasonPhrase = "Server error."
+                };
+                throw new HttpResponseException(response);
+               // return BadRequest(ModelState);
             }
             else
             {
@@ -102,20 +79,91 @@ namespace OnlineEventBookingSystemAPI.Controllers
                 return Ok("Inserted");
             }
         }
-        // DELETE: api/EventDetails/5
-        [ResponseType(typeof(EventDetail))]
-        public IHttpActionResult DeleteEventDetail(int id)
+
+        // GET: api/EventDetails/5
+        public IHttpActionResult GetEventDetail(int id)
         {
-            EventDetail eventDetail = db.EventDetails.Find(id);
-            if (eventDetail == null)
+            EventDetailModel eventDetailModel = new EventDetailModel();
+            EventDetailDomainModel eventDetailDModel = eventDetailBusiness.DisplayEvent(id);
+            if (id == 0)
             {
-                return NotFound();
+                return BadRequest();
+            }
+            if (eventDetailDModel == null)
+            {
+                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Data not found for the id {}", id)),
+                    ReasonPhrase = "Data not found"
+                };
+                throw new HttpResponseException(response);
+            }
+            mapper.Map(eventDetailDModel, eventDetailModel);
+            return Ok(eventDetailModel);
+        }
+
+        [HttpPost]
+        // PUT: api/EventDetails
+        [ResponseType(typeof(EventDetailModel))]
+        public IHttpActionResult UpdateEventDetail(EventDetailModel eventDetailModel)
+        {
+            EventDetailDomainModel eventDomainModel = new EventDetailDomainModel();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var check = eventDetailBusiness.DisplayEvent(eventDetailModel.Event_Id);
+
+            if (check != null)
+            {
+                mapper.Map(eventDetailModel, eventDomainModel);
+                eventDetailBusiness.UpdateEventDetails(eventDomainModel);
+                return Ok("Updated");
             }
 
-            db.EventDetails.Remove(eventDetail);
-            db.SaveChanges();
+            else
+            {
+                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Data not found for the Id: {0}", eventDetailModel.Event_Id)),
+                    ReasonPhrase = "Data not found"
+                };
 
-            return Ok(eventDetail);
+                throw new HttpResponseException(response);
+                //return NotFound();
+            }
+        }
+
+
+        //DELETE: api/EventDetails/5
+        //[ResponseType(typeof(EventDetail))]
+        [HttpPost]
+        public IHttpActionResult Delete(int id)
+        {
+            var check = eventDetailBusiness.DisplayEvent(id);
+            //bool isDeleted = false;
+            if (check != null)
+            {
+                if (eventDetailBusiness.DeleteEvent(id) == true)
+                {
+                    return Ok(true);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Data not found for the Id: {0}", id)),
+                    ReasonPhrase = "Data not found"
+                };
+
+                throw new HttpResponseException(response);
+                //return BadRequest();
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -127,9 +175,6 @@ namespace OnlineEventBookingSystemAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool EventDetailExists(int id)
-        {
-            return db.EventDetails.Count(e => e.Event_Id == id) > 0;
-        }
+
     }
-}
+    }

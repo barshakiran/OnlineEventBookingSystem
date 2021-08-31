@@ -21,9 +21,9 @@ namespace OnlineEventBookingSystemBL
             mapper = new Mapper(configuration);
         }
 
-        List<UserRegistrationDomainModel> IUserBusiness.GetAllUsers()
+       public List<UserRegistrationDomainModel> GetAllUsers()
         {
-
+            
             
             List<UserRegistrationDomainModel> list = userDataHandler.GetAll().Select(m => new UserRegistrationDomainModel { User_Name = m.User_Name, User_Password = m.User_Password,
                                                                                     User_Id = m.User_Id ,User_Address= m.User_Address,User_Email = m.User_Email,

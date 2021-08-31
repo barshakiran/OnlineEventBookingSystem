@@ -13,7 +13,7 @@ using OnlineEventBookingSystemUI.Filters;
 namespace OnlineEventBookingSystem.Controllers
 {
    
-    public class RepoController : Controller
+    public class UserController : Controller
     {
         private string controller = "api/UserDetails";
         private HttpResponseMessage response;
@@ -88,15 +88,16 @@ namespace OnlineEventBookingSystem.Controllers
                 if (loginViewModel != null)
                 {
                     FormsAuthentication.SetAuthCookie(loginViewModel.User_Name, false);
-                    if (loginViewModel.IsAdmin == true)
-                    {
-                        return RedirectToAction("Index");
+                    return RedirectToAction("Index", "EventDetail");
+                    //if (loginViewModel.IsAdmin == true)
+                    //{
+                    //    return RedirectToAction("Index","EventDetail");
 
-                    }
-                    else 
-                    {
-                        return RedirectToAction("WelcomePage");
-                    }
+                    //}
+                    //else 
+                    //{
+                    //    return RedirectToAction("Index", "EventDetail");
+                    //}
                 }
                 else
                 {
@@ -123,11 +124,13 @@ namespace OnlineEventBookingSystem.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
             var consume = GlobalVariables.WebApiClient.GetAsync(controller + "/GetDetails/" + id).Result;
-            registrationVM = consume.Content.ReadAsAsync<RegistrationViewModel>().Result;
-            if (registrationVM == null)
+            if (consume.IsSuccessStatusCode == false)
             {
-                return HttpNotFound();
+                var statusCode = consume.ReasonPhrase;
+                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
+                View(registrationVM);
             }
+            registrationVM = consume.Content.ReadAsAsync<RegistrationViewModel>().Result;
             return View(registrationVM);
         }
 
@@ -136,28 +139,17 @@ namespace OnlineEventBookingSystem.Controllers
         public ActionResult Edit(RegistrationViewModel userDetail)
         {
             var consume = GlobalVariables.WebApiClient.PostAsJsonAsync<RegistrationViewModel>(controller + "/UpdateUserDetail", userDetail);
-            var displayRecord = consume.Result;
-            if (ModelState.IsValid)
-            {
 
-
-                if (displayRecord.IsSuccessStatusCode)
+                if (ModelState.IsValid && consume.Result.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "There is something wrong with the edit...");
+                    ModelState.AddModelError(string.Empty, consume.Result.ReasonPhrase + "...Server Error. Please contact administrator.");
                     return View(userDetail);
                 }
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
-                return View(userDetail);
-            }
-           
-           // return RedirectToAction("Index");
+            
         }
         
         public ActionResult Details(int id)
@@ -168,11 +160,14 @@ namespace OnlineEventBookingSystem.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
             var consume = GlobalVariables.WebApiClient.GetAsync(controller + "/GetDetails/" + id).Result;
-            registrationVM = consume.Content.ReadAsAsync<RegistrationViewModel>().Result;
-            if (registrationVM == null)
+            if (consume.IsSuccessStatusCode == false)
             {
-                return HttpNotFound();
+                var statusCode = consume.ReasonPhrase;
+                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
+                View(registrationVM);
+
             }
+            registrationVM = consume.Content.ReadAsAsync<RegistrationViewModel>().Result;
             return View(registrationVM);
         }
 
@@ -182,12 +177,12 @@ namespace OnlineEventBookingSystem.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var consume = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/Delete/" + id, id);
-            var delConfirmed = consume.Result;
+            //var delConfirmed = consume.Result;
            
 
             if (ModelState.IsValid)
             {
-                if (delConfirmed.IsSuccessStatusCode)
+                if (consume.Result.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
                 }
@@ -198,7 +193,7 @@ namespace OnlineEventBookingSystem.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+                ModelState.AddModelError(string.Empty, consume.Result.ReasonPhrase +"Server Error. Please contact administrator.");
                 return RedirectToAction("Index");
             }
         }
@@ -210,12 +205,15 @@ namespace OnlineEventBookingSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var consume = GlobalVariables.WebApiClient.GetAsync(controller + "/GetDetails/" + id).Result;
-            registrationVM = consume.Content.ReadAsAsync<RegistrationViewModel>().Result;
-            if (registrationVM == null)
+            var consume = GlobalVariables.WebApiClient.GetAsync(controller + "/GetDetails/" + id).Result;           
+            if (consume.IsSuccessStatusCode == false)
             {
-                return HttpNotFound();
+                var statusCode = consume.ReasonPhrase;
+                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
+                View(registrationVM);
+
             }
+            registrationVM = consume.Content.ReadAsAsync<RegistrationViewModel>().Result;
             return View(registrationVM);
         }
 

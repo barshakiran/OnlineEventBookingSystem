@@ -216,16 +216,20 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Repo\WelcomePage.cshtml" />
-    <Content Include="Views\Repo\Index.cshtml" />
-    <Content Include="Views\Repo\Login.cshtml" />
-    <Content Include="Views\Repo\Registration.cshtml" />
+    <Content Include="Views\User\WelcomePage.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Registration.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Repo\Edit.cshtml" />
-    <Content Include="Views\Repo\Details.cshtml" />
-    <Content Include="Views\Repo\Delete.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\EventDetail\AddEvents.cshtml" />
     <Content Include="Views\EventDetail\Index.cshtml" />
+    <Content Include="Views\EventDetail\Details.cshtml" />
+    <Content Include="Views\EventDetail\Edit.cshtml" />
+    <Content Include="Views\EventDetail\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
