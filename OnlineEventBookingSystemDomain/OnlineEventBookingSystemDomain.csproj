@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="OnlineEventBookingSystemDAL">
+      <HintPath>..\OnlineEventBookingSystemDAL\bin\Debug\OnlineEventBookingSystemDAL.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,7 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventDetailDomainModel.cs" />
+    <Compile Include="EventLocationDomainModel.cs" />
+    <Compile Include="LocationDomainModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserEventDetailsDomainModel.cs" />
     <Compile Include="UserLoginDomainModel.cs" />
     <Compile Include="UserRegistrationDomainModel.cs" />
   </ItemGroup>

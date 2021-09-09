@@ -1,11 +1,11 @@
 ﻿using OnlineEventBookingSystem;
 using OnlineEventBookingSystemUI.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net;
 using System.Web.Mvc;
+using System;
+using System.Linq;
 
 namespace OnlineEventBookingSystemUI.Controllers
 {
@@ -13,12 +13,6 @@ namespace OnlineEventBookingSystemUI.Controllers
     {
 
         private string controller = "api/EventDetails";
-
-        // GET: EventDetail
-        //public ActionResult Index()
-        //{
-        //    return View(new EventDetailViewModel { } );
-        //}GetEventDetail
 
         public ActionResult AddEvents()
         {
@@ -28,8 +22,11 @@ namespace OnlineEventBookingSystemUI.Controllers
         [HttpPost]
         public ActionResult AddEvents(EventDetailViewModel eventDetailViewModel)
         {
+           // GetEventTypeEnumList();
+
             //Set the Image File Path.
             eventDetailViewModel.Event_Picture = "~/Images/" + eventDetailViewModel.Event_Picture;
+
             var consume = GlobalVariables.WebApiClient.PostAsJsonAsync<EventDetailViewModel>(controller + "/PostEventDetail", eventDetailViewModel);
 
             // var displayRecord = consume.Result;
@@ -165,5 +162,9 @@ namespace OnlineEventBookingSystemUI.Controllers
             eventDetailViewModel = consume.Content.ReadAsAsync<EventDetailViewModel>().Result;
             return View(eventDetailViewModel);
         }
+
+      
+
+       
     }
 }

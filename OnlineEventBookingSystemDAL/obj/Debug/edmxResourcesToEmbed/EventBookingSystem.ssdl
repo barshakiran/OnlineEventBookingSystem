@@ -39,8 +39,8 @@
       <PropertyRef Name="Location_Id" />
     </Key>
     <Property Name="Location_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Location_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Location_Address" Type="text" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="text" />
   </EntityType>
   <EntityType Name="UserDetails">
     <Key>

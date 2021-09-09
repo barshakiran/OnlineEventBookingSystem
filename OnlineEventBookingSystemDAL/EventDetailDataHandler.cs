@@ -13,6 +13,7 @@ namespace OnlineEventBookingSystemDAL
         public EventDetailDataHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
 
+            
         }
 
     }

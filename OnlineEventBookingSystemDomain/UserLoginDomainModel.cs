@@ -12,5 +12,6 @@ namespace OnlineEventBookingSystemDomain
         public string User_Name { get; set; }
         public string User_Password { get; set; }
         public bool IsAdmin { get; set; }
+        
     }
 }

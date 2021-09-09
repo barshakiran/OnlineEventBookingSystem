@@ -38,6 +38,14 @@ namespace  OnlineEventBookingSystemDAL.Infrastructure.Contract
         void Insert(T entity);
 
         /// <summary>
+        /// Inserts the data into the table
+        /// </summary>
+        /// <param name="entity">The entity to insert</param>
+        /// <param name="userId">The user performing the insert</param>
+        /// <returns></returns>
+        void InsertAll(IList<T> entities);
+
+        /// <summary>
         /// Updates this entity in the database using it's primary key
         /// </summary>
         /// <param name="entity">The entity to update</param>

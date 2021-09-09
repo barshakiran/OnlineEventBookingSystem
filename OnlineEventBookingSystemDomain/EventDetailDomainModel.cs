@@ -13,5 +13,13 @@ namespace OnlineEventBookingSystemDomain
         public string Event_Type { get; set; }
         public string Event_Description { get; set; }
         public string Event_Picture { get; set; }
+
+        public List<EventLocationDomainModel> EventList { get; set; }
+
+        //locationID
+        //    datetime
+        //    price
+
+
     }
 }

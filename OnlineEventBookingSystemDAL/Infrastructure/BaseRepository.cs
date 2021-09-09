@@ -52,7 +52,18 @@ using OnlineEventBookingSystemDAL.Infrastructure.Contract;
 
             }
 
-            public virtual void Update(T entity)
+        public virtual void InsertAll(IList<T> entities)
+        {
+            foreach (var entity in entities)
+            {
+                dbSet.Add(entity);
+               
+            }
+            this._unitOfWork.Db.SaveChanges();
+        }
+
+
+        public virtual void Update(T entity)
             {
 
             var local = _unitOfWork.Db.Set<T>()
@@ -115,7 +126,7 @@ using OnlineEventBookingSystemDAL.Infrastructure.Contract;
 
             public int Count(Expression<Func<T, bool>> whereCondition)
             {
-                return dbSet.Where(whereCondition).Count();
+                return dbSet.Count(whereCondition);
             }
 
             public IEnumerable<T> GetPagedRecords(Expression<Func<T, bool>> whereCondition, Expression<Func<T, string>> orderBy, int pageNo, int pageSize)

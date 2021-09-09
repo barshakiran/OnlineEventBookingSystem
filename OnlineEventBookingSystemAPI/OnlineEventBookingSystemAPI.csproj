@@ -188,11 +188,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserDetailsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UserEventDetailsController.cs" />
     <Compile Include="CustomException\CustomExceptionFilterApi.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EventDetailModel.cs" />
+    <Compile Include="Models\EventLocationModel.cs" />
+    <Compile Include="Models\UserEventDetailsModel.cs" />
     <Compile Include="Models\UserRegistrationModel.cs" />
     <Compile Include="Models\UserLoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

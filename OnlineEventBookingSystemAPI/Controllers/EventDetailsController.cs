@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -13,13 +8,12 @@ using OnlineEventBookingSystemAPI.Models;
 using OnlineEventBookingSystemBL.Interface;
 using AutoMapper;
 using OnlineEventBookingSystemDomain;
-using OnlineEventBookingSystemBL;
 
 namespace OnlineEventBookingSystemAPI.Controllers
 {
     public class EventDetailsController : ApiController
     {
-        private EventBookingSystemEntities1 db = new EventBookingSystemEntities1();
+        //private EventBookingSystemEntities1 db = new EventBookingSystemEntities1();
         private IEventDetailBusiness eventDetailBusiness;
         private MapperConfiguration config;
         private Mapper mapper;
@@ -73,13 +67,25 @@ namespace OnlineEventBookingSystemAPI.Controllers
             }
             else
             {
+
                 eventDetailDModel = new EventDetailDomainModel();
-                mapper.Map(eventDetail, eventDetailDModel);
+                //mapper.Map(eventDetail, eventDetailDModel);
+                List<EventLocationDomainModel> dobjloc = new List<EventLocationDomainModel>();
+                List<EventLocationModel> objloc = new List<EventLocationModel>();
+                objloc= eventDetail.EventList;
+                config = new MapperConfiguration(x => x.CreateMap<EventLocationModel, EventLocationDomainModel>().ReverseMap());
+                mapper = new Mapper(config);
+                mapper.Map(objloc, dobjloc);
+                eventDetailDModel.EventList = dobjloc;
+                eventDetailDModel.Event_Name = eventDetail.Event_Name;
+                eventDetailDModel.Event_Type = eventDetail.Event_Name;
+                eventDetailDModel.Event_Picture = eventDetail.Event_Picture;
+                eventDetailDModel.Event_Description = eventDetail.Event_Description;
                 eventDetailBusiness.AddEventDetails(eventDetailDModel);
                 return Ok("Inserted");
             }
         }
-
+        
         // GET: api/EventDetails/5
         public IHttpActionResult GetEventDetail(int id)
         {
@@ -164,15 +170,6 @@ namespace OnlineEventBookingSystemAPI.Controllers
                 throw new HttpResponseException(response);
                 //return BadRequest();
             }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
 
 

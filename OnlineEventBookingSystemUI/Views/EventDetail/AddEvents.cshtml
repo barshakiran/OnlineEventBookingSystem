@@ -47,12 +47,8 @@
                         @Html.LabelFor(model => model.Event_Type)
                     </td>
                     <td>
-                        @Html.DropDownListFor(model => model.Event_Type, new List<SelectListItem>
-                  { new SelectListItem{Text="Movie", Value="Movie"},
-                    new SelectListItem{Text="Stand up comedy", Value="Stage show"},
-                    new SelectListItem{Text="Musical" , Value ="Music"},
-                    new SelectListItem{Text="Play", Value="Theatre"}}, "Please select--",
-                    new { style = "width: 200px; height:30px;", htmlAttributes = new { @class = "form-control" } }
+                       @* @Html.DropDownListFor(model => model.Event_Type), "Please select--",*@
+                    @*new { style = "width: 200px; height:30px;", htmlAttributes = new { @class = "form-control" } }*@
                    )
                     <div style="height: 20px;">
                         @Html.ValidationMessageFor(model => model.Event_Type, "", new { @class = "text-danger" })

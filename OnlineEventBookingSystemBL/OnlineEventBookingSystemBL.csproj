@@ -43,7 +43,8 @@
     <Reference Include="OnlineEventBookingSystemDAL">
       <HintPath>..\OnlineEventBookingSystemDAL\bin\Debug\OnlineEventBookingSystemDAL.dll</HintPath>
     </Reference>
-    <Reference Include="OnlineEventBookingSystemDomain">
+    <Reference Include="OnlineEventBookingSystemDomain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\OnlineEventBookingSystemDomain\bin\Debug\OnlineEventBookingSystemDomain.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -77,8 +78,10 @@
     <Compile Include="EventDetailBusiness.cs" />
     <Compile Include="Interface\IEventDetailBusiness.cs" />
     <Compile Include="Interface\IUserBusiness.cs" />
+    <Compile Include="Interface\IUserEventDetailsBusiness.cs" />
     <Compile Include="UserBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserEventDetailsBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

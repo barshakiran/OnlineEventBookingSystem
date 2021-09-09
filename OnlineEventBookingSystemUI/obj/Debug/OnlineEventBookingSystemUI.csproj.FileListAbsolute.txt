@@ -142,6 +142,8 @@ C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\EntityFramework.
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.Configuration.ConfigurationBuilders.Base.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.Web.Infrastructure.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Newtonsoft.Json.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\System.Buffers.dll
@@ -166,6 +168,8 @@ C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\EntityFramework.
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\EntityFramework.SqlServer.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.Configuration.ConfigurationBuilders.Base.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\System.Buffers.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\System.Memory.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemUI\bin\System.Net.Http.Formatting.xml

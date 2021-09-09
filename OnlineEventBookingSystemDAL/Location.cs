@@ -21,8 +21,8 @@ namespace OnlineEventBookingSystemDAL
         }
     
         public int Location_Id { get; set; }
-        public string Location_Name { get; set; }
-        public string Location_Address { get; set; }
+        public string City { get; set; }
+        public string Address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EventLocation> EventLocations { get; set; }

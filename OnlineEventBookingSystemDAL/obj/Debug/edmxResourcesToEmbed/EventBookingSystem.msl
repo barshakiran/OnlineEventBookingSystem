@@ -53,8 +53,8 @@
     <EntitySetMapping Name="Locations">
       <EntityTypeMapping TypeName="EventBookingSystemModel.Location">
         <MappingFragment StoreEntitySet="Locations">
-          <ScalarProperty Name="Location_Address" ColumnName="Location_Address" />
-          <ScalarProperty Name="Location_Name" ColumnName="Location_Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="Location_Id" ColumnName="Location_Id" />
         </MappingFragment>
       </EntityTypeMapping>

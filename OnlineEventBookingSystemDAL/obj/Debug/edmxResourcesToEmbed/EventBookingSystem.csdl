@@ -18,7 +18,6 @@
     <EntitySet Name="BookingDetails" EntityType="EventBookingSystemModel.BookingDetail" />
     <EntitySet Name="EventDetails" EntityType="EventBookingSystemModel.EventDetail" />
     <EntitySet Name="EventLocations" EntityType="EventBookingSystemModel.EventLocation" />
-    <EntitySet Name="Locations" EntityType="EventBookingSystemModel.Location" />
     <AssociationSet Name="FK__BookingDe__Event__33D4B598" Association="EventBookingSystemModel.FK__BookingDe__Event__33D4B598">
       <End Role="EventDetail" EntitySet="EventDetails" />
       <End Role="BookingDetail" EntitySet="BookingDetails" />
@@ -31,6 +30,7 @@
       <End Role="EventDetail" EntitySet="EventDetails" />
       <End Role="EventLocation" EntitySet="EventLocations" />
     </AssociationSet>
+    <EntitySet Name="Locations" EntityType="EventBookingSystemModel.Location" />
     <AssociationSet Name="FK__EventLoca__Locat__2C3393D0" Association="EventBookingSystemModel.FK__EventLoca__Locat__2C3393D0">
       <End Role="Location" EntitySet="Locations" />
       <End Role="EventLocation" EntitySet="EventLocations" />
@@ -76,15 +76,6 @@
     <NavigationProperty Name="EventDetail" Relationship="EventBookingSystemModel.FK__EventLoca__Event__2D27B809" FromRole="EventLocation" ToRole="EventDetail" />
     <NavigationProperty Name="Location" Relationship="EventBookingSystemModel.FK__EventLoca__Locat__2C3393D0" FromRole="EventLocation" ToRole="Location" />
   </EntityType>
-  <EntityType Name="Location">
-    <Key>
-      <PropertyRef Name="Location_Id" />
-    </Key>
-    <Property Name="Location_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Location_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Location_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="EventLocations" Relationship="EventBookingSystemModel.FK__EventLoca__Locat__2C3393D0" FromRole="Location" ToRole="EventLocation" />
-  </EntityType>
   <Association Name="FK__BookingDe__Event__33D4B598">
     <End Type="EventBookingSystemModel.EventDetail" Role="EventDetail" Multiplicity="1" />
     <End Type="EventBookingSystemModel.BookingDetail" Role="BookingDetail" Multiplicity="*" />
@@ -121,6 +112,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="Location_Id" />
+    </Key>
+    <Property Name="Location_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EventLocations" Relationship="EventBookingSystemModel.FK__EventLoca__Locat__2C3393D0" FromRole="Location" ToRole="EventLocation" />
+  </EntityType>
   <Association Name="FK__EventLoca__Locat__2C3393D0">
     <End Type="EventBookingSystemModel.Location" Role="Location" Multiplicity="1" />
     <End Type="EventBookingSystemModel.EventLocation" Role="EventLocation" Multiplicity="*" />

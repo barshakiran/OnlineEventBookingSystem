@@ -13,10 +13,13 @@ namespace OnlineEventBookingSystemBL
         private MapperConfiguration configuration;
         private Mapper mapper;
         private IEventDetailDataHandler eventDetailDataHandler;
-
-        public EventDetailBusiness(IEventDetailDataHandler _eventDetailDataHandler)
+        private IEventLocationDataHandler eventLocationDataHandler;
+        private ILocationDataHandler locationDataHandler;
+        public EventDetailBusiness(IEventDetailDataHandler _eventDetailDataHandler , IEventLocationDataHandler _eventLocationDataHandler, ILocationDataHandler _locationDataHandler)
         {
+            locationDataHandler = _locationDataHandler;
             eventDetailDataHandler = _eventDetailDataHandler;
+            eventLocationDataHandler = _eventLocationDataHandler;
             configuration = new MapperConfiguration(x => x.CreateMap<EventDetailDomainModel, EventDetail>().ReverseMap());
             mapper = new Mapper(configuration);
         }
@@ -24,13 +27,38 @@ namespace OnlineEventBookingSystemBL
         public string AddEventDetails(EventDetailDomainModel eventDModel)
         {
             EventDetail newEvent;
+            EventLocation newEventLocation;
+            List<EventLocation> list;
+
             try
             {
                 if (eventDModel != null)
                 {
                     newEvent = new EventDetail();
-                    mapper.Map(eventDModel, newEvent);
+                    newEvent.Event_Name = eventDModel.Event_Name;
+                    newEvent.Event_Type = eventDModel.Event_Type;
+                    newEvent.Event_Description = eventDModel.Event_Description;
+                    newEvent.Event_Picture = eventDModel.Event_Picture;
                     eventDetailDataHandler.Insert(newEvent);
+                    list = new List<EventLocation>();
+                   
+                    foreach (var item in eventDModel.EventList)
+                    {
+                        newEventLocation = new EventLocation();
+                        item.Location_Id = locationDataHandler.SingleOrDefault(e => e.City == item.City).Location_Id;
+                        var userEventList =  eventLocationDataHandler.GetAll(e => e.Location_Id == item.Location_Id && e.Event_Id == newEvent.Event_Id).ToList();
+                        newEventLocation.EventLocation_DateAndTime = item.EventLocation_DateAndTime; 
+                        newEventLocation.EventLocation_Price = item.EventLocation_Price;
+                        newEventLocation.Location_Id = item.Location_Id;
+                        newEventLocation.Event_Id = newEvent.Event_Id;
+                        if (userEventList.Count == 0)
+                        {
+                            list.Add(newEventLocation);
+                        }
+                        
+                    }
+                    eventLocationDataHandler.InsertAll(list);
+
                     return "Inserted";
                 }
                 else
