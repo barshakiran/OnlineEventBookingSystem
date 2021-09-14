@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace OnlineEventBookingSystemUI.Models
 {
     public class EventDetailViewModel
     {
-       
 
+        [Display(Name = "ID :  ")]
         public int Event_Id { get; set; }
 
         [Required(ErrorMessage = "This field is Required")]
@@ -28,7 +29,8 @@ namespace OnlineEventBookingSystemUI.Models
         [Display(Name = " Picture :  ")]
         public string Event_Picture { get; set; }
 
-        public List<EventLocationViewModel> EventList { get; set; } 
+        public List<EventLocationViewModel> EventList { get; set; }
+        public List<SelectListItem> EventTypeList { get; set; }
     }
 
     public enum EventTypes

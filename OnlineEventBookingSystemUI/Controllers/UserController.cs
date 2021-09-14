@@ -88,16 +88,16 @@ namespace OnlineEventBookingSystem.Controllers
                 if (loginViewModel != null)
                 {
                     FormsAuthentication.SetAuthCookie(loginViewModel.User_Name, false);
-                    return RedirectToAction("Index", "EventDetail");
-                    //if (loginViewModel.IsAdmin == true)
-                    //{
-                    //    return RedirectToAction("Index","EventDetail");
+                   // return RedirectToAction("Index", "EventDetail");
+                    if (loginViewModel.IsAdmin == true)
+                    {
+                        return RedirectToAction("Index", "EventDetail");
 
-                    //}
-                    //else 
-                    //{
-                    //    return RedirectToAction("Index", "EventDetail");
-                    //}
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "UserEventDetail");
+                    }
                 }
                 else
                 {

@@ -8,13 +8,13 @@
     <table cellpadding="2" cellspacing="2" width="650">
         <tr>
             <td valign="top">
-                @Html.LabelFor(model => model.City)
+                @Html.LabelFor(model => model.Location_Id)
             </td>
             <td></td>
             <td>
-                @Html.DropDownList("CityList", ViewBag.CityList as SelectList, "-Select-", new { @Name = "[" + i + "].City" })
+                @Html.DropDownListFor(model=> model.Location_Id, Model.Cities, "-Select-", new { @Name = "[" + i + "].Location_Id" })
                 <div style="height: 20px;">
-                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Location_Id, "", new { @class = "text-danger" })
                 </div>
             </td>
             <td></td>

@@ -48,37 +48,18 @@ namespace OnlineEventBookingSystemAPI.Controllers
             }
         }
 
-        //// Get: api/EventDetails
-        //public IHttpActionResult GetEventTypesList()
-        //{
-        //    List<string> list = userEventDetailBusiness.DisplayEventTypesList();
-        //    if (list != null)
-        //    {
-        //        //listViewModel = new List<UserEventDetailsModel>();
-        //        //var user = mapper.Map(list, listViewModel);
-        //        return Ok(list);
-        //    }
-        //    else
-        //    {
-        //        var response = new HttpResponseMessage(HttpStatusCode.NotFound)
-        //        {
-        //            Content = new StringContent(string.Format("Data not found")),
-        //            ReasonPhrase = "Data not found"
-        //        };
-        //        throw new HttpResponseException(response);
-        //    }
-        //}
-
-        // Get: api/EventDetails
-        public IHttpActionResult GetCityList()
+        public IHttpActionResult GetLocationDetailList()
         {
-           // List<EventLocationModel> listViewModel ;
-            var list = userEventDetailBusiness.DisplayCityList();
-            if (list != null)
+            // List<EventLocationModel> listViewModel ;
+            var locationDomainModelList = userEventDetailBusiness.DisplayCityList();
+            List<LocationModel> locationModel;
+            if (locationDomainModelList != null)
             {
-               // listViewModel = new List<EventLocationModel>();
-               // mapper.Map(list, listViewModel);
-                return Ok(list);
+                locationModel = new List<LocationModel>();
+                config = new MapperConfiguration(x => x.CreateMap<LocationDomainModel, LocationModel>().ReverseMap());
+                mapper = new Mapper(config);
+                mapper.Map(locationDomainModelList, locationModel);
+                return Ok(locationModel);
             }
             else
             {

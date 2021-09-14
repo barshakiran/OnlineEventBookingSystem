@@ -15,8 +15,8 @@ namespace OnlineEventBookingSystemUI
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "EventLocationDetail", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{id}/{locationId}",
+                defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional, locationId = UrlParameter.Optional }
             );
         }
     }

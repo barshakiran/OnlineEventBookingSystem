@@ -13,30 +13,29 @@ namespace OnlineEventBookingSystemAPI.Controllers
 {
     public class EventDetailsController : ApiController
     {
-        //private EventBookingSystemEntities1 db = new EventBookingSystemEntities1();
         private IEventDetailBusiness eventDetailBusiness;
-        private MapperConfiguration config;
-        private Mapper mapper;
+        private MapperConfiguration configEvent;
+        private Mapper mapperEvent;
 
 
         public EventDetailsController(IEventDetailBusiness _eventDetailBusiness)
         {
             eventDetailBusiness = _eventDetailBusiness;
-            config = new MapperConfiguration(x => x.CreateMap<EventDetailModel, EventDetailDomainModel>().ReverseMap());
-            mapper = new Mapper(config);
+            configEvent = new MapperConfiguration(x => x.CreateMap<EventDetailModel, EventDetailDomainModel>().ReverseMap());
+            mapperEvent = new Mapper(configEvent);
         }
-        // GET: api/EventDetails
-        public List<EventDetailModel> GetEventDetails()
+        //GET: api/EventDetails
+        public List<EventDetailModel> GetEventDetailList()
         {
-           // return db.EventDetails
 
-            List<EventDetailDomainModel> list = eventDetailBusiness.DisplayEventDetails();
-            List<EventDetailModel> listViewModel;
-            if (list != null)
+            List<EventDetailDomainModel> eventDetailDomainList = eventDetailBusiness.DisplayEventDetailList();
+            List<EventDetailModel> eventDetailModelList;
+            if (eventDetailDomainList != null)
             {
-                listViewModel = new List<EventDetailModel>();
-                var user = mapper.Map(list, listViewModel);
-                return listViewModel;
+                eventDetailModelList = new List<EventDetailModel>();
+                var mapper = RInitializeAutomapper();
+                var  eventDetailModel = mapper.Map<List<EventDetailModel>>(eventDetailDomainList);
+                return eventDetailModel;
             }
             else
             {
@@ -49,12 +48,33 @@ namespace OnlineEventBookingSystemAPI.Controllers
             }
         }
 
+        static Mapper RInitializeAutomapper()
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<EventLocationDomainModel,EventLocationModel>();
+                cfg.CreateMap<EventDetailDomainModel, EventDetailModel>()
+                .ForMember(dest => dest.EventList, act => act.MapFrom(src => src.EventList));
+            });
+            var mapper = new Mapper(config);
+            return mapper;
+        }
+
+        static Mapper InitializeAutomapper()
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<EventLocationModel, EventLocationDomainModel>();
+                cfg.CreateMap<EventDetailModel, EventDetailDomainModel>()
+                .ForMember(dest => dest.EventList, act => act.MapFrom(src => src.EventList));
+            });
+            var mapper = new Mapper(config);
+            return mapper;
+        }
+
         [HttpPost]
         // POST: api/EventDetails
         [ResponseType(typeof(EventDetailModel))]
-        public IHttpActionResult PostEventDetail(EventDetailModel eventDetail)
+        public IHttpActionResult PostEventDetail(EventDetailModel eventDetailModel)
         {
-            EventDetailDomainModel eventDetailDModel;
             if (!ModelState.IsValid)
             {
                 var response = new HttpResponseMessage(HttpStatusCode.BadRequest)
@@ -63,102 +83,81 @@ namespace OnlineEventBookingSystemAPI.Controllers
                     ReasonPhrase = "Server error."
                 };
                 throw new HttpResponseException(response);
-               // return BadRequest(ModelState);
             }
             else
             {
-
-                eventDetailDModel = new EventDetailDomainModel();
-                //mapper.Map(eventDetail, eventDetailDModel);
-                List<EventLocationDomainModel> dobjloc = new List<EventLocationDomainModel>();
-                List<EventLocationModel> objloc = new List<EventLocationModel>();
-                objloc= eventDetail.EventList;
-                config = new MapperConfiguration(x => x.CreateMap<EventLocationModel, EventLocationDomainModel>().ReverseMap());
-                mapper = new Mapper(config);
-                mapper.Map(objloc, dobjloc);
-                eventDetailDModel.EventList = dobjloc;
-                eventDetailDModel.Event_Name = eventDetail.Event_Name;
-                eventDetailDModel.Event_Type = eventDetail.Event_Name;
-                eventDetailDModel.Event_Picture = eventDetail.Event_Picture;
-                eventDetailDModel.Event_Description = eventDetail.Event_Description;
-                eventDetailBusiness.AddEventDetails(eventDetailDModel);
+                var mapper = InitializeAutomapper();
+                var eventDetailDomainModel = mapper.Map<EventDetailDomainModel>(eventDetailModel);
+                eventDetailBusiness.AddEventDetails(eventDetailDomainModel);
                 return Ok("Inserted");
             }
         }
-        
-        // GET: api/EventDetails/5
-        public IHttpActionResult GetEventDetail(int id)
-        {
-            EventDetailModel eventDetailModel = new EventDetailModel();
-            EventDetailDomainModel eventDetailDModel = eventDetailBusiness.DisplayEvent(id);
-            if (id == 0)
-            {
-                return BadRequest();
-            }
-            if (eventDetailDModel == null)
-            {
-                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
-                {
-                    Content = new StringContent(string.Format("Data not found for the id {}", id)),
-                    ReasonPhrase = "Data not found"
-                };
-                throw new HttpResponseException(response);
-            }
-            mapper.Map(eventDetailDModel, eventDetailModel);
-            return Ok(eventDetailModel);
-        }
+
 
         [HttpPost]
-        // PUT: api/EventDetails
+        // POST: api/EventDetails
         [ResponseType(typeof(EventDetailModel))]
         public IHttpActionResult UpdateEventDetail(EventDetailModel eventDetailModel)
         {
-            EventDetailDomainModel eventDomainModel = new EventDetailDomainModel();
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                var response = new HttpResponseMessage(HttpStatusCode.BadRequest)
+                {
+                    Content = new StringContent(string.Format("Server error.")),
+                    ReasonPhrase = "Server error."
+                };
+                throw new HttpResponseException(response);
             }
-            var check = eventDetailBusiness.DisplayEvent(eventDetailModel.Event_Id);
-
-            if (check != null)
-            {
-                mapper.Map(eventDetailModel, eventDomainModel);
-                eventDetailBusiness.UpdateEventDetails(eventDomainModel);
-                return Ok("Updated");
-            }
-
             else
             {
-                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
-                {
-                    Content = new StringContent(string.Format("Data not found for the Id: {0}", eventDetailModel.Event_Id)),
-                    ReasonPhrase = "Data not found"
-                };
-
-                throw new HttpResponseException(response);
-                //return NotFound();
+                var mapper = InitializeAutomapper();
+                var eventDetailDomainModel = mapper.Map<EventDetailDomainModel>(eventDetailModel);
+                eventDetailBusiness.UpdateEventDetails(eventDetailDomainModel);
+                return Ok("Inserted");
             }
         }
 
+        // GET: api/EventDetails/5
+        public IHttpActionResult GetEventDetail(int id, int locationId)
+        {
+            {
+
+                EventDetailDomainModel eventDetailDomain = eventDetailBusiness.DisplayEventDetail(id, locationId);
+                EventDetailModel eventDetailModel = new EventDetailModel(); ;
+                if (eventDetailDomain != null)
+                {
+                   
+                    var mapper = RInitializeAutomapper();
+                     eventDetailModel = mapper.Map <EventDetailModel>(eventDetailDomain);
+                    return Ok(eventDetailModel);
+                }
+                else
+                {
+                    var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                    {
+                        Content = new StringContent(string.Format("Data not found in the table")),
+                        ReasonPhrase = "Data not found"
+                    };
+                    throw new HttpResponseException(response);
+                }
+            }
+        }
 
         //DELETE: api/EventDetails/5
         //[ResponseType(typeof(EventDetail))]
         [HttpPost]
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete(int id ,int locationId)
         {
-            var check = eventDetailBusiness.DisplayEvent(id);
+           // var check = eventDetailBusiness.DisplayEvent(id);
             //bool isDeleted = false;
-            if (check != null)
-            {
-                if (eventDetailBusiness.DeleteEvent(id) == true)
+            //if (check != null)
+            //{
+                if (eventDetailBusiness.DeleteEvent(id,locationId) == true)
                 {
                     return Ok(true);
                 }
-                else
-                {
-                    return BadRequest();
-                }
-            }
+                
+           // }
             else
             {
                 var response = new HttpResponseMessage(HttpStatusCode.NotFound)
@@ -172,6 +171,29 @@ namespace OnlineEventBookingSystemAPI.Controllers
             }
         }
 
-
+        // Get: api/EventDetails
+        public IHttpActionResult GetLocationDetailList()
+        {
+            // List<EventLocationModel> listViewModel ;
+            var locationDomainModelList = eventDetailBusiness.LocationDetailList();
+            List<LocationModel> locationModel;
+            if (locationDomainModelList != null)
+            {
+                locationModel = new List<LocationModel>();
+                configEvent = new MapperConfiguration(x => x.CreateMap<LocationDomainModel,LocationModel>().ReverseMap());
+                mapperEvent = new Mapper(configEvent);
+                mapperEvent.Map(locationDomainModelList, locationModel);
+                return Ok(locationModel);
+            }
+            else
+            {
+                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Data not found")),
+                    ReasonPhrase = "Data not found"
+                };
+                throw new HttpResponseException(response);
+            }
+        }
     }
     }

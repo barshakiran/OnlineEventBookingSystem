@@ -18,8 +18,8 @@ namespace OnlineEventBookingSystemAPI
             config.MapHttpAttributeRoutes();           
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{action}/{id}/{locationId}",
+                defaults: new { id = RouteParameter.Optional , locationId = RouteParameter.Optional }
             );
 
 

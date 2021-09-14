@@ -1,4 +1,4 @@
-﻿@model List<OnlineEventBookingSystemUI.Models.UserEventDetailViewModel>
+﻿@model OnlineEventBookingSystemUI.Models.EventDetailViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -13,36 +13,17 @@
     <title>Index</title>
 </head>
 <body>
-    @using (Html.BeginForm("FetchEventDetails", "UserEventDetail", FormMethod.Post))
-    {
 
-        <table>
-            <tr>
-                <td>
-                    Event Types: @Html.DropDownList("EventTypeList", ViewBag.EventTypeList as SelectList, "All")
-                </td>
-                <td>
-                    City: @Html.DropDownList("CityList", ViewBag.CityList as SelectList, "All")
-                </td>
-                <td>
-                    <input type="submit" value="SHOW DETAILS" />
-                </td>
-            </tr>
-        </table>
-    }
-
+    <h2>@ViewBag.UserName</h2>
     <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
         width: 1050px;  display: table;">
         <table class="table table-striped" height="500" width="1050">
             <thead>
                 <tr>
+                    <th> Event ID </th>
                     <th> Event Name</th>
-                    <th> Event Type </th>
+                    <th> Type of event </th>
                     <th> Description </th>
-                    <th> City </th>
-                    @* <th> Address </th>*@
-                    <th> Price </th>
-                    <th> Date </th>
                     <th> Picture </th>
                 </tr>
             </thead>
@@ -52,25 +33,33 @@
                     foreach (var myEvent in ViewBag.EventList)
                     {
                         <tr valign="bottom">
+                            <td>@myEvent.Event_Id</td>
                             <td>@myEvent.Event_Name </td>
                             <td>@myEvent.Event_Type </td>
                             <td width="300">@myEvent.Event_Description </td>
-                            <td>@myEvent.City </td>
-                            @* <td>@myEvent.Location_Address </td>*@
-                            <td>@myEvent.EventLocation_Price.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("hi-IN")) </td>
-                            <td>@myEvent.EventLocation_DateAndTime.ToString("dd MMM yyyy") </td>
                             <td>
                                 <div class="thumbnail">
                                     <img class="img-responsive" src="@Url.Content(myEvent.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
                                 </div>
                             </td>
-                            @*<td valign="bottom">
+
+                            <td valign="bottom" >
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <a>@Html.ActionLink("Book", "Book", new { id = myEvent.Event_Id })</a>
+                                    if (User.IsInRole("admin"))
+                                    {
+                                        <a>@Html.ActionLink("Edit", "Edit", new { id = myEvent.Event_Id }) | </a>
+                                        <a>@Html.ActionLink("Details", "Details", new { id = myEvent.Event_Id }) |</a>
+                                        <a>@Html.ActionLink("Delete", "Delete", new { id = myEvent.Event_Id })</a>
+                                    }
+                                    else
+                                    {
+                                        <a>@Html.ActionLink("Book", "Book", new { id = myEvent.Event_Id })</a>
+                                        
+                                    }
                                 }
 
-                            </td>*@
+                            </td>
                         </tr>
                     }
                 }
@@ -81,7 +70,7 @@
     <div>
         @if (Session["UserName"] == null)
         {
-            @Html.ActionLink("Click here to Register", "Registration", "User")
+            @Html.ActionLink("Click here to Register", "Registration","User")
         }
     </div>
 </body>

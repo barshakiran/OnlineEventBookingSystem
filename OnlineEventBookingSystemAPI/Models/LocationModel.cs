@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace OnlineEventBookingSystemDomain
+namespace OnlineEventBookingSystemAPI.Models
 {
-   public class LocationDomainModel
+    public class LocationModel
     {
         public int Location_Id { get; set; }
         public string City { get; set; }

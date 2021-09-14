@@ -82,8 +82,16 @@ using OnlineEventBookingSystemDAL.Infrastructure.Contract;
 
             public virtual void UpdateAll(IList<T> entities)
             {
-                foreach (var entity in entities)
+            
+            foreach (var entity in entities)
                 {
+                    var local = _unitOfWork.Db.Set<T>()
+                       .Local
+                       .FirstOrDefault();
+                    if (local != null)
+                    {
+                        _unitOfWork.Db.Entry(local).State = EntityState.Detached;
+                    }
                     dbSet.Attach(entity);
                     _unitOfWork.Db.Entry(entity).State = EntityState.Modified;
                 }

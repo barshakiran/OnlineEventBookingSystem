@@ -77,22 +77,25 @@ namespace OnlineEventBookingSystemBL
 
        
 
-        public List<EventLocationDomainModel> DisplayCityList()
+        public List<LocationDomainModel> DisplayCityList()
         {
-            List<EventLocationDomainModel> CityList;
-            try
-            {
-               CityList = new List<EventLocationDomainModel>();
+              List<LocationDomainModel> CityList;
 
-                var city = locationDataHandler.GetAll().ToList();
-                mapper.Map(city, CityList);
-                return CityList;
+                try
+                {
+                    configuration = new MapperConfiguration(x => x.CreateMap<LocationDomainModel, Location>().ReverseMap());
+                    mapper = new Mapper(configuration);
+                    CityList = new List<LocationDomainModel>();
 
-            }
-            catch (System.Exception msg)
-            {
-                throw msg;
-            }
+                    var city = locationDataHandler.GetAll().ToList();
+                    mapper.Map(city, CityList);
+                    return CityList;
+
+                }
+                catch (System.Exception msg)
+                {
+                    throw msg;
+                }
         }
 
         //public string AddEventDetails(UserEventDetailsDomainModel eventDModel)

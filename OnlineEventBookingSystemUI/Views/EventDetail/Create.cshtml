@@ -8,26 +8,21 @@
     @*<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>*@
     <!--@Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")-->
-    <script>
+    <script>        
         var i = 1;
-        $("#Add").click(function () {
-
-            $.ajax({
-                url: '/EventLocationDetail/EventLocationDetails',
-                data: { i: i },
-                success: function (data) {
-                    console.log(i);
-
-                    if (i < 4) {
-                        $("#partial").append(data);
-                    }
-
+            $("#Add").click(function () {
+                if (i < 3) {
+                    $.ajax({
+                        url: '/EventLocationDetail/EventLocationDetails',
+                        data: { i: i },
+                        success: function (data) {
+                            $("#partial").append(data);
+                        }
+                    })
+                    i++;
                 }
-            })
-            i++;
-
-        });
-
+            });
+        
     </script>)
 }
 
@@ -62,7 +57,7 @@
                         @Html.LabelFor(model => model.Event_Type)
                     </td>
                     <td>
-                        @Html.DropDownList("EventTypeList", ViewBag.EventTypeList as SelectList, "--Select--", new { style = "width: 200px; height:30px;", htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.Event_Type, Model.EventTypeList, "--Select--", new { style = "width: 200px; height:30px;", htmlAttributes = new { @class = "form-control" } })
 
                         <div style="height: 20px;">
                             @* @Html.ValidationMessageFor(model => model.Event_Type, "", new { @class = "text-danger" })*@
@@ -122,6 +117,9 @@
 
         }
     </div>
-
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 </body>
+
 </html>

@@ -13,24 +13,24 @@ namespace OnlineEventBookingSystemUI.Controllers
     public class UserEventDetailController : Controller
     {
         private string controller = "api/UserEventDetails";
-       List<UserEventDetailViewModel> listViewModel;
+        List<UserEventDetailViewModel> listViewModel;
         // GET: UserEventDetail
         public ActionResult Index()
         {
-            GetEventTypes();
-            GetCities();
-            return View();            
+            PoputaleEventTypes();
+            PopulateCityList();
+            return View();
         }
         public ActionResult FetchEventDetails(UserEventDetailViewModel model)
         {
-           model.City = Request["CityList"];
+            model.City = Request["CityList"];
             model.Event_Type = Request["EventTypeList"];
-            var response = GlobalVariables.WebApiClient.PostAsJsonAsync(controller+ "/UserEventDetails",model).Result;
+            var response = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/UserEventDetails", model).Result;
             if (response.IsSuccessStatusCode && ModelState.IsValid)
             {
                 listViewModel = response.Content.ReadAsAsync<List<UserEventDetailViewModel>>().Result;
-                GetEventTypes();
-                GetCities();
+                PoputaleEventTypes();
+                PopulateCityList();
                 ViewBag.EventList = listViewModel;
                 return View("Index");
             }
@@ -44,50 +44,58 @@ namespace OnlineEventBookingSystemUI.Controllers
         }
 
 
-        public void GetCities()
+        public List<SelectListItem> PoputaleEventTypes()
         {
-            List<string> city = new List<string>();
-            var response = GlobalVariables.WebApiClient.GetAsync(controller + "/GetCityList").Result;
+            List<SelectListItem> eventTypes;
+
+            if (ModelState.IsValid)
+            {
+
+                eventTypes = new List<SelectListItem>();
+                foreach (var item in Enum.GetNames(typeof(EventTypes)))
+                {
+                    eventTypes.Add(new SelectListItem
+                    {
+                        Text = item,
+                        Value = item
+                    });
+                }
+                ViewBag.EventTypeList = eventTypes;
+                return eventTypes;
+
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "...Server Error. Please contact administrator.");
+                return null;
+            }
+        }
+
+        public List<SelectListItem> PopulateCityList()
+        {
+            List<SelectListItem> cityList;
+            var response = OnlineEventBookingSystem.GlobalVariables.WebApiClient.GetAsync(controller + "/GetLocationDetailList").Result;
             if (response.IsSuccessStatusCode && ModelState.IsValid)
             {
-                 city = response.Content.ReadAsAsync<List<string>>().Result;
+                var locationDetailList = response.Content.ReadAsAsync<List<LocationViewModel>>().Result;
 
-                ViewBag.CityList = city.Select(x => new SelectListItem()
+                cityList = new List<SelectListItem>();
+                foreach (var city in locationDetailList)
                 {
-                    Text = x.ToString(),
-                    Selected = Request["CityList"]== x.ToString()?true:false
-                }); 
+                    cityList.Add(new SelectListItem
+                    {
+                        Text = city.City.ToString(),
+                        Value = city.City.ToString()
+                    });
+                }
+                ViewBag.CityList = cityList;
+                return cityList;
             }
             else
             {
                 var statusCode = response.ReasonPhrase;
                 ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
-
-            }
-        }
-
-        public void GetEventTypes()
-        {
-            List<string> eventTypes = new List<string>();
-            foreach (var item in Enum.GetNames(typeof(EventTypes)))
-            {
-                eventTypes.Add(item);
-            }
-           
-            if ( ModelState.IsValid)
-            {
-                // list.Select(x => new SelectListItem() { Value = x, Text = x }).ToList();
-                ViewBag.EventTypeList = eventTypes.Select(x => new SelectListItem()
-                {
-                    Text = x.ToString(),
-                    Selected = Request["EventTypeList"] == x.ToString() ? true : false
-                });
-
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty ,"...Server Error. Please contact administrator.");
-
+                return null;
             }
         }
 

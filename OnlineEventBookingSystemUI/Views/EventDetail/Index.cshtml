@@ -1,77 +1,79 @@
-﻿@model OnlineEventBookingSystemUI.Models.EventDetailViewModel
+﻿@model IEnumerable<OnlineEventBookingSystemUI.Models.EventDetailViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Event";
 }
 
-<h2>Event Details</h2>
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
+        width: 1300px;  display: table;">
+    <table class="table" align="center">
+        <tr>
+            <th width="65">
+                @Html.DisplayNameFor(model => model.Event_Id)
+            </th>
+            <th width="170">
+                @Html.DisplayNameFor(model => model.Event_Name)
+            </th>
+            <th width="100">
+                @Html.DisplayNameFor(model => model.Event_Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event_Description)
+            </th>
+            <th width="85">City</th>
+            <th width="85">Price</th>
+            <th width="170">Date</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event_Picture)
+            </th>
+        </tr>
 
-    <h2>@ViewBag.UserName</h2>
-    <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
-        width: 1050px;  display: table;">
-        <table class="table table-striped" height="500" width="1050">
-            <thead>
-                <tr>
-                    <th> Event ID </th>
-                    <th> Event Name</th>
-                    <th> Type of event </th>
-                    <th> Description </th>
-                    <th> Picture </th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (ViewBag.EventList != null)
-                {
-                    foreach (var myEvent in ViewBag.EventList)
-                    {
-                        <tr valign="bottom">
-                            <td>@myEvent.Event_Id</td>
-                            <td>@myEvent.Event_Name </td>
-                            <td>@myEvent.Event_Type </td>
-                            <td width="300">@myEvent.Event_Description </td>
-                            <td>
-                                <div class="thumbnail">
-                                    <img class="img-responsive" src="@Url.Content(myEvent.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
-                                </div>
-                            </td>
-
-                            <td valign="bottom" >
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    if (User.IsInRole("admin"))
-                                    {
-                                        <a>@Html.ActionLink("Edit", "Edit", new { id = myEvent.Event_Id }) | </a>
-                                        <a>@Html.ActionLink("Details", "Details", new { id = myEvent.Event_Id }) |</a>
-                                        <a>@Html.ActionLink("Delete", "Delete", new { id = myEvent.Event_Id })</a>
-                                    }
-                                    else
-                                    {
-                                        <a>@Html.ActionLink("Book", "Book", new { id = myEvent.Event_Id })</a>
-                                        
-                                    }
-                                }
-
-                            </td>
-                        </tr>
-                    }
-                }
-            </tbody>
-        </table>
-    </div>
-
-    <div>
-        @if (Session["UserName"] == null)
+        @foreach (var item in Model)
         {
-            @Html.ActionLink("Click here to Register", "Registration","User")
-        }
-    </div>
-</body>
-</html>
+            foreach (var items in item.EventList)
+            {
+    <tr>
+        <td width="10">
+            @Html.DisplayFor(modelItem => item.Event_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event_Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event_Description)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => items.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => items.EventLocation_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => items.EventLocation_DateAndTime)
+        </td>
+        <td>
+            <div class="thumbnail">
+                <img class="img-responsive" src="@Url.Content(item.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
+            </div>
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Event_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Event_Id ,locationId = items.Location_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Event_Id ,locationId = items.Location_Id })
+        </td>
+
+    </tr>
+                    }
+            }
+
+        </table>
+</div>
