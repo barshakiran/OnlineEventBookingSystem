@@ -21,21 +21,23 @@ namespace OnlineEventBookingSystemAPI.Controllers
         public UserEventDetailsController(IUserEventDetailsBusiness _userEventDetailBusiness)
         {
             userEventDetailBusiness = _userEventDetailBusiness;
-            config = new MapperConfiguration(x => x.CreateMap<UserEventDetailsModel, UserEventDetailsDomainModel>().ReverseMap());
+            config = new MapperConfiguration(x => x.CreateMap<EventDetailModel, EventDetailDomainModel>().ReverseMap());
             mapper = new Mapper(config);
         }
 
         [HttpPost]
-        // : api/EventDetails
-        public List<UserEventDetailsModel> UserEventDetails(UserEventDetailsModel model)
+        public List<EventDetailModel> UserEventDetails(UserEventDetailsModel model)
         {
-            List<UserEventDetailsDomainModel> list = userEventDetailBusiness.DisplayAllUserEvent(model.Event_Type, model.City);
-            List<UserEventDetailsModel> listViewModel;
-            if (list != null)
+            List<EventDetailDomainModel> eventDetailDomainList = userEventDetailBusiness.DisplayAllUserEvent(model.Event_Type, model.City);
+            List<EventDetailModel> eventDetailModelList;
+            if (eventDetailDomainList != null)
             {
-                listViewModel = new List<UserEventDetailsModel>();
-                var user = mapper.Map(list, listViewModel);
-                return listViewModel;
+               
+
+                eventDetailModelList = new List<EventDetailModel>();
+                var mapper = RInitializeAutomapper();
+                var eventDetailModel = mapper.Map<List<EventDetailModel>>(eventDetailDomainList);
+                return eventDetailModel;
             }
             else
             {
@@ -48,6 +50,17 @@ namespace OnlineEventBookingSystemAPI.Controllers
             }
         }
 
+
+        static Mapper RInitializeAutomapper()
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<EventLocationDomainModel, EventLocationModel>();
+                cfg.CreateMap<EventDetailDomainModel, EventDetailModel>()
+                .ForMember(dest => dest.EventList, act => act.MapFrom(src => src.EventList));
+            });
+            var mapper = new Mapper(config);
+            return mapper;
+        }
         public IHttpActionResult GetLocationDetailList()
         {
             // List<EventLocationModel> listViewModel ;
@@ -71,30 +84,5 @@ namespace OnlineEventBookingSystemAPI.Controllers
                 throw new HttpResponseException(response);
             }
         }
-
-        //[HttpPost]
-        //// POST: api/EventDetails
-        //[ResponseType(typeof(UserEventDetailsModel))]
-        //public IHttpActionResult PostEventDetail(UserEventDetailsModel eventDetail)
-        //{
-        //    UserEventDetailsDomainModel eventDetailDModel;
-        //    if (!ModelState.IsValid)
-        //    {
-        //        var response = new HttpResponseMessage(HttpStatusCode.BadRequest)
-        //        {
-        //            Content = new StringContent(string.Format("Server error.")),
-        //            ReasonPhrase = "Server error."
-        //        };
-        //        throw new HttpResponseException(response);
-        //        // return BadRequest(ModelState);
-        //    }
-        //    else
-        //    {
-        //        eventDetailDModel = new UserEventDetailsDomainModel();
-        //        mapper.Map(eventDetail, eventDetailDModel);
-        //        userEventDetailBusiness.AddEventDetails(eventDetailDModel);
-        //        return Ok("Inserted");
-        //    }
-        //}
     }
 }

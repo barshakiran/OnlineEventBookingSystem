@@ -1,0 +1,81 @@
+﻿@model IEnumerable<OnlineEventBookingSystemUI.Models.EventDetailViewModel>
+
+
+<table class="table">
+    <tr>
+        <th width="65">
+           @* @Html.DisplayNameFor(model => model.Event_Id)*@
+        </th>
+        <th width="170">
+            @Html.DisplayNameFor(model => model.Event_Name)
+        </th>
+        <th width="100">
+            @Html.DisplayNameFor(model => model.Event_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Event_Description)
+        </th>
+        <th width="85">City</th>
+        <th width="85">Price</th>
+        <th width="170">Date</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Event_Picture)
+        </th>
+    </tr>
+    
+
+    <tbody>
+        @if (Model != null && Model.Count() != 0)
+        {
+
+            foreach (var item in Model)
+            {
+                foreach (var items in item.EventList)
+                {
+                    <tr>
+                        <td width="10">
+                           @* @Html.DisplayFor(modelItem => item.Event_Id)*@
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Event_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Event_Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Event_Description)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => items.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => items.EventLocation_Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => items.EventLocation_DateAndTime)
+                        </td>
+                        <td>
+                            <div class="thumbnail">
+                                <img class="img-responsive" src="@Url.Content(item.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
+                            </div>
+                        </td>
+
+                        <td>
+
+                            @* @Html.ActionLink("Details", "Details", new { id = item.Event_Id, locationId = items.Location_Id }) |*@
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                               
+                                    <a>@Html.ActionLink("Book", "Book", new { id = item.Event_Id })</a>
+                            }
+
+                        </td>
+                        </tr>
+                }
+            }
+        }
+                </tbody>
+
+            </table>

@@ -13,37 +13,14 @@ namespace OnlineEventBookingSystemUI.Controllers
     public class UserEventDetailController : Controller
     {
         private string controller = "api/UserEventDetails";
-        List<UserEventDetailViewModel> listViewModel;
         // GET: UserEventDetail
         public ActionResult Index()
         {
-            PoputaleEventTypes();
-            PopulateCityList();
-            return View();
+            UserEventDetailViewModel userEventDetailViewModel = new UserEventDetailViewModel();
+            userEventDetailViewModel.EventTypeList = PoputaleEventTypes();
+            userEventDetailViewModel.CityList = PopulateCityList();
+            return View(userEventDetailViewModel);
         }
-        public ActionResult FetchEventDetails(UserEventDetailViewModel model)
-        {
-            model.City = Request["CityList"];
-            model.Event_Type = Request["EventTypeList"];
-            var response = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/UserEventDetails", model).Result;
-            if (response.IsSuccessStatusCode && ModelState.IsValid)
-            {
-                listViewModel = response.Content.ReadAsAsync<List<UserEventDetailViewModel>>().Result;
-                PoputaleEventTypes();
-                PopulateCityList();
-                ViewBag.EventList = listViewModel;
-                return View("Index");
-            }
-            else
-            {
-                var statusCode = response.ReasonPhrase;
-                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
-                return View();
-
-            }
-        }
-
-
         public List<SelectListItem> PoputaleEventTypes()
         {
             List<SelectListItem> eventTypes;
@@ -100,36 +77,40 @@ namespace OnlineEventBookingSystemUI.Controllers
         }
 
 
-        //public ActionResult AddLocationEvents()
-        //{
-        //    EventDetailController eventDetail = new EventDetailController();
-
-        //    return View(new UserEventDetailViewModel { });
-        //}
-
+        public ActionResult DisplayUserEvents()
+        {
+            List<EventDetailViewModel> eventDetailViewModels = new List<EventDetailViewModel>();
+            return PartialView(eventDetailViewModels);
+        }
 
 
-        //[HttpPost]
-        //public ActionResult AddLocationEvents(UserEventDetailViewModel userEventDetailViewModel)
-        //{
-        //    EventDetailViewModel eventDetailViewModel =new EventDetailViewModel();
+        [HttpPost]
+        public ActionResult DisplayUserEvents(UserEventDetailViewModel model)
+        {
+            List<EventDetailViewModel> eventDetailViewModels = new List<EventDetailViewModel>();
 
-        //    //Set the Image File Path.
-        //    eventDetailViewModel.Event_Picture = "~/Images/" + eventDetailViewModel.Event_Picture;
+            if(model.City == "All")
+            {
+                model.City = String.Empty;
+            }
+            if (model.Event_Type == "All")
+            {
+                model.Event_Type = String.Empty;
+            }
+            var response = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/UserEventDetails", model).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                eventDetailViewModels = response.Content.ReadAsAsync<List<EventDetailViewModel>>().Result;
+                return PartialView(@"~/Views/UserEventDetail/_DisplayUserEvents.cshtml", eventDetailViewModels);
+            }
+            else
+            {
+                var statusCode = response.ReasonPhrase;
+                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
+                return View();
 
-        //    var consume = GlobalVariables.WebApiClient.PostAsJsonAsync<UserEventDetailViewModel>(controller + "/PostEventDetail", eventDetailViewModel);
+            }
 
-        //    // var displayRecord = consume.Result;
-        //    if (ModelState.IsValid && consume.Result.IsSuccessStatusCode)
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        var statusCode = consume.Result.ReasonPhrase;
-        //        ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
-        //        return View(eventDetailViewModel);
-        //    }
-        //}
+        }   
     }
 }

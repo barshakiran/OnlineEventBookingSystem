@@ -172,7 +172,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\EventDetailController_bak.cs" />
     <Compile Include="Controllers\EventDetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -249,11 +248,6 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
-    <Content Include="Views\EventDetail_bak\AddEvents.cshtml" />
-    <Content Include="Views\EventDetail_bak\Index.cshtml" />
-    <Content Include="Views\EventDetail_bak\Details.cshtml" />
-    <Content Include="Views\EventDetail_bak\Edit.cshtml" />
-    <Content Include="Views\EventDetail_bak\Delete.cshtml" />
     <Content Include="Views\UserEventDetail\Index.cshtml" />
     <Content Include="Views\EventDetail\Index.cshtml" />
     <Content Include="Views\EventDetail\EventLocationDetails.cshtml" />
@@ -261,6 +255,7 @@
     <Content Include="Views\EventDetail\Edit.cshtml" />
     <Content Include="Views\EventDetail\Delete.cshtml" />
     <Content Include="Views\EventDetail\Details.cshtml" />
+    <Content Include="Views\UserEventDetail\_DisplayUserEvents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

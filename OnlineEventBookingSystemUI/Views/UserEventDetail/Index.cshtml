@@ -1,4 +1,4 @@
-﻿@model List<OnlineEventBookingSystemUI.Models.UserEventDetailViewModel>
+﻿@model OnlineEventBookingSystemUI.Models.UserEventDetailViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -7,76 +7,67 @@
 <h2>Event Details</h2>
 <!DOCTYPE html>
 
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $("#btnShow").click(function () {
+                var selectedTextEvent = $("#EventTypeList").find("option:selected").text();
+                var selectedTextCity = $("#CityList").find("option:selected").text();                
+                var UserEventDetailViewModel = {
+                    EventTypeList: selectedTextEvent,
+                    CityList: selectedTextCity,
+                    Event_Type: selectedTextEvent,
+                    City: selectedTextCity
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/UserEventDetail/DisplayUserEvents",
+                    data: { "model": UserEventDetailViewModel },
+                    dataType: "html",
+                    success: function (response) {
+                       
+                      $("#partial").html(response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert("Error");
+                    }
+                });
+            })
+        });
+    </script>
+}
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
 </head>
 <body>
-    @using (Html.BeginForm("FetchEventDetails", "UserEventDetail", FormMethod.Post))
-    {
-
+    @*@using (Html.BeginForm("FetchEventDetails", "UserEventDetail", FormMethod.Post, new { @name = "Form1" }))
+    {*@
         <table>
             <tr>
                 <td>
-                    Event Types: @Html.DropDownList("EventTypeList", ViewBag.EventTypeList as SelectList, "All")
+                    Event Types: @Html.DropDownList("EventTypeList", Model.EventTypeList, "All")
                 </td>
                 <td>
-                    City: @Html.DropDownList("CityList", ViewBag.CityList as SelectList, "All")
+                    City: @Html.DropDownList("CityList", Model.CityList, "All")
                 </td>
                 <td>
-                    <input type="submit" value="SHOW DETAILS" />
+                    <input type="submit" value="SHOW DETAILS" id="btnShow" />
                 </td>
             </tr>
         </table>
-    }
 
-    <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
-        width: 1050px;  display: table;">
-        <table class="table table-striped" height="500" width="1050">
-            <thead>
-                <tr>
-                    <th> Event Name</th>
-                    <th> Event Type </th>
-                    <th> Description </th>
-                    <th> City </th>
-                    @* <th> Address </th>*@
-                    <th> Price </th>
-                    <th> Date </th>
-                    <th> Picture </th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (ViewBag.EventList != null)
-                {
-                    foreach (var myEvent in ViewBag.EventList)
-                    {
-                        <tr valign="bottom">
-                            <td>@myEvent.Event_Name </td>
-                            <td>@myEvent.Event_Type </td>
-                            <td width="300">@myEvent.Event_Description </td>
-                            <td>@myEvent.City </td>
-                            @* <td>@myEvent.Location_Address </td>*@
-                            <td>@myEvent.EventLocation_Price.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("hi-IN")) </td>
-                            <td>@myEvent.EventLocation_DateAndTime.ToString("dd MMM yyyy") </td>
-                            <td>
-                                <div class="thumbnail">
-                                    <img class="img-responsive" src="@Url.Content(myEvent.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
-                                </div>
-                            </td>
-                            @*<td valign="bottom">
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <a>@Html.ActionLink("Book", "Book", new { id = myEvent.Event_Id })</a>
-                                }
+        <div id="partial"></div>
 
-                            </td>*@
-                        </tr>
-                    }
-                }
-            </tbody>
-        </table>
-    </div>
+    
+
+
+
 
     <div>
         @if (Session["UserName"] == null)

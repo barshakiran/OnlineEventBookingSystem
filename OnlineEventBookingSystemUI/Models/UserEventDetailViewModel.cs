@@ -1,24 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace OnlineEventBookingSystemUI.Models
 {
-
-
+  
+    
     public class UserEventDetailViewModel
     {
-
-        public string Event_Name { get; set; }
-        public string Event_Type { get; set; }
-        public string Event_Description { get; set; }
-        public string Event_Picture { get; set; }
-
-
+        public List<SelectListItem> EventTypeList { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> CityList { get; set; } = new List<SelectListItem>();
         public string City { get; set; }
-        // public string Location_Address { get; set; }
-
-        public decimal EventLocation_Price { get; set; }
-
-
-        public DateTime EventLocation_DateAndTime { get; set; }
+        public string Event_Type { get; set; }
+      //  public string TestData { get; set; }
+        // public List<SelectListItem> DateList { get; set; } = new List<SelectListItem>();
     }
+
+
+
 }

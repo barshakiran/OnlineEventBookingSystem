@@ -15,6 +15,7 @@ namespace OnlineEventBookingSystemBL
         private IEventDetailDataHandler eventDetailDataHandler;
         private IEventLocationDataHandler eventLocationDataHandler;
         private ILocationDataHandler locationDataHandler;
+       
         public EventDetailBusiness(IEventDetailDataHandler _eventDetailDataHandler , IEventLocationDataHandler _eventLocationDataHandler, ILocationDataHandler _locationDataHandler)
         {
             locationDataHandler = _locationDataHandler;
@@ -23,8 +24,6 @@ namespace OnlineEventBookingSystemBL
             configuration = new MapperConfiguration(x => x.CreateMap<EventDetailDomainModel, EventDetail>().ReverseMap());
             mapper = new Mapper(configuration);
         }
-
-
         
         public string AddEventDetails(EventDetailDomainModel eventDModel)
         {
@@ -160,6 +159,7 @@ namespace OnlineEventBookingSystemBL
                 throw msg;
             }
         }
+       
         public List<LocationDomainModel> LocationDetailList()
         {
             List<LocationDomainModel> CityList;
@@ -180,6 +180,7 @@ namespace OnlineEventBookingSystemBL
                 throw msg;
             }
         }
+
         public EventDetailDomainModel DisplayEvent(int eventId)
         {
             EventDetailDomainModel eventDModel;

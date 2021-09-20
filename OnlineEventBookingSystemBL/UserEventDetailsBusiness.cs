@@ -25,49 +25,84 @@ namespace OnlineEventBookingSystemBL
             mapper = new Mapper(configuration);
         }
 
-        public List<UserEventDetailsDomainModel> DisplayAllUserEvent(string eventType, string city)
+        public List<EventDetailDomainModel> DisplayAllUserEvent(string eventType, string city)
         {
 
             try
             {
-                List<EventLocation> userEventList = new List<EventLocation>();
-
-
+                List<EventDetail> userEventList = new List<EventDetail>();
+                List<EventDetailDomainModel> userEventsTemp = new List<EventDetailDomainModel>();
+                List<EventDetailDomainModel> userEvents = new List<EventDetailDomainModel>();
+                int locationId;
                 if (!string.IsNullOrEmpty(eventType) && !string.IsNullOrEmpty(city))
                 {
-                    userEventList = eventLocDataHandler.GetAll(e => e.EventDetail.Event_Type == eventType && e.Location.City == city).ToList();
+                    locationId = locationDataHandler.SingleOrDefault(e => e.City == city).Location_Id;
+                    userEventList = eventDetailDataHandler.GetAll(e => e.Event_Type == eventType).Select(m => new EventDetail
+                    {
+                        Event_Name = m.Event_Name,
+                        Event_Description = m.Event_Description,
+                        Event_Type = m.Event_Type,
+                        Event_Picture = m.Event_Picture,
+                        Event_Id = m.Event_Id,
+                        EventLocations = m.EventLocations.Where(x => x.Location_Id == locationId).ToList()
+                    }).ToList();
+
                 }
                 else if (!string.IsNullOrEmpty(eventType))
                 {
-                    userEventList = eventLocDataHandler.GetAll(e => e.EventDetail.Event_Type == eventType).ToList();
+                    userEventList = eventDetailDataHandler.GetAll(e => e.Event_Type == eventType).Select(m => new EventDetail
+                    {
+                        Event_Name = m.Event_Name,
+                        Event_Description = m.Event_Description,
+                        Event_Type = m.Event_Type,
+                        Event_Picture = m.Event_Picture,
+                        Event_Id = m.Event_Id,
+                        EventLocations = m.EventLocations
+                    }).ToList();
                 }
                 else if (!string.IsNullOrEmpty(city))
                 {
-                    userEventList = eventLocDataHandler.GetAll(e => e.Location.City == city).ToList();
+                    locationId = locationDataHandler.SingleOrDefault(e => e.City == city).Location_Id;
+                    userEventList = eventDetailDataHandler.GetAll().Select(m => new EventDetail
+                    {
+                        Event_Name = m.Event_Name,
+                        Event_Description = m.Event_Description,
+                        Event_Type = m.Event_Type,
+                        Event_Picture = m.Event_Picture,
+                        Event_Id = m.Event_Id,
+                        EventLocations = m.EventLocations.Where(x => x.Location_Id == locationId).ToList()
+                    }).ToList();
                 }
                 else
                 {
-                    userEventList = eventLocDataHandler.GetAll().ToList();
+                    userEventList = eventDetailDataHandler.GetAll().Select(m => new EventDetail
+                    {
+                        Event_Name = m.Event_Name,
+                        Event_Description = m.Event_Description,
+                        Event_Type = m.Event_Type,
+                        Event_Picture = m.Event_Picture,
+                        Event_Id = m.Event_Id,
+                        EventLocations = m.EventLocations
+                    }).ToList();
                 }
-               
 
-                var userEvents = userEventList.Select(e=>
-                                   new UserEventDetailsDomainModel
-                                  {
-                                      Event_Name = e.EventDetail.Event_Name,
-                                      Event_Type = e.EventDetail.Event_Type,
-                                      Event_Description = e.EventDetail.Event_Description,
-                                      Event_Picture = e.EventDetail.Event_Picture,
-                                      EventLocation_DateAndTime = e.EventLocation_DateAndTime,
-                                      EventLocation_Price = e.EventLocation_Price, 
-                                      City = e.Location.City,
-                                     // Location_Address = e.LocationData.Location_Address
-                                  }).ToList();
-
-              
-
-                return userEvents;
-
+                var cityList = DisplayCityList();
+                var mapper = InitializeAutomapper();
+                var cityName = mapper.Map<List<LocationDomainModel>>(cityList);
+                userEventsTemp = mapper.Map<List<EventDetailDomainModel>>(userEventList);
+                foreach (var item in userEventsTemp)
+                {
+                    if(item.EventList.Count!=0)
+                    {
+                        foreach (var cities in item.EventList)
+                        {
+                            cities.City = locationDataHandler.SingleOrDefault(x => x.Location_Id == cities.Location_Id).City;
+                        }
+                        userEvents.Add(item);
+                    }
+                    
+                }
+                return userEvents;                
             }
             catch (System.Exception msg)
             {
@@ -75,8 +110,20 @@ namespace OnlineEventBookingSystemBL
             }
         }
 
-       
 
+        static Mapper InitializeAutomapper()
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<EventLocation, EventLocationDomainModel>();
+                cfg.CreateMap<EventDetail, EventDetailDomainModel>()
+                .ForMember(dest => dest.EventList, act => act.MapFrom(src => src.EventLocations));
+                cfg.CreateMap<Location, LocationDomainModel>()
+                .ForMember(dest => dest.City, act => act.MapFrom(src => src.City));
+            });
+            var mapper = new Mapper(config);
+            return mapper;
+        }
+       
         public List<LocationDomainModel> DisplayCityList()
         {
               List<LocationDomainModel> CityList;
@@ -97,29 +144,6 @@ namespace OnlineEventBookingSystemBL
                     throw msg;
                 }
         }
-
-        //public string AddEventDetails(UserEventDetailsDomainModel eventDModel)
-        //{
-        //    EventLocation newEventLoc;
-        //    try
-        //    {
-        //        if (eventDModel != null)
-        //        {
-        //            newEventLoc = new EventLocation();
-        //            mapper.Map(eventDModel, newEventLoc);
-        //            eventLocDataHandler.Insert(newEventLoc);
-        //            return "Inserted";
-        //        }
-        //        else
-        //        {
-        //            return null;
-        //        }
-        //    }
-        //    catch (Exception msg)
-        //    {
-        //        throw msg;
-        //    }
-        //}
 
     }
 }
