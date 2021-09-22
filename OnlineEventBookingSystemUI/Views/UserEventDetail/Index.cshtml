@@ -46,25 +46,29 @@
     <title>Index</title>
 </head>
 <body>
-    @*@using (Html.BeginForm("FetchEventDetails", "UserEventDetail", FormMethod.Post, new { @name = "Form1" }))
-    {*@
-        <table>
-            <tr>
-                <td>
-                    Event Types: @Html.DropDownList("EventTypeList", Model.EventTypeList, "All")
-                </td>
-                <td>
-                    City: @Html.DropDownList("CityList", Model.CityList, "All")
-                </td>
-                <td>
-                    <input type="submit" value="SHOW DETAILS" id="btnShow" />
-                </td>
-            </tr>
-        </table>
 
-        <div id="partial"></div>
+    <table>
+        <tr>
+            <td>
+                Event Types: @Html.DropDownList("EventTypeList", Model.EventTypeList, "All")
+            </td>
+            <td>
+                City: @Html.DropDownList("CityList", Model.CityList, "All")
+            </td>
+            <td>
+                <input type="submit" value="SHOW DETAILS" id="btnShow" />
+            </td>
+            <td>
+            </td>
+        </tr>
+    </table>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a> @Html.ActionLink("Booked Events List", "DisplayUserBookedEventsList", new { id = User.Identity.Name })</a>
+    }
+    <div id="partial"></div>
 
-    
+
 
 
 

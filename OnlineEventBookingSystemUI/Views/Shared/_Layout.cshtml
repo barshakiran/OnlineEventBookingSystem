@@ -23,25 +23,27 @@
 
                 <ul class="nav navbar-nav" style="float:right !important">
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("User Event Details", "Index", "UserEventDetail")</li>
-                    <li>@Html.ActionLink("Register", "Registration", "User")</li>
+                    <li>@Html.ActionLink("Book Events", "Index", "UserEventDetail")</li>
+
                     @if (User.Identity.IsAuthenticated)
                     {
                         if (User.IsInRole("admin"))
                         {
-                            <li>@Html.ActionLink("User Details", "Index", "User")</li>
+                            <li>@Html.ActionLink("Users", "Index", "User")</li>
 
                             @*<li>@Html.ActionLink("Add Event", "AddEvents", "EventDetail")</li>*@
-                            <li>@Html.ActionLink("Event Details", "Index", "EventDetail")</li>
+                            <li>@Html.ActionLink("Events", "Index", "EventDetail")</li>
                         }
-                        
+
                         <li><a>Hello - @User.Identity.Name</a> </li>
                         <li>@Html.ActionLink("LogOut", "Logout", "User")</li>
+
 
                     }
                     else
                     {
                         <li>@Html.ActionLink("Login", "Login", "User")</li>
+                        <li>@Html.ActionLink("Register", "Registration", "User")</li>
                     }
 
                 </ul>

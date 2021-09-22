@@ -17,8 +17,8 @@ namespace OnlineEventBookingSystemDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EventDetail()
         {
-            this.BookingDetails = new HashSet<BookingDetail>();
             this.EventLocations = new HashSet<EventLocation>();
+            this.BookingDetails = new HashSet<BookingDetail>();
         }
     
         public int Event_Id { get; set; }
@@ -28,8 +28,8 @@ namespace OnlineEventBookingSystemDAL
         public string Event_Picture { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookingDetail> BookingDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EventLocation> EventLocations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BookingDetail> BookingDetails { get; set; }
     }
 }

@@ -31,13 +31,7 @@ namespace OnlineEventBookingSystemUI.Controllers
                         Value = item
                     });
                 }
-                //ViewBag.EventTypeList = eventTypes.Select(x => new SelectListItem()
-                //{
-                //    Text = x.ToString(),
-                //    Selected = Request["EventTypeList"] == x.ToString() ? true : false
-                //});
                 return eventTypes;
-
             }
             else
             {
@@ -63,13 +57,6 @@ namespace OnlineEventBookingSystemUI.Controllers
                         Value = city.Location_Id.ToString()
                     });
                 }
-
-
-                //ViewBag.CityList = cityList.Select(x => new SelectListItem()
-                //{
-                //    Text = x.ToString(),
-                //    Selected = Request["CityList"] == x.ToString() ? true : false
-                //});
                return cityList;
             }
             else
@@ -98,7 +85,6 @@ namespace OnlineEventBookingSystemUI.Controllers
         public async Task<ActionResult> AddLocationEvents(EventDetailViewModel eventDetailViewModel,List<EventLocationViewModel> objloc)
         {
             eventDetailViewModel.EventList = objloc;
-            //Set the Image File Path.
             eventDetailViewModel.Event_Picture = "~/Images/" + eventDetailViewModel.Event_Picture;
             var consume = await OnlineEventBookingSystem.GlobalVariables.WebApiClient.PostAsJsonAsync<EventDetailViewModel>(controller + "/PostEventDetail", eventDetailViewModel);
             var displayRecord = consume;
@@ -177,9 +163,6 @@ namespace OnlineEventBookingSystemUI.Controllers
         public ActionResult DeleteConfirmed(int id,int locationId)
         {
             var consume = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/Delete/" + id  + "/" + locationId, id & locationId);
-            // var delConfirmed = consume.Result;
-
-
             if (ModelState.IsValid && consume.Result.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -195,8 +178,6 @@ namespace OnlineEventBookingSystemUI.Controllers
         public async Task<ActionResult> UpdateLocationEvents(EventDetailViewModel eventDetailViewModel, List<EventLocationViewModel> objloc)
         {
             eventDetailViewModel.EventList = objloc;
-            //Set the Image File Path.
-          //  eventDetailViewModel.Event_Picture = "~/Images/" + eventDetailViewModel.Event_Picture;
             var consume = await GlobalVariables.WebApiClient.PostAsJsonAsync<EventDetailViewModel>(controller + "/UpdateEventDetail", eventDetailViewModel);
             var displayRecord = consume;
             if (ModelState.IsValid && consume.IsSuccessStatusCode)
@@ -262,29 +243,21 @@ namespace OnlineEventBookingSystemUI.Controllers
             return View(eventDetailViewModel);
         }
 
-        public ActionResult ShowDetailsToUsers()
+        public ActionResult DisplayBookedEventsList()
         {
-            
-            return View();
-        }
-        public ActionResult FetchEventDetails(UserEventDetailViewModel model)
-        {
-            List<UserEventDetailViewModel> listViewModel;
-            var response = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/UserEventDetailsList", model).Result;
-            if (response.IsSuccessStatusCode && ModelState.IsValid)
+            List<BookingDetailViewModel> bookedEventDetailViewModels = new List<BookingDetailViewModel>();
+            var response = GlobalVariables.WebApiClient.GetAsync(controller + "/GetBookedEventsDetailList/").Result;
+            if (response.IsSuccessStatusCode)
             {
-                listViewModel = response.Content.ReadAsAsync<List<UserEventDetailViewModel>>().Result;
-                ViewBag.EventList = listViewModel;
-                return View("Index");
+                bookedEventDetailViewModels = response.Content.ReadAsAsync<List<BookingDetailViewModel>>().Result;
+                return View(bookedEventDetailViewModels);
             }
             else
             {
                 var statusCode = response.ReasonPhrase;
                 ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
                 return View();
-
             }
         }
-
     }
 }

@@ -181,6 +181,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalVariables.cs" />
+    <Compile Include="Models\BookingDetailViewModel.cs" />
     <Compile Include="Models\DisplayOrderSummaryModel.cs" />
     <Compile Include="Models\EventDetailViewModel.cs" />
     <Compile Include="Models\EventLocationViewModel.cs" />
@@ -256,6 +257,12 @@
     <Content Include="Views\EventDetail\Delete.cshtml" />
     <Content Include="Views\EventDetail\Details.cshtml" />
     <Content Include="Views\UserEventDetail\_DisplayUserEvents.cshtml" />
+    <Content Include="Views\UserEventDetail\DisplayBookingEventDetails.cshtml" />
+    <Content Include="Views\UserEventDetail\UserEventDisplay.cshtml" />
+    <Content Include="Views\UserEventDetail\DisplayBookedEventDetails.cshtml" />
+    <Content Include="Views\UserEventDetail\DisplayUserBookedEventsList.cshtml" />
+    <Content Include="Views\UserEventDetail\Delete.cshtml" />
+    <Content Include="Views\EventDetail\DisplayBookedEventsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

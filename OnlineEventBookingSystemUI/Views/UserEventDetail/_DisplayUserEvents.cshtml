@@ -4,7 +4,6 @@
 <table class="table">
     <tr>
         <th width="65">
-           @* @Html.DisplayNameFor(model => model.Event_Id)*@
         </th>
         <th width="170">
             @Html.DisplayNameFor(model => model.Event_Name)
@@ -34,7 +33,6 @@
                 {
                     <tr>
                         <td width="10">
-                           @* @Html.DisplayFor(modelItem => item.Event_Id)*@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Event_Name)
@@ -62,13 +60,11 @@
                         </td>
 
                         <td>
-
-                            @* @Html.ActionLink("Details", "Details", new { id = item.Event_Id, locationId = items.Location_Id }) |*@
-
                             @if (User.Identity.IsAuthenticated)
                             {
-                               
-                                    <a>@Html.ActionLink("Book", "Book", new { id = item.Event_Id })</a>
+
+                                <a>@Html.ActionLink("Book", "DisplayBookingEventDetails", new { id = item.Event_Id, locationId = items.Location_Id, userName = User.Identity.Name })</a>
+                                
                             }
 
                         </td>
@@ -78,4 +74,5 @@
         }
                 </tbody>
 
-            </table>
+  </table>
+

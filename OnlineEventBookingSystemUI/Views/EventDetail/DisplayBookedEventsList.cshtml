@@ -1,0 +1,94 @@
+﻿@model IEnumerable<OnlineEventBookingSystemUI.Models.BookingDetailViewModel>
+
+@{
+    ViewBag.Title = "DisplayBookedEventsList";
+}
+
+<h2>Booked Events</h2>
+
+
+<div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
+        width: 1300px;  display: table;">
+    <table class="table">
+        <tr>
+            <th width="110">
+                @Html.DisplayNameFor(model => model.Booking_Id)
+            </th>
+            <th width="80">
+                @Html.DisplayNameFor(model => model.Event_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userName)
+            </th>
+            <th width="100">
+                @Html.DisplayNameFor(model => model.Booking_Loc)
+            </th>
+
+            <th width="120">
+                @Html.DisplayNameFor(model => model.Booking_Date)
+            </th>
+
+            <th width="130">
+                @Html.DisplayNameFor(model => model.Booking_TicketCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking_TotalAmount)
+            </th>
+            <th width="130">
+                @Html.DisplayNameFor(model => model.Payment_Mode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsConfirmationSent)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.userName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking_Loc)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking_Date)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking_TicketCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking_TotalAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payment_Mode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsConfirmationSent)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+            </tr>
+        }
+       
+    </table>
+    </div>

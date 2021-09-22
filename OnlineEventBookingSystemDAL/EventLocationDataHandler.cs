@@ -12,9 +12,7 @@ namespace OnlineEventBookingSystemDAL
     {
         public EventLocationDataHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            //add more than one rows in event location
-
-           // unitOfWork.Db.Database.SqlQuery()
+           
         }
     }
 }

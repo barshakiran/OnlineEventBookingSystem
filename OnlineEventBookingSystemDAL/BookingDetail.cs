@@ -15,7 +15,6 @@ namespace OnlineEventBookingSystemDAL
     public partial class BookingDetail
     {
         public int Booking_Id { get; set; }
-        public string Booking_SeatNo { get; set; }
         public int User_Id { get; set; }
         public System.DateTime Booking_Date { get; set; }
         public int Event_Id { get; set; }
@@ -23,6 +22,7 @@ namespace OnlineEventBookingSystemDAL
         public decimal Booking_TotalAmount { get; set; }
         public bool IsConfirmationSent { get; set; }
         public string Booking_Loc { get; set; }
+        public string Payment_Mode { get; set; }
     
         public virtual EventDetail EventDetail { get; set; }
         public virtual UserDetail UserDetail { get; set; }

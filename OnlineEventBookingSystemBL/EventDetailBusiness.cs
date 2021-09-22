@@ -15,12 +15,15 @@ namespace OnlineEventBookingSystemBL
         private IEventDetailDataHandler eventDetailDataHandler;
         private IEventLocationDataHandler eventLocationDataHandler;
         private ILocationDataHandler locationDataHandler;
-       
-        public EventDetailBusiness(IEventDetailDataHandler _eventDetailDataHandler , IEventLocationDataHandler _eventLocationDataHandler, ILocationDataHandler _locationDataHandler)
+        private IUserDataHandler userDataHandler;
+        private IBookingDetailDataHandler bookingDetailDataHandler;
+        public EventDetailBusiness(IBookingDetailDataHandler _bookingDetailDataHandler,IUserDataHandler _userDataHandler,IEventDetailDataHandler _eventDetailDataHandler , IEventLocationDataHandler _eventLocationDataHandler, ILocationDataHandler _locationDataHandler)
         {
             locationDataHandler = _locationDataHandler;
             eventDetailDataHandler = _eventDetailDataHandler;
             eventLocationDataHandler = _eventLocationDataHandler;
+            userDataHandler =  _userDataHandler;
+            bookingDetailDataHandler = _bookingDetailDataHandler;
             configuration = new MapperConfiguration(x => x.CreateMap<EventDetailDomainModel, EventDetail>().ReverseMap());
             mapper = new Mapper(configuration);
         }
@@ -147,10 +150,7 @@ namespace OnlineEventBookingSystemBL
                 userEvents = mapper.Map<EventDetailDomainModel>(userEventList[0]);
                 foreach (var item in userEvents.EventList)
                 {
-                    //foreach (var cities in item.EventList)
-                    //{
                         item.City = locationDataHandler.SingleOrDefault(x => x.Location_Id == item.Location_Id).City;
-                   // }
                 }
                 return userEvents;
             }
@@ -179,32 +179,6 @@ namespace OnlineEventBookingSystemBL
             {
                 throw msg;
             }
-        }
-
-        public EventDetailDomainModel DisplayEvent(int eventId)
-        {
-            EventDetailDomainModel eventDModel;
-
-            try 
-            {
-                if (eventId == 0)
-                {
-                    return null;
-                }
-                eventDModel = new EventDetailDomainModel();
-                var data = eventDetailDataHandler.SingleOrDefault(s => s.Event_Id== eventId);
-                if (data == null)
-                {
-                    return null;
-                }
-                mapper.Map(data, eventDModel);
-                return eventDModel;
-            }
-            catch(Exception msg)
-            {
-                throw msg;
-            }
-          
         }
 
         public string UpdateEventDetails(EventDetailDomainModel eventDomainModel)
@@ -282,6 +256,46 @@ namespace OnlineEventBookingSystemBL
 
         }
 
-    
+        public List<BookingDetailDomainModel> DisplayBookedEventsList()
+        {
+            try
+            {
+                List<BookingDetail> bookedEventDetail = new List<BookingDetail>();
+                List<BookingDetailDomainModel> bookingDetailDomainModel = new List<BookingDetailDomainModel>();
+                bookedEventDetail = bookingDetailDataHandler.GetAll().ToList();
+                if (bookedEventDetail != null)
+                {
+
+
+                    List<string> name = new List<string>();
+                    foreach (var item in bookedEventDetail)
+                    {
+
+                        name.Add(userDataHandler.SingleOrDefault(x => x.User_Id == item.User_Id).User_Name);
+                    }
+                    configuration = new MapperConfiguration(x => x.CreateMap<BookingDetail, BookingDetailDomainModel>().ReverseMap());
+                    mapper = new Mapper(configuration);
+                    mapper.Map(bookedEventDetail, bookingDetailDomainModel);
+                    int j = 0;
+                    foreach (var item in bookingDetailDomainModel)
+                    {
+
+                        item.UserName = name[j];
+
+
+                        item.Event_Name = eventDetailDataHandler.SingleOrDefault(x => x.Event_Id == item.Event_Id).Event_Name;
+                        j++;
+                    }
+
+                    return bookingDetailDomainModel;
+                }
+                else
+                    return null;
+            }
+            catch (System.Exception msg)
+            {
+                throw msg;
+            }
+        }
     }
 }

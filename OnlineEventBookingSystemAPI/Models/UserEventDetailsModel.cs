@@ -5,19 +5,10 @@ using System.Web;
 
 namespace OnlineEventBookingSystemAPI.Models
 {
-    public class UserEventDetailsModel
+    public class UserEventDetailsModel : EventDetailModel
     {
-        public string Event_Name { get; set; }
-        public string Event_Type { get; set; }
-        public string Event_Description { get; set; }
-        public string Event_Picture { get; set; }
-
-
-        public string City { get; set; }
-     // public string Location_Address { get; set; }
-
-
+        public string Booking_Loc { get; set; }
         public decimal EventLocation_Price { get; set; }
-        public DateTime EventLocation_DateAndTime { get; set; }
+        public DateTime Booking_Date { get; set; }
     }
 }

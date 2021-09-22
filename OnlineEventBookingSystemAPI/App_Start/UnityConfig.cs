@@ -27,7 +27,7 @@ namespace OnlineEventBookingSystemAPI
             container.RegisterType<IEventLocationDataHandler,EventLocationDataHandler> ();
             container.RegisterType<ILocationDataHandler, LocationDataHandler>();
             container.RegisterType<IUserEventDetailsBusiness, UserEventDetailsBusiness>();
-
+            container.RegisterType<IBookingDetailDataHandler, BookingDetailDataHandler>();
             
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

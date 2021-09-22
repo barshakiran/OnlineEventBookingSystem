@@ -25,11 +25,11 @@ namespace OnlineEventBookingSystemUI.Models
         [DataType(DataType.MultilineText)]
         public string Event_Description { get; set; }
 
-        [Required(ErrorMessage = "This field is Required")]
+ 
         [Display(Name = " Picture :  ")]
         public string Event_Picture { get; set; }
 
-        public List<EventLocationViewModel> EventList { get; set; }
+        public List<EventLocationViewModel> EventList { get; set; } = new List<EventLocationViewModel>();
         public List<SelectListItem> EventTypeList { get; set; }
     }
 

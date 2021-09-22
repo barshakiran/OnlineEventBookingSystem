@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookingDetailDomainModel.cs" />
     <Compile Include="EventDetailDomainModel.cs" />
     <Compile Include="EventLocationDomainModel.cs" />
     <Compile Include="LocationDomainModel.cs" />

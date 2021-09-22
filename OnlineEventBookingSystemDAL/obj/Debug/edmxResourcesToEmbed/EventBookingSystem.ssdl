@@ -5,7 +5,6 @@
       <PropertyRef Name="Booking_Id" />
     </Key>
     <Property Name="Booking_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Booking_SeatNo" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
     <Property Name="Booking_Date" Type="smalldatetime" Nullable="false" />
     <Property Name="Event_Id" Type="int" Nullable="false" />
@@ -13,6 +12,7 @@
     <Property Name="Booking_TotalAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="IsConfirmationSent" Type="bit" Nullable="false" />
     <Property Name="Booking_Loc" Type="nvarchar" MaxLength="50" />
+    <Property Name="Payment_Mode" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="EventDetails">
     <Key>

@@ -15,17 +15,8 @@
   </EntityType>
   <EntityContainer Name="EventBookingSystemEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
-    <EntitySet Name="BookingDetails" EntityType="EventBookingSystemModel.BookingDetail" />
     <EntitySet Name="EventDetails" EntityType="EventBookingSystemModel.EventDetail" />
     <EntitySet Name="EventLocations" EntityType="EventBookingSystemModel.EventLocation" />
-    <AssociationSet Name="FK__BookingDe__Event__33D4B598" Association="EventBookingSystemModel.FK__BookingDe__Event__33D4B598">
-      <End Role="EventDetail" EntitySet="EventDetails" />
-      <End Role="BookingDetail" EntitySet="BookingDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BookingDe__User___32E0915F" Association="EventBookingSystemModel.FK__BookingDe__User___32E0915F">
-      <End Role="UserDetail" EntitySet="UserDetails" />
-      <End Role="BookingDetail" EntitySet="BookingDetails" />
-    </AssociationSet>
     <AssociationSet Name="FK__EventLoca__Event__2D27B809" Association="EventBookingSystemModel.FK__EventLoca__Event__2D27B809">
       <End Role="EventDetail" EntitySet="EventDetails" />
       <End Role="EventLocation" EntitySet="EventLocations" />
@@ -35,23 +26,16 @@
       <End Role="Location" EntitySet="Locations" />
       <End Role="EventLocation" EntitySet="EventLocations" />
     </AssociationSet>
+    <EntitySet Name="BookingDetails" EntityType="EventBookingSystemModel.BookingDetail" />
+    <AssociationSet Name="FK__BookingDe__Event__33D4B598" Association="EventBookingSystemModel.FK__BookingDe__Event__33D4B598">
+      <End Role="EventDetail" EntitySet="EventDetails" />
+      <End Role="BookingDetail" EntitySet="BookingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingDe__User___32E0915F" Association="EventBookingSystemModel.FK__BookingDe__User___32E0915F">
+      <End Role="UserDetail" EntitySet="UserDetails" />
+      <End Role="BookingDetail" EntitySet="BookingDetails" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="BookingDetail">
-    <Key>
-      <PropertyRef Name="Booking_Id" />
-    </Key>
-    <Property Name="Booking_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Booking_SeatNo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="User_Id" Type="Int32" Nullable="false" />
-    <Property Name="Booking_Date" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Event_Id" Type="Int32" Nullable="false" />
-    <Property Name="Booking_TicketCount" Type="Int32" Nullable="false" />
-    <Property Name="Booking_TotalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-    <Property Name="IsConfirmationSent" Type="Boolean" Nullable="false" />
-    <Property Name="Booking_Loc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="EventDetail" Relationship="EventBookingSystemModel.FK__BookingDe__Event__33D4B598" FromRole="BookingDetail" ToRole="EventDetail" />
-    <NavigationProperty Name="UserDetail" Relationship="EventBookingSystemModel.FK__BookingDe__User___32E0915F" FromRole="BookingDetail" ToRole="UserDetail" />
-  </EntityType>
   <EntityType Name="EventDetail">
     <Key>
       <PropertyRef Name="Event_Id" />
@@ -61,8 +45,8 @@
     <Property Name="Event_Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Event_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Event_Picture" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="BookingDetails" Relationship="EventBookingSystemModel.FK__BookingDe__Event__33D4B598" FromRole="EventDetail" ToRole="BookingDetail" />
     <NavigationProperty Name="EventLocations" Relationship="EventBookingSystemModel.FK__EventLoca__Event__2D27B809" FromRole="EventDetail" ToRole="EventLocation" />
+    <NavigationProperty Name="BookingDetails" Relationship="EventBookingSystemModel.FK__BookingDe__Event__33D4B598" FromRole="EventDetail" ToRole="BookingDetail" />
   </EntityType>
   <EntityType Name="EventLocation">
     <Key>
@@ -76,30 +60,6 @@
     <NavigationProperty Name="EventDetail" Relationship="EventBookingSystemModel.FK__EventLoca__Event__2D27B809" FromRole="EventLocation" ToRole="EventDetail" />
     <NavigationProperty Name="Location" Relationship="EventBookingSystemModel.FK__EventLoca__Locat__2C3393D0" FromRole="EventLocation" ToRole="Location" />
   </EntityType>
-  <Association Name="FK__BookingDe__Event__33D4B598">
-    <End Type="EventBookingSystemModel.EventDetail" Role="EventDetail" Multiplicity="1" />
-    <End Type="EventBookingSystemModel.BookingDetail" Role="BookingDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="EventDetail">
-        <PropertyRef Name="Event_Id" />
-      </Principal>
-      <Dependent Role="BookingDetail">
-        <PropertyRef Name="Event_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__BookingDe__User___32E0915F">
-    <End Type="EventBookingSystemModel.UserDetail" Role="UserDetail" Multiplicity="1" />
-    <End Type="EventBookingSystemModel.BookingDetail" Role="BookingDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="UserDetail">
-        <PropertyRef Name="User_Id" />
-      </Principal>
-      <Dependent Role="BookingDetail">
-        <PropertyRef Name="User_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__EventLoca__Event__2D27B809">
     <End Type="EventBookingSystemModel.EventDetail" Role="EventDetail" Multiplicity="1" />
     <End Type="EventBookingSystemModel.EventLocation" Role="EventLocation" Multiplicity="*" />
@@ -130,6 +90,46 @@
       </Principal>
       <Dependent Role="EventLocation">
         <PropertyRef Name="Location_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BookingDetail">
+    <Key>
+      <PropertyRef Name="Booking_Id" />
+    </Key>
+    <Property Name="Booking_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Id" Type="Int32" Nullable="false" />
+    <Property Name="Booking_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Event_Id" Type="Int32" Nullable="false" />
+    <Property Name="Booking_TicketCount" Type="Int32" Nullable="false" />
+    <Property Name="Booking_TotalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="IsConfirmationSent" Type="Boolean" Nullable="false" />
+    <Property Name="Booking_Loc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Payment_Mode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EventDetail" Relationship="EventBookingSystemModel.FK__BookingDe__Event__33D4B598" FromRole="BookingDetail" ToRole="EventDetail" />
+    <NavigationProperty Name="UserDetail" Relationship="EventBookingSystemModel.FK__BookingDe__User___32E0915F" FromRole="BookingDetail" ToRole="UserDetail" />
+  </EntityType>
+  <Association Name="FK__BookingDe__Event__33D4B598">
+    <End Type="EventBookingSystemModel.EventDetail" Role="EventDetail" Multiplicity="1" />
+    <End Type="EventBookingSystemModel.BookingDetail" Role="BookingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventDetail">
+        <PropertyRef Name="Event_Id" />
+      </Principal>
+      <Dependent Role="BookingDetail">
+        <PropertyRef Name="Event_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingDe__User___32E0915F">
+    <End Type="EventBookingSystemModel.UserDetail" Role="UserDetail" Multiplicity="1" />
+    <End Type="EventBookingSystemModel.BookingDetail" Role="BookingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetail">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="BookingDetail">
+        <PropertyRef Name="User_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

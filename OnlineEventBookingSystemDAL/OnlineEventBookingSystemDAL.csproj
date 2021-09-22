@@ -53,6 +53,7 @@
     <Compile Include="BookingDetail.cs">
       <DependentUpon>EventBookingSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="BookingDetailDataHandler.cs" />
     <Compile Include="EventBookingSystem.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,6 +83,7 @@
     <Compile Include="Infrastructure\BaseRepository.cs" />
     <Compile Include="Infrastructure\Contract\IBaseRepository.cs" />
     <Compile Include="Infrastructure\Contract\IUnitOfWork.cs" />
+    <Compile Include="IBookingDetailDataHandler.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="IUserDataHandler.cs" />
     <Compile Include="Location.cs">

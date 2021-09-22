@@ -1,0 +1,130 @@
+﻿@model OnlineEventBookingSystemUI.Models.BookingDetailViewModel
+
+@{
+    ViewBag.Title = "View1";
+}
+
+<h2>View1</h2>
+
+<div>
+    <h4>BookingDetailViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Event_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event_Picture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event_Picture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventLocation_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventLocation_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventLocation_DateAndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventLocation_DateAndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Booking_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Booking_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Booking_TicketCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Booking_TicketCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Booking_TotalAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Booking_TotalAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_Mode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment_Mode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsConfirmationSent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsConfirmationSent)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -5,24 +5,26 @@ using AutoMapper;
 using OnlineEventBookingSystemDomain;
 using System.Collections.Generic;
 using System.Linq;
-
+using OnlineEventBookingSystemDAL.Infrastructure;
 
 namespace OnlineEventBookingSystemBL
 {
    public class UserEventDetailsBusiness:IUserEventDetailsBusiness
     {
         private IEventDetailDataHandler eventDetailDataHandler;
-        private IEventLocationDataHandler eventLocDataHandler;
+        private IBookingDetailDataHandler bookingDetailDataHandler;
         private ILocationDataHandler locationDataHandler;
+        private IUserDataHandler userDataHandler;
         private MapperConfiguration configuration;
         private Mapper mapper;
-        public UserEventDetailsBusiness(IEventLocationDataHandler _eventLocDataHandler, IEventDetailDataHandler _eventDetailDataHandler, ILocationDataHandler _locationDataHandler)
+
+
+        public UserEventDetailsBusiness(IUserDataHandler _userDataHandler,IBookingDetailDataHandler _bookingDetailDataHandler, IEventDetailDataHandler _eventDetailDataHandler, ILocationDataHandler _locationDataHandler)
         {
             eventDetailDataHandler = _eventDetailDataHandler;
-            eventLocDataHandler = _eventLocDataHandler;
+            bookingDetailDataHandler = _bookingDetailDataHandler;
             locationDataHandler = _locationDataHandler;
-            configuration = new MapperConfiguration(x => x.CreateMap<EventLocationDomainModel, Location>().ReverseMap());
-            mapper = new Mapper(configuration);
+            userDataHandler = _userDataHandler;
         }
 
         public List<EventDetailDomainModel> DisplayAllUserEvent(string eventType, string city)
@@ -110,6 +112,149 @@ namespace OnlineEventBookingSystemBL
             }
         }
 
+        public UserEventDetailsDomainModel DisplayUserBookingEventDetails(int eventId,int locationId)
+        {
+
+            try
+            {
+                EventDetail eventDetail = new EventDetail();
+                UserEventDetailsDomainModel userEvents = new UserEventDetailsDomainModel();
+                if (eventId != 0)
+                {
+                    eventDetail = eventDetailDataHandler.SingleOrDefault(e => e.Event_Id == eventId);
+                }
+                var mapper = InitializeAutomapperForUser();
+                userEvents = mapper.Map<UserEventDetailsDomainModel>(eventDetail);
+                userEvents.Booking_Loc = locationDataHandler.SingleOrDefault(x => x.Location_Id == locationId).City;
+                userEvents.EventLocation_Price = userEvents.EventList[0].EventLocation_Price;
+                userEvents.Booking_Date = userEvents.EventList[0].EventLocation_DateAndTime;               
+                return userEvents; 
+            }
+            catch (System.Exception msg)
+            {
+                throw msg;
+            }
+        }
+
+        public BookingDetailDomainModel DisplayUserBookedEventDetails(int bookingId)
+        {
+
+            try
+            {
+                BookingDetail bookedEventDetail = new BookingDetail();
+                BookingDetailDomainModel bookingDetailDomainModel = new BookingDetailDomainModel();
+                if (bookingId != 0)
+                {
+                    bookedEventDetail = bookingDetailDataHandler.SingleOrDefault(e => e.Booking_Id == bookingId);
+                }
+                if (bookedEventDetail == null)
+                {
+                    return null;
+                }
+                configuration = new MapperConfiguration(x => x.CreateMap<BookingDetail, BookingDetailDomainModel>().ReverseMap());
+                mapper = new Mapper(configuration);
+                mapper.Map(bookedEventDetail, bookingDetailDomainModel);
+                bookingDetailDomainModel.UserName = userDataHandler.SingleOrDefault(x => x.User_Id == bookedEventDetail.User_Id).User_Name;
+                bookingDetailDomainModel.Event_Name = eventDetailDataHandler.SingleOrDefault(x => x.Event_Id == bookingDetailDomainModel.Event_Id).Event_Name;
+                return bookingDetailDomainModel;
+               
+            }
+            catch (System.Exception msg)
+            {
+                throw msg;
+            }
+        }
+
+        public List<BookingDetailDomainModel> DisplayUserBookedEventsList(string userName)
+        {
+
+            try
+            {
+               List<BookingDetail> bookedEventDetail = new List<BookingDetail>();
+                int userId = 0;
+                List<BookingDetailDomainModel> bookingDetailDomainModel = new List<BookingDetailDomainModel>();
+                if (!string.IsNullOrEmpty(userName))
+                {
+                    userId = userDataHandler.SingleOrDefault(x => x.User_Name == userName).User_Id;
+                    bookedEventDetail = bookingDetailDataHandler.GetAll(e => e.User_Id == userId).ToList();
+                }
+                configuration = new MapperConfiguration(x => x.CreateMap<BookingDetail, BookingDetailDomainModel>().ReverseMap());
+                mapper = new Mapper(configuration);
+                mapper.Map(bookedEventDetail, bookingDetailDomainModel);
+               
+                foreach (var item in bookingDetailDomainModel)
+                {
+                    item.UserName = userName;
+                    item.Event_Name = eventDetailDataHandler.SingleOrDefault(x => x.Event_Id == item.Event_Id).Event_Name;
+                }
+               
+                return bookingDetailDomainModel;
+            }
+            catch (System.Exception msg)
+            {
+                throw msg;
+            }
+        }
+
+        public int AddUserBookingEventDetails(BookingDetailDomainModel bookingDetailDomainModel)
+        {
+            BookingDetail bookingDetail ;
+            int bookingId = 0;
+            try
+            {
+                if (bookingDetailDomainModel != null)
+                {
+                    bookingDetail = new BookingDetail();
+                   
+                    configuration = new MapperConfiguration(x => x.CreateMap<BookingDetailDomainModel, BookingDetail>().ReverseMap());
+                    mapper = new Mapper(configuration);
+                    mapper.Map(bookingDetailDomainModel, bookingDetail);
+                    bookingDetail.User_Id = userDataHandler.SingleOrDefault(x => x.User_Name == bookingDetailDomainModel.UserName).User_Id;
+
+                    var userBookedEventList = bookingDetailDataHandler.GetAll(e => e.Event_Id == bookingDetailDomainModel .Event_Id && e.User_Id == bookingDetail.User_Id).ToList();
+                   if(userBookedEventList.Count == 0)
+                    {
+                        bookingDetailDataHandler.Insert(bookingDetail);
+                        bookingId = bookingDetail.Booking_Id;
+                    }
+
+                    return bookingId;
+                }
+                else
+                {
+                    return bookingId;
+                }
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+        }
+
+        public bool DeleteBookedEvent(int id)
+        {
+            BookingDetailDomainModel bookedEventDetailDomainModel;
+            try
+            {
+                bookedEventDetailDomainModel = new BookingDetailDomainModel();
+                if (id == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    bookingDetailDataHandler.Delete(s => s.Booking_Id == id);
+                    
+                    return true;
+                }
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+
+
+        }
 
         static Mapper InitializeAutomapper()
         {
@@ -123,7 +268,20 @@ namespace OnlineEventBookingSystemBL
             var mapper = new Mapper(config);
             return mapper;
         }
-       
+
+        static Mapper InitializeAutomapperForUser()
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<EventLocation, EventLocationDomainModel>();
+                cfg.CreateMap<EventDetail, UserEventDetailsDomainModel>()
+                .ForMember(dest => dest.EventList, act => act.MapFrom(src => src.EventLocations));
+                cfg.CreateMap<Location, LocationDomainModel>()
+                .ForMember(dest => dest.City, act => act.MapFrom(src => src.City));
+            });
+            var mapper = new Mapper(config);
+            return mapper;
+        }
+
         public List<LocationDomainModel> DisplayCityList()
         {
               List<LocationDomainModel> CityList;

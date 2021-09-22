@@ -14,21 +14,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BookingDetails">
-      <EntityTypeMapping TypeName="EventBookingSystemModel.BookingDetail">
-        <MappingFragment StoreEntitySet="BookingDetails">
-          <ScalarProperty Name="Booking_Loc" ColumnName="Booking_Loc" />
-          <ScalarProperty Name="IsConfirmationSent" ColumnName="IsConfirmationSent" />
-          <ScalarProperty Name="Booking_TotalAmount" ColumnName="Booking_TotalAmount" />
-          <ScalarProperty Name="Booking_TicketCount" ColumnName="Booking_TicketCount" />
-          <ScalarProperty Name="Event_Id" ColumnName="Event_Id" />
-          <ScalarProperty Name="Booking_Date" ColumnName="Booking_Date" />
-          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
-          <ScalarProperty Name="Booking_SeatNo" ColumnName="Booking_SeatNo" />
-          <ScalarProperty Name="Booking_Id" ColumnName="Booking_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="EventDetails">
       <EntityTypeMapping TypeName="EventBookingSystemModel.EventDetail">
         <MappingFragment StoreEntitySet="EventDetails">
@@ -56,6 +41,21 @@
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="Location_Id" ColumnName="Location_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookingDetails">
+      <EntityTypeMapping TypeName="EventBookingSystemModel.BookingDetail">
+        <MappingFragment StoreEntitySet="BookingDetails">
+          <ScalarProperty Name="Payment_Mode" ColumnName="Payment_Mode" />
+          <ScalarProperty Name="Booking_Loc" ColumnName="Booking_Loc" />
+          <ScalarProperty Name="IsConfirmationSent" ColumnName="IsConfirmationSent" />
+          <ScalarProperty Name="Booking_TotalAmount" ColumnName="Booking_TotalAmount" />
+          <ScalarProperty Name="Booking_TicketCount" ColumnName="Booking_TicketCount" />
+          <ScalarProperty Name="Event_Id" ColumnName="Event_Id" />
+          <ScalarProperty Name="Booking_Date" ColumnName="Booking_Date" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Booking_Id" ColumnName="Booking_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

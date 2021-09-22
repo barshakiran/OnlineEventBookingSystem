@@ -93,6 +93,30 @@ namespace OnlineEventBookingSystemAPI.Controllers
             }
         }
 
+        public List<BookingDetailModel> GetBookedEventsDetailList()
+        {
+            List<BookingDetailDomainModel> bookedUserEventsDetailDomainList = eventDetailBusiness.DisplayBookedEventsList();
+            List<BookingDetailModel> bookedUserEventDetailModelList;
+            if (bookedUserEventsDetailDomainList != null)
+            {
+
+
+                bookedUserEventDetailModelList = new List<BookingDetailModel>();
+                configEvent = new MapperConfiguration(x => x.CreateMap<BookingDetailDomainModel, BookingDetailModel>().ReverseMap());
+                mapperEvent = new Mapper(configEvent);
+                mapperEvent.Map(bookedUserEventsDetailDomainList, bookedUserEventDetailModelList);
+                return bookedUserEventDetailModelList;
+            }
+            else
+            {
+                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Data not found in the table")),
+                    ReasonPhrase = "Data not found"
+                };
+                throw new HttpResponseException(response);
+            }
+        }
 
         [HttpPost]
         // POST: api/EventDetails
@@ -148,16 +172,11 @@ namespace OnlineEventBookingSystemAPI.Controllers
         [HttpPost]
         public IHttpActionResult Delete(int id ,int locationId)
         {
-           // var check = eventDetailBusiness.DisplayEvent(id);
-            //bool isDeleted = false;
-            //if (check != null)
-            //{
                 if (eventDetailBusiness.DeleteEvent(id,locationId) == true)
                 {
                     return Ok(true);
                 }
                 
-           // }
             else
             {
                 var response = new HttpResponseMessage(HttpStatusCode.NotFound)
@@ -167,14 +186,12 @@ namespace OnlineEventBookingSystemAPI.Controllers
                 };
 
                 throw new HttpResponseException(response);
-                //return BadRequest();
             }
         }
 
         // Get: api/EventDetails
         public IHttpActionResult GetLocationDetailList()
         {
-            // List<EventLocationModel> listViewModel ;
             var locationDomainModelList = eventDetailBusiness.LocationDetailList();
             List<LocationModel> locationModel;
             if (locationDomainModelList != null)
