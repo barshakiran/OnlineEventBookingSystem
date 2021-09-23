@@ -14,5 +14,6 @@ namespace OnlineEventBookingSystemBL.Interface
         List<BookingDetailDomainModel> DisplayUserBookedEventsList(string userName);
         List<LocationDomainModel> DisplayCityList();
         bool DeleteBookedEvent(int id);
+       // bool SendEmailNotification(string email, string userName);
     }
 }

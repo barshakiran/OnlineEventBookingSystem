@@ -17,16 +17,41 @@ namespace OnlineEventBookingSystemBL
         private IUserDataHandler userDataHandler;
         private MapperConfiguration configuration;
         private Mapper mapper;
-
-
+       
         public UserEventDetailsBusiness(IUserDataHandler _userDataHandler,IBookingDetailDataHandler _bookingDetailDataHandler, IEventDetailDataHandler _eventDetailDataHandler, ILocationDataHandler _locationDataHandler)
         {
+           
             eventDetailDataHandler = _eventDetailDataHandler;
             bookingDetailDataHandler = _bookingDetailDataHandler;
             locationDataHandler = _locationDataHandler;
             userDataHandler = _userDataHandler;
         }
 
+        public bool SendEmailNotification(BookingDetailDomainModel bookingDetailDomainModel)
+        {
+
+            try
+            {
+
+               EmailHelper mailHelper = new EmailHelper(EmailHelper.EMAIL_SENDER, EmailHelper.SMTP_CLIENT, EmailHelper.EMAIL_CREDENTIALS);
+               var eventName = eventDetailDataHandler.SingleOrDefault(x => x.Event_Id == bookingDetailDomainModel.Event_Id).Event_Name;
+               var emailBody = EmailHelper.EMAIL_BODY+ Environment.NewLine+ bookingDetailDomainModel.Booking_TicketCount +" "+ " tickets for the event " + eventName + " is booked."
+                    + Environment.NewLine + "For ticket detail login to the website.";
+                if (mailHelper.SendEMail(bookingDetailDomainModel.Email, EmailHelper.EMAIL_SUBJECT, emailBody))
+                {
+                    bookingDetailDomainModel.IsConfirmationSent = true;
+                }
+            }
+            catch (Exception ex)
+            {
+               // throw ex;
+                return false;
+            }
+            return true;
+        }
+
+        
+        
         public List<EventDetailDomainModel> DisplayAllUserEvent(string eventType, string city)
         {
 
@@ -200,6 +225,7 @@ namespace OnlineEventBookingSystemBL
         {
             BookingDetail bookingDetail ;
             int bookingId = 0;
+           // string email = string.Empty;
             try
             {
                 if (bookingDetailDomainModel != null)
@@ -211,11 +237,18 @@ namespace OnlineEventBookingSystemBL
                     mapper.Map(bookingDetailDomainModel, bookingDetail);
                     bookingDetail.User_Id = userDataHandler.SingleOrDefault(x => x.User_Name == bookingDetailDomainModel.UserName).User_Id;
 
-                    var userBookedEventList = bookingDetailDataHandler.GetAll(e => e.Event_Id == bookingDetailDomainModel .Event_Id && e.User_Id == bookingDetail.User_Id).ToList();
-                   if(userBookedEventList.Count == 0)
+                    var userBookedEventList = bookingDetailDataHandler.GetAll(e => e.Event_Id == bookingDetailDomainModel .Event_Id && e.User_Id == bookingDetail.User_Id ).ToList();
+                   if(userBookedEventList.Count == 0 && bookingDetailDomainModel.Booking_Date > System.DateTime.Now)
                     {
+                       
                         bookingDetailDataHandler.Insert(bookingDetail);
                         bookingId = bookingDetail.Booking_Id;
+                        bookingDetailDomainModel.Email = userDataHandler.SingleOrDefault(x => x.User_Id == bookingDetail.User_Id).User_Email;
+                        if (SendEmailNotification(bookingDetailDomainModel) == true)
+                        {
+                            bookingDetail.IsConfirmationSent = true;
+                            bookingDetailDataHandler.Update(bookingDetail);
+                        }
                     }
 
                     return bookingId;
@@ -243,8 +276,7 @@ namespace OnlineEventBookingSystemBL
                 }
                 else
                 {
-                    bookingDetailDataHandler.Delete(s => s.Booking_Id == id);
-                    
+                    bookingDetailDataHandler.Delete(s => s.Booking_Id == id);                    
                     return true;
                 }
             }
@@ -252,8 +284,6 @@ namespace OnlineEventBookingSystemBL
             {
                 throw msg;
             }
-
-
         }
 
         static Mapper InitializeAutomapper()

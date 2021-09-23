@@ -24,120 +24,171 @@
 
 @using (Html.BeginForm("AddUserBookingEventDetail", "UserEventDetail", FormMethod.Post))
 {
+<div class="form-horizontal" style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px; width: 500px; margin: auto; display: table;">
+    <div class="form-horizontal" style="border: solid 1px; padding: 30px 0 30px 30px; border-radius: 5px; width: 350px; height: 200px; margin: auto; display: table;">
+        <table align="center">
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <img class="img-responsive" src="@Url.Content(Model.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(model => model.Event_Name)
+                    <div style="height: 20px;">
 
-<div class="form-horizontal" style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px; width: 450px; margin: auto; display: table;">
-    <h4>Enter Details:-</h4>
-    <dl class="dl-horizontal">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    @Html.HiddenFor(model => model.Location_Id)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
 
-        <dd>
-            <img class="img-responsive" src="@Url.Content(Model.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
-        </dd>
-        <dd>
-            @Html.HiddenFor(model => model.Location_Id)
-        </dd>
-        <dd>
-            @Html.HiddenFor(model => model.Event_Id)
-        </dd>
+                <td>
+                    @Html.HiddenFor(model => model.Event_Id)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Event_Name)
-        </dt>
+                </td>
+            </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Event_Name)
-        </dd>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Booking_Loc)
+                </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Event_Type)
-        </dt>
+                <td>
+                    @Html.EditorFor(model => model.Booking_Loc)
 
-        <dd>
-            @Html.DisplayFor(model => model.Event_Type)
-        </dd>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.EventLocation_Price)
+                </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Event_Description)
-        </dt>
+                <td id="Price">
+                    @Html.DisplayFor(model => model.EventLocation_Price)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Booking_Date)
+                </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Event_Description)
-        </dd>
+                <td>
+                    @Html.EditorFor(model => model.Booking_Date)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Booking_Loc)
-        </dt>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.userName)
+                </td>
 
-        <dd>
-            @Html.EditorFor(model => model.Booking_Loc)
-        </dd>
+                <td>
+                    @Html.EditorFor(model => model.userName)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EventLocation_Price)
-        </dt>
+                </td>
+            </tr>
 
-        <dd id="Price">
-            @Html.DisplayFor(model => model.EventLocation_Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Booking_Date)
-        </dt>
-
-        <dd>
-            @Html.EditorFor(model => model.Booking_Date)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.userName)
-        </dt>
-
-        <dd>
-            @Html.EditorFor(model => model.userName)
-        </dd>
-    </dl>
-    <div class="form-group">
-        @Html.ValidationSummary(true)
-        @Html.LabelFor(model => model.Booking_TicketCount, htmlAttributes: new { @class = "control-label col-md-2", style = "width:auto" })
-        <div class="col-md-10" style="width:auto">
-            @Html.EditorFor(model => model.Booking_TicketCount)
-            @Html.ValidationMessageFor(model => model.Booking_TicketCount, "", new { @class = "text-danger" })
-        </div>
+        </table>
     </div>
+    <h4>Enter Details: </h4>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Booking_TotalAmount, htmlAttributes: new { @class = "control-label col-md-2", style = "width:auto" })
-        <div class="col-md-10" style="width:auto">
-            @Html.EditorFor(model => model.Booking_TotalAmount, new { htmlAttributes = new { @class = "form-control" } })
-            <input type="button" id="btnCalculate" value="Calculate" class="btn btn-default" />
-            @Html.ValidationMessageFor(model => model.Booking_TotalAmount, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Payment_Mode, htmlAttributes: new { @class = "control-label col-md-2", style = "width:auto" })
-        <div class="col-md-10" style="width:auto">
+    <hr />
+    <table cellpadding="2" cellspacing="2">
 
-            @Html.DropDownListFor(model => model.Payment_Mode, Model.PaymentModeList, "--Select--", new { style = "width: 200px; height:30px;", htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Payment_Mode, "", new { @class = "text-danger" })
+        <tr>
+            <td width="150">
+                @Html.LabelFor(model => model.Booking_TicketCount)
+                <div style="height: 20px;">
 
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.IsConfirmationSent, htmlAttributes: new { @class = "control-label col-md-2", style = "width:auto" })
-        <div class="col-md-10" style="width:auto">
-            @Html.EditorFor(model => model.IsConfirmationSent)
-            @Html.ValidationMessageFor(model => model.IsConfirmationSent, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Book Event" class="btn btn-default" />
-        </div>
-    </div>
+                </div>
+            </td>
+
+            <td>
+                @Html.EditorFor(model => model.Booking_TicketCount)
+
+                <div style="height: 20px;">
+                    @Html.ValidationMessageFor(model => model.Booking_TicketCount, "", new { @class = "text-danger" })
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td width="150">
+                @Html.LabelFor(model => model.Booking_TotalAmount)
+            </td>
+
+            <td>
+                @Html.EditorFor(model => model.Booking_TotalAmount)
+
+                <div style="height: 20px;">
+                    @Html.ValidationMessageFor(model => model.Booking_TotalAmount, "", new { @class = "text-danger" })
+                </div>
+            </td>
+            <td></td>
+            <td>
+                <input type="button" id="btnCalculate" value="Calculate" class="btn btn-default" />
+                <div style="height: 20px;">
+
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td width="150">
+                @Html.LabelFor(model => model.Payment_Mode)
+            </td>
+            <td>
+                @Html.DropDownListFor(model => model.Payment_Mode, Model.PaymentModeList, "--Select--", new { style = "width: 185px; height:25px;", htmlAttributes = new { @class = "form-control" } })
+
+                <div style="height: 20px;">
+                    @Html.ValidationMessageFor(model => model.Payment_Mode, "", new { @class = "text-danger" })
+                </div>
+            </td>
+        </tr>
+
+        @*<tr>
+            <td width="150">
+                @Html.LabelFor(model => model.IsConfirmationSent)
+                <div style="height: 20px;">
+
+                </div>
+            </td>
+            <td>
+                @Html.EditorFor(model => model.IsConfirmationSent)
+
+
+                <div style="height: 20px;">
+                    @Html.ValidationMessageFor(model => model.IsConfirmationSent, "", new { @class = "text-danger" })
+                </div>
+            </td>
+        </tr>*@
+
+        <tr>
+            <td></td>
+            <td align="left">
+                <input type="submit" value="Book Event" class="btn btn-default" />
+            </td>
+        </tr>
+    </table>
+
 </div>
-}
-<p>
-    @*@if (User.Identity.IsAuthenticated)
-    {*@
+    }
+    <p>
+        @*@if (User.Identity.IsAuthenticated)
+            {*@
         <a> @Html.ActionLink("Booked Events List", "DisplayUserBookedEventsList", new { id = User.Identity.Name })</a> |
         <a> @Html.ActionLink("Back to List", "Index")</a>
-  
-</p>
+
+    </p>

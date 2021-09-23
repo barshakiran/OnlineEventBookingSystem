@@ -11,6 +11,7 @@ namespace OnlineEventBookingSystemAPI.Models
         public int Booking_Id { get; set; }
         public int Location_Id { get; set; }
         public string UserName { get; set; }
+        public string Email { get; set; }
         public int Booking_TicketCount { get; set; }
         public decimal Booking_TotalAmount { get; set; }
         public string Payment_Mode { get; set; }

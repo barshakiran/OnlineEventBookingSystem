@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmailHelper.cs" />
     <Compile Include="EventDetailBusiness.cs" />
     <Compile Include="Interface\IEventDetailBusiness.cs" />
     <Compile Include="Interface\IUserBusiness.cs" />

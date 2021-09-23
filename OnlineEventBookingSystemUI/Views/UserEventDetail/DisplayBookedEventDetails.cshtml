@@ -9,81 +9,94 @@
 <div class="form-horizontal" style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px; width: 450px; margin: auto; display: table;">
     <h4>Booked Event Details:-</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Booking_Id)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Booking_Id)
-        </dd>
+    <table align="center">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.userName)
-        </dt>
+        <tr>
+            <td width="150">@Html.DisplayNameFor(model => model.Booking_Id)</td>
+            <td>
+                @Html.DisplayFor(model => model.Booking_Id)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.userName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.userName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Event_Name)
+            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.userName)
-        </dd>
-       
-        <dt>
-            @Html.DisplayNameFor(model => model.Event_Name)
-        </dt>
+            <td>
+                @Html.DisplayFor(model => model.Event_Name)
 
-        <dd>
-            @Html.DisplayFor(model => model.Event_Name)
-        </dd>
-     
-        <dt>
-            @Html.DisplayNameFor(model => model.Booking_Loc)
-        </dt>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Booking_Loc)
+            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Booking_Loc)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Booking_Date)
-        </dt>
+            <td>
+                @Html.DisplayFor(model => model.Booking_Loc)
 
-        <dd>
-            @Html.DisplayFor(model => model.Booking_Date)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Booking_TicketCount)
-        </dt>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Booking_Date)
+            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Booking_TicketCount)
-        </dd>
+            <td id="Price">
+                @Html.DisplayFor(model => model.Booking_Date)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Booking_TicketCount)
+            </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Booking_TotalAmount)
-        </dt>
+            <td>
+                @Html.DisplayFor(model => model.Booking_TicketCount)
 
-        <dd>
-            @Html.DisplayFor(model => model.Booking_TotalAmount)
-        </dd>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Booking_TotalAmount)
+            </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Payment_Mode)
-        </dt>
+            <td>
+                @Html.DisplayFor(model => model.Booking_TotalAmount)
 
-        <dd>
-            @Html.DisplayFor(model => model.Payment_Mode)
-        </dd>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Payment_Mode)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Payment_Mode)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.IsConfirmationSent)
+            </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsConfirmationSent)
-        </dt>
+            <td>
+                @Html.DisplayFor(model => model.IsConfirmationSent)
+            </td>
+        </tr>
+        
 
-        <dd>
-            @Html.DisplayFor(model => model.IsConfirmationSent)
-        </dd>
-
-    </dl>
+    </table>
 </div>
 <p>
     @Html.ActionLink("Back to List", "Index")|
-    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
     @Html.ActionLink("Booked Events List", "DisplayUserBookedEventsList", new { id = User.Identity.Name })
 </p>

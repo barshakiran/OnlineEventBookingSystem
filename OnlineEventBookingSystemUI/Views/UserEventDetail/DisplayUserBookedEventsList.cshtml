@@ -8,37 +8,39 @@
 </h2>
 
 <p> Events Booked by @User.Identity.Name....</p>
-<div class="form-horizontal" style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px; width: 1200px; margin: auto; display: table;">
+<div class="form-horizontal" style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px; width: 1300px; margin: auto; display: table;">
     <table class="table">
         <tr>
-            <th width="80px">
+            <th width="100px">
                 @Html.DisplayNameFor(model => model.Booking_Id)
             </th>
 
-            <th>
+            <th width="150px">
                 @Html.DisplayNameFor(model => model.Event_Name)
             </th>
 
-            <th>
+            <th  width="110px">
                 @Html.DisplayNameFor(model => model.Booking_Loc)
             </th>
 
-            <th>
+            <th  width="120px">
                 @Html.DisplayNameFor(model => model.Booking_Date)
             </th>
             <th width="120px">
                 @Html.DisplayNameFor(model => model.Booking_TicketCount)
             </th>
-            <th width="180px">
+            <th width="170px">
                 @Html.DisplayNameFor(model => model.Booking_TotalAmount)
             </th>
-            <th width="150">
+            <th width="130">
                 @Html.DisplayNameFor(model => model.Payment_Mode)
             </th>
-            @*<th>
+            <th width="110">
                     @Html.DisplayNameFor(model => model.IsConfirmationSent)
-                </th>*@
-            <th width="190"></th>
+            </th>
+            <th >
+                
+            </th>
         </tr>
 
         @foreach (var item in Model)
@@ -69,11 +71,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Payment_Mode)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.IsConfirmationSent)
-                    </td>*@
                 <td>
-                    @Html.ActionLink("Details", "DisplayBookedEventDetails", new { id = item.Booking_Id }) |
+                        @Html.DisplayFor(modelItem => item.IsConfirmationSent)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "DisplayBookedEventDetails", new { id = item.Booking_Id })|
                     @Html.ActionLink("Delete", "Delete", new { id = item.Booking_Id })
                 </td>
             </tr>

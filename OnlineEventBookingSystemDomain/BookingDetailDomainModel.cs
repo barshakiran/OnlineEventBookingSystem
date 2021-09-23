@@ -12,11 +12,10 @@ namespace OnlineEventBookingSystemDomain
         public int Booking_Id { get; set; }
         //public int User_Id { get; set; }
         public string UserName { get; set; }
-        //public DateTime Booking_Date { get; set; }
+        public string Email { get; set; }
         public int Booking_TicketCount { get; set; }
         public decimal Booking_TotalAmount { get; set; }
         public bool IsConfirmationSent { get; set; }
-       // public string Booking_Loc { get; set; }
         public string Payment_Mode { get; set; }
     }
 }

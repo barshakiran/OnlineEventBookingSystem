@@ -8,6 +8,9 @@ using OnlineEventBookingSystemAPI.Models;
 using OnlineEventBookingSystemBL.Interface;
 using AutoMapper;
 using OnlineEventBookingSystemDomain;
+using System.Threading.Tasks;
+using OnlineEventBookingSystemBL;
+using System;
 
 namespace OnlineEventBookingSystemAPI.Controllers
 {
@@ -213,5 +216,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
                 throw new HttpResponseException(response);
             }
         }
+
+      
     }
 }
