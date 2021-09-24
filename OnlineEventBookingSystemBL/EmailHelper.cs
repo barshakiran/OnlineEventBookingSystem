@@ -9,8 +9,8 @@ namespace OnlineEventBookingSystemBL
    public class EmailHelper
     {
         // Note: To send email you need to add actual email id and credential so that it will work as expected  
-        public static readonly string EMAIL_SENDER = "varshatittusittu@gmail.com"; // change it to actual sender email id or get it from UI input  
-        public static readonly string EMAIL_CREDENTIALS = "Barsha@77"; // Provide credentials   
+        public static readonly string EMAIL_SENDER = "xxxxxxxxxx"; // change it to actual sender email id or get it from UI input  
+        public static readonly string EMAIL_CREDENTIALS = "xxxxxxxx"; // Provide credentials   
         public static readonly string SMTP_CLIENT = "smtp.gmail.com"; // as we are using outlook so we have provided smtp-mail.outlook.com   
         public static readonly string EMAIL_BODY = "Event is booked !!";
         public static readonly string EMAIL_SUBJECT = "Event Booking Confirmation";

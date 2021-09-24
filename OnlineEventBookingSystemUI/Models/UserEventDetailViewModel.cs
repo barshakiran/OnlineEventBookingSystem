@@ -19,6 +19,7 @@ namespace OnlineEventBookingSystemUI.Models
 
         [Display(Name = " Date & Time :  ")]
         public DateTime Booking_Date { get; set; }
+        public List<EventDetailViewModel> Events { get; set; } = new List<EventDetailViewModel>();
 
     }
 
