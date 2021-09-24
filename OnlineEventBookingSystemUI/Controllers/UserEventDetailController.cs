@@ -19,48 +19,27 @@ namespace OnlineEventBookingSystemUI.Controllers
             UserEventDetailViewModel userEventDetailViewModel = new UserEventDetailViewModel();
             userEventDetailViewModel.EventTypeList = PoputaleEventTypes();
             userEventDetailViewModel.CityList = PopulateCityList();
-            userEventDetailViewModel.Booking_Loc = String.Empty;
-            userEventDetailViewModel.Event_Type = String.Empty;
-            
-            var response = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/GetUserEventsDetailList", userEventDetailViewModel).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                userEventDetailViewModel.Events = response.Content.ReadAsAsync<List<EventDetailViewModel>>().Result;
-                return View(userEventDetailViewModel);
-                // return PartialView(@"~/Views/UserEventDetail/_DisplayUserEvents.cshtml", eventDetailViewModels);
-            }
-            else
-            {
-                var statusCode = response.ReasonPhrase;
-                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
-                return View();
-            }
-           
+            return View(userEventDetailViewModel);
         }
 
         [HttpPost]
-        public ActionResult DisplayUserEvents(string Event_Type, string Booking_Loc)
+        public ActionResult DisplayUserEvents(UserEventDetailViewModel model)
         {
             List<EventDetailViewModel> eventDetailViewModels = new List<EventDetailViewModel>();
-            UserEventDetailViewModel userEventDetailViewModel = new UserEventDetailViewModel();
-            userEventDetailViewModel.Event_Type = Event_Type;
-            userEventDetailViewModel.Booking_Loc = Booking_Loc;
-            if (userEventDetailViewModel.Booking_Loc == "All")
+
+            if (model.Booking_Loc == "All")
             {
-                userEventDetailViewModel.Booking_Loc = String.Empty;
+                model.Booking_Loc = String.Empty;
             }
-            if (userEventDetailViewModel.Event_Type == "All")
+            if (model.Event_Type == "All")
             {
-                userEventDetailViewModel.Event_Type = String.Empty;
+                model.Event_Type = String.Empty;
             }
-            var response = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/GetUserEventsDetailList", userEventDetailViewModel).Result;
+            var response = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/GetUserEventsDetailList", model).Result;
             if (response.IsSuccessStatusCode)
             {
-                userEventDetailViewModel.Events = response.Content.ReadAsAsync<List<EventDetailViewModel>>().Result;
-                userEventDetailViewModel.EventTypeList = PoputaleEventTypes();
-                userEventDetailViewModel.CityList = PopulateCityList();
-                //return View(userEventDetailViewModel);
-                 return View(@"~/Views/UserEventDetail/Index.cshtml", userEventDetailViewModel);
+                eventDetailViewModels = response.Content.ReadAsAsync<List<EventDetailViewModel>>().Result;
+                return PartialView(@"~/Views/UserEventDetail/_DisplayUserEvents.cshtml", eventDetailViewModels);
             }
             else
             {
@@ -69,7 +48,8 @@ namespace OnlineEventBookingSystemUI.Controllers
                 return View();
             }
         }
-    
+
+
 
         public List<SelectListItem> PoputaleEventTypes()
         {

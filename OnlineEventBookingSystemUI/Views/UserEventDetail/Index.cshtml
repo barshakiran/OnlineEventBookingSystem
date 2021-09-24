@@ -13,23 +13,29 @@
             $("#btnShow").click(function () {
                 var selectedTextEvent = $("#EventTypeList").find("option:selected").text();
                 var selectedTextCity = $("#CityList").find("option:selected").text();
-                var Event_Type = selectedTextEvent;
-                var Booking_Loc = selectedTextCity;
-                var values =
-                    $.ajax({
+                var UserEventDetailViewModel = {
+                    EventTypeList: selectedTextEvent,
+                    CityList: selectedTextCity,
+                    Event_Type: selectedTextEvent,
+                    Booking_Loc: selectedTextCity
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/UserEventDetail/DisplayUserEvents",
+                    data: { "model": UserEventDetailViewModel },
+                    dataType: "html",
+                    success: function (response) {
 
-                        type: "POST",
-                        dataType: "json",
-                        url: "/UserEventDetail/DisplayUserEvents",
-                        data: { "Event_Type": Event_Type, "Booking_Loc": Booking_Loc },
-                        success: function (data) {
-
-                            alert("Hi")
-                        }
-
-
-                    });
-            });
+                        $("#partial").html(response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert("Error");
+                    }
+                });
+            })
         });
     </script>
 }
@@ -60,79 +66,7 @@
     {
         <a> @Html.ActionLink("Booked Events List", "DisplayUserBookedEventsList", new { id = User.Identity.Name })</a>
     }
-<div id="partial">
-    <table class="table">
-        <tr>
-            <th width="65">
-            </th>
-            <th width="170">
-                @Html.DisplayNameFor(model => model.Event_Name)
-            </th>
-            <th width="100">
-                @Html.DisplayNameFor(model => model.Event_Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Event_Description)
-            </th>
-            <th width="85">City</th>
-            <th width="85">Price</th>
-            <th width="170">Date</th>
-            <th>
-                @Html.DisplayNameFor(model => model.Event_Picture)
-            </th>
-        </tr>
-        <tbody>
-            @if (Model != null && Model.Events.Count() != 0)
-            {
-
-                foreach (var item in Model.Events)
-                {
-                    foreach (var items in item.EventList)
-                    {
-                        <tr>
-                            <td width="10">
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Event_Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Event_Type)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Event_Description)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => items.City)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => items.EventLocation_Price)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => items.EventLocation_DateAndTime)
-                            </td>
-                            <td>
-                                <img class="img-responsive" src="@Url.Content(item.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
-
-                            </td>
-
-                            <td>
-                                @if (User.Identity.IsAuthenticated)
-                                {
-
-                                    <a>@Html.ActionLink("Book", "DisplayBookingEventDetails", new { id = item.Event_Id, locationId = items.Location_Id, userName = User.Identity.Name })</a>
-
-                                }
-
-                            </td>
-                        </tr>
-                    }
-                }
-            }
-        </tbody>
-
-    </table>
-</div>
+    <div id="partial"></div>
 
 
 
