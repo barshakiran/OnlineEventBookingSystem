@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 namespace OnlineEventBookingSystemBL
 {
    public class EmailHelper
-    {
-        // Note: To send email you need to add actual email id and credential so that it will work as expected  
-        public static readonly string EMAIL_SENDER = "xxxxxxxxxx"; // change it to actual sender email id or get it from UI input  
-        public static readonly string EMAIL_CREDENTIALS = "xxxxxxxx"; // Provide credentials   
-        public static readonly string SMTP_CLIENT = "smtp.gmail.com"; // as we are using outlook so we have provided smtp-mail.outlook.com   
+    { 
+        public static readonly string EMAIL_SENDER = "xxxxxxxxxx";   
+        public static readonly string EMAIL_CREDENTIALS = "xxxxxxxx"; 
+        public static readonly string SMTP_CLIENT = "smtp.gmail.com";   
         public static readonly string EMAIL_BODY = "Event is booked !!";
         public static readonly string EMAIL_SUBJECT = "Event Booking Confirmation";
         private string senderAddress;
@@ -41,9 +40,6 @@ namespace OnlineEventBookingSystemBL
                 mail.Subject = subject;
                 mail.Body = message;
                 mail.IsBodyHtml = true;
-                //System.Net.Mail.Attachment attachment;  
-                //attachment = new Attachment(@"C:\Users\XXX\XXX\XXX.jpg");  
-                //mail.Attachments.Add(attachment);  
                 client.Send(mail);
                 isMessageSent = true;
             }
