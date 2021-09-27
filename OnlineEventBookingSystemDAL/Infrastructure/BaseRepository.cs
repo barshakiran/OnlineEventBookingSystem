@@ -94,8 +94,9 @@ using OnlineEventBookingSystemDAL.Infrastructure.Contract;
                     }
                     dbSet.Attach(entity);
                     _unitOfWork.Db.Entry(entity).State = EntityState.Modified;
+                    this._unitOfWork.Db.SaveChanges();
                 }
-                this._unitOfWork.Db.SaveChanges();
+               // this._unitOfWork.Db.SaveChanges();
             }
 
             public void Delete(Expression<Func<T, bool>> whereCondition)

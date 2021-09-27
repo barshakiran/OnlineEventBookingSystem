@@ -9,13 +9,8 @@ namespace OnlineEventBookingSystemDomain
 {
     public class UserEventDetailsDomainModel:EventDetailDomainModel
     {
-        // public EventLocationDomainModel EventLocDomain { get; set; }
-       // public int Location_Id { get; set; }
         public string Booking_Loc { get; set; }
         public decimal EventLocation_Price { get; set; }
-        public DateTime Booking_Date { get; set; }
-
-
-      
+        public DateTime Booking_Date { get; set; }      
     }
 }

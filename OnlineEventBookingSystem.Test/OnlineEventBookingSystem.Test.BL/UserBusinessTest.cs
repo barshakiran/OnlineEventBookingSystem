@@ -5,6 +5,8 @@ using OnlineEventBookingSystemDomain;
 using System.Linq;
 using System.Collections.Generic;
 using TestHelper;
+using OnlineEventBookingSystemDAL;
+using OnlineEventBookingSystemBL;
 
 namespace OnlineEventBookingSystem.Tests.BL
 {
@@ -15,97 +17,136 @@ namespace OnlineEventBookingSystem.Tests.BL
     public class UserBusinessTest
     {
         #region Variables
-        private List<UserRegistrationDomainModel> _users;
-        private UserRegistrationDomainModel userDModel;
-        private UserLoginDomainModel userDLoginModel;
+        //private List<UserRegistrationDomainModel> _users;
+        //private UserRegistrationDomainModel userDModel;
+        //private UserLoginDomainModel userDLoginModel;
+
+       // private List<UserRegistrationDomainModel> userDetailDomainModels;
+        private UserRegistrationDomainModel userDetailDomainModel;
+        private List<UserDetail> userDetails;
+        private UserDetail userDetail;
+        private Mock<IUserDataHandler> mockUserDataHandler;
+        private UserBusiness userBusiness;
+
         #endregion
-
-        [TestMethod]
-        public void FindUserTest()
+        public UserBusinessTest()
         {
-            //Arrange
-            _users = DataInitializer.GetAllUsers();
-            userDModel = _users.SingleOrDefault(s => s.User_Id == 10);     
-            
-            //Act
-            var mockUserBusiness = new Mock<IUserBusiness>();
-            mockUserBusiness.Setup(m => m.FindUser(It.IsAny<int>())).Returns(userDModel);
-            var res = mockUserBusiness.Object.FindUser(10);
-
-            //assert
-            Assert.AreEqual(userDModel.User_Name, res.User_Name);
+            mockUserDataHandler = new Mock<IUserDataHandler>();
+            userBusiness = new UserBusiness(mockUserDataHandler.Object);
         }
-
-        [TestMethod]
-        public void AddUserTest()
+       [TestMethod]
+        public void DisplayAllUserDetail_ShouldReturnAllUserDetail()
         {
             //Arrange
-            userDModel = DataInitializer.GetUserRegistrationData();
+          //  userDetailDomainModels = DataInitializer.GetAllUsers();
+            userDetails = DataInitializer.GetAllDbUsers();
+            userDetail = userDetails[0];
 
             //Act
-            var mockUserBusiness = new Mock<IUserBusiness>();
-            mockUserBusiness.Setup(m => m.AddUser(It.IsAny<UserRegistrationDomainModel>())).Returns("Inserted");
-            var res = mockUserBusiness.Object.AddUser(userDModel);
+            mockUserDataHandler.Setup(m => m.GetAll()).Returns(userDetails);
+            var res = userBusiness.GetAllUsers();
+
+            //Assert
+            Assert.AreEqual(userDetail.User_Id, res[0].User_Id);
+        }
+       
+        [TestMethod]
+        public void AddUserDetails_ShouldAddUser()
+        {
+            //Arrange
+            userDetailDomainModel = DataInitializer.GetUserRegistrationData();
+
+            //Act
+            mockUserDataHandler.Setup(m => m.Insert(userDetail));         
+            var res = userBusiness.AddUser(userDetailDomainModel);
 
             //assert
             Assert.AreEqual(res, "Inserted");
         }
 
         [TestMethod]
-        public void WhereUserTest()
+        public void DisplayUserDetailByName_ShouldReturnUserName()
         {
             //Arrange
-            userDModel = DataInitializer.GetUserRegistrationData();
+            userDetailDomainModel = DataInitializer.GetUserRegistrationData();
+            userDetails = DataInitializer.GetAllDbUsers();
+            userDetail = userDetails[0];
+            string username = userDetail.User_Name;
 
             //Act
-            var mockUserBusiness = new Mock<IUserBusiness>();
-            mockUserBusiness.Setup(m => m.WhereUser(It.IsAny<string>())).Returns(userDModel);
-            var res = mockUserBusiness.Object.WhereUser("TestUser1");
+            mockUserDataHandler.Setup(m => m.SingleOrDefault(s => s.User_Name == username)).Returns(userDetail);
+            var res = userBusiness.GetUserByName(userDetailDomainModel.User_Name);
 
             //assert
-            Assert.AreEqual(userDModel.User_Id, res.User_Id);
+            Assert.AreEqual(userDetailDomainModel.User_Id, res.User_Id);
         }
 
         [TestMethod]
-        public void UpdateUserTest()
+        public void UpdateUserDetails_ShouldUpdateTheUser()
         {
             //Arrange
-            userDModel = DataInitializer.GetUserRegistrationData();
+            userDetailDomainModel = DataInitializer.GetUserRegistrationData();
+            userDetails = DataInitializer.GetAllDbUsers();
+            userDetail = userDetails[0];
 
             //Act
-            var mockUserBusiness = new Mock<IUserBusiness>();
-            mockUserBusiness.Setup(m => m.UpdateUser(It.IsAny<UserRegistrationDomainModel>())).Returns("Updated");
-            var res = mockUserBusiness.Object.UpdateUser(userDModel);
+            mockUserDataHandler.Setup(m => m.Update(userDetail));
+            var res = userBusiness.UpdateUser(userDetailDomainModel);
 
             //assert
-            Assert.AreEqual(res, "Updated");
+            Assert.AreEqual("Updated", res);
         }
 
         [TestMethod]
-        public void CheckLoginTest()
+        public void CheckLoginForUser_ShouldReturnTrueForValidUser()
         {
             //Arrange
-            userDLoginModel = DataInitializer.GetUserLoginData();
+            userDetailDomainModel = DataInitializer.GetUserRegistrationData();
+            userDetails = DataInitializer.GetAllDbUsers();
+            userDetail = userDetails[0];
+            string username = userDetail.User_Name;
+            string password = userDetail.User_Password;
 
             //Act
-            var mockUserBusiness = new Mock<IUserBusiness>();
-            mockUserBusiness.Setup(m => m.CheckLogin(It.IsAny<UserLoginDomainModel>())).Returns(userDLoginModel);
+            mockUserDataHandler.Setup(m => m.SingleOrDefault(s => s.User_Name == username & s.User_Password == password)).Returns(userDetail);
+            var res = userBusiness.CheckLogin(userDetailDomainModel);
 
             //assert
-            var res = mockUserBusiness.Object.CheckLogin(userDLoginModel);
+            Assert.AreEqual(userDetailDomainModel.User_Password, res.User_Password);
         }
 
         [TestMethod]
-        public void DeleteTest()
+        public void DeleteUser_ShouldDeleteTheUser()
         {
             //Arrange
+            userDetailDomainModel = DataInitializer.GetUserRegistrationData();
+            userDetails = DataInitializer.GetAllDbUsers();
+            userDetail = userDetails[0];
+            int userId = userDetail.User_Id;
 
             //Act
-            var mockUserBusiness = new Mock<IUserBusiness>();
-            mockUserBusiness.Setup(m => m.DeleteUser(It.IsAny<int>())).Returns(true);
+            mockUserDataHandler.Setup(m => m.Delete(s => s.User_Id == userId));
+            var res = userBusiness.DeleteUser(userDetailDomainModel.User_Id);
 
             //assert
-            var res = mockUserBusiness.Object.DeleteUser(10);
+            Assert.AreEqual(true, res);
+        }
+
+        [TestMethod]
+        public void DisplayUserDetailById_ShouldReturnUserId()
+        {
+            //Arrange
+            userDetailDomainModel = DataInitializer.GetUserRegistrationData();
+            userDetails = DataInitializer.GetAllDbUsers();
+            userDetail = userDetails[0];
+            int userId = userDetail.User_Id;
+
+            //Act
+            mockUserDataHandler.Setup(m => m.SingleOrDefault(s => s.User_Id == userId)).Returns(userDetail);
+            var res = userBusiness.GetUserById(userDetailDomainModel.User_Id);
+
+            //assert
+            Assert.AreEqual(userDetailDomainModel.User_Name, res.User_Name);
         }
     }
 }

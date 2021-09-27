@@ -13,29 +13,24 @@
             $("#btnShow").click(function () {
                 var selectedTextEvent = $("#EventTypeList").find("option:selected").text();
                 var selectedTextCity = $("#CityList").find("option:selected").text();
-                var UserEventDetailViewModel = {
-                    EventTypeList: selectedTextEvent,
-                    CityList: selectedTextCity,
-                    Event_Type: selectedTextEvent,
-                    Booking_Loc: selectedTextCity
-                };
-                $.ajax({
-                    type: "POST",
-                    url: "/UserEventDetail/DisplayUserEvents",
-                    data: { "model": UserEventDetailViewModel },
-                    dataType: "html",
-                    success: function (response) {
+                var Event_Type = selectedTextEvent;
+                var Booking_Loc = selectedTextCity;
+                var values =
+                    $.ajax({
 
-                        $("#partial").html(response);
-                    },
-                    failure: function (response) {
-                        alert(response.responseText);
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        alert("Error");
-                    }
-                });
-            })
+                        type: "POST",
+                        dataType: "html",
+                        url: "/UserEventDetail/DisplayUserEvents",
+                        data: { "Event_Type": Event_Type, "Booking_Loc": Booking_Loc },
+                        success: function (data) {
+
+                            $("#partial").html("");
+                            $("#partial").html(data);
+                        }
+
+
+                    });
+            });
         });
     </script>
 }
@@ -66,13 +61,12 @@
     {
         <a> @Html.ActionLink("Booked Events List", "DisplayUserBookedEventsList", new { id = User.Identity.Name })</a>
     }
-    <div id="partial"></div>
 
 
+    <div id="partial">
 
-
-
-
+        @Html.Partial("_DisplayUserEvents", Model?.Events)       
+    </div>
     <div>
         @if (Session["UserName"] == null)
         {

@@ -47,5 +47,11 @@
     <Compile Include="DataInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\OnlineEventBookingSystemDAL\OnlineEventBookingSystemDAL.csproj">
+      <Project>{7995ED0A-A48E-424D-A3C4-2CC2F959A447}</Project>
+      <Name>OnlineEventBookingSystemDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

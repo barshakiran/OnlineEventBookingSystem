@@ -49,11 +49,9 @@ C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookin
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\System.Web.Http.xml
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\TestHelper.pdb
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\System.Web.Optimization.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\System.Web.Mvc.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\Unity.Container.pdb
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\EntityFramework.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\Unity.Abstractions.pdb
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\System.Web.Http.WebHost.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\System.Web.WebPages.xml

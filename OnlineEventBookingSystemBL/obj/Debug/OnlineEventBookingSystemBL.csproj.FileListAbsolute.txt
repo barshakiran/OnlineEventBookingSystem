@@ -12,8 +12,6 @@ C:\Project\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.cspro
 C:\Project\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.csproj.CopyComplete
 C:\Project\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.dll
 C:\Project\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.pdb
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.csproj.AssemblyReference.cache
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.csproj.CoreCompileInputs.cache
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\OnlineEventBookingSystemBL.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\OnlineEventBookingSystemBL.pdb
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\AutoMapper.dll
@@ -36,6 +34,8 @@ C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\System.Web
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\System.Web.WebPages.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.csproj.AssemblyReference.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.csproj.CoreCompileInputs.cache
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.csproj.CopyComplete
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystemBL\obj\Debug\OnlineEventBookingSystemBL.pdb

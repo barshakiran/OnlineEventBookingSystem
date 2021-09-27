@@ -13,6 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineEventBookingSystemBL"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineEventBookingSystemUI", "OnlineEventBookingSystemUI\OnlineEventBookingSystemUI.csproj", "{16BED86D-181D-42E6-9BB4-2B80BDC029F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineEventBookingSystem.Test.BL", "OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.BL\OnlineEventBookingSystem.Test.BL.csproj", "{35A9DD0C-D96C-4AC3-8412-8F5AA5D67209}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5037426A-33A5-4896-8742-A27B580C3135}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHelper", "OnlineEventBookingSystem.Test\TestHelper\TestHelper.csproj", "{B5B4C3D7-AF85-42FF-9F83-9F7EC0677218}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineEventBookingSystem.Test.API", "OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\OnlineEventBookingSystem.Test.API.csproj", "{FB60EBBA-647F-4E40-938F-BE7D3DCB32BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +47,18 @@ Global
 		{16BED86D-181D-42E6-9BB4-2B80BDC029F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16BED86D-181D-42E6-9BB4-2B80BDC029F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16BED86D-181D-42E6-9BB4-2B80BDC029F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A9DD0C-D96C-4AC3-8412-8F5AA5D67209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A9DD0C-D96C-4AC3-8412-8F5AA5D67209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A9DD0C-D96C-4AC3-8412-8F5AA5D67209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A9DD0C-D96C-4AC3-8412-8F5AA5D67209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5B4C3D7-AF85-42FF-9F83-9F7EC0677218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5B4C3D7-AF85-42FF-9F83-9F7EC0677218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5B4C3D7-AF85-42FF-9F83-9F7EC0677218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5B4C3D7-AF85-42FF-9F83-9F7EC0677218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB60EBBA-647F-4E40-938F-BE7D3DCB32BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB60EBBA-647F-4E40-938F-BE7D3DCB32BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB60EBBA-647F-4E40-938F-BE7D3DCB32BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB60EBBA-647F-4E40-938F-BE7D3DCB32BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,124 +2,153 @@
 @{
     ViewBag.Title = "Create";
 }
-<h2>Add Event and Location Details</h2>
+<h2>Add Event</h2>
 
 @section scripts{
-    @*<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>*@
-    <!--@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")-->
-    <script>        
-        var i = 1;
-            $("#Add").click(function () {
-                if (i < 3) {
-                    $.ajax({
-                        url: '/EventDetail/EventLocationDetails',
-                        data: { i: i },
-                        success: function (data) {
-                            $("#partial").append(data);
-                        }
-                    })
-                    i++;
-                }
-            });
-        
-    </script>)
-}
 
-<!DOCTYPE html>
-
-<html>
-
-
-<body>
-    <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px; width: 750px; margin: auto; display: table;">
-        <h4>Event Details :--</h4>
-        @using (Html.BeginForm("AddLocationEvents", "EventDetail", FormMethod.Post, new { id = "form1" }))
-        {
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-            <table cellpadding="2" cellspacing="2">
-
-                <tr>
-                    <td valign="middle">
-                        @Html.LabelFor(model => model.Event_Name)
-                    </td>
-                    <td>
-                        @Html.EditorFor(model => model.Event_Name, new { htmlAttributes = new { @class = "form-control" } })
-                        <div style="height: 20px;">
-                            @Html.ValidationMessageFor(model => model.Event_Name, "", new { @class = "text-danger" })
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td valign="middle">
-                        @Html.LabelFor(model => model.Event_Type)
-                    </td>
-                    <td>
-                        @Html.DropDownListFor(model => model.Event_Type, Model.EventTypeList, "--Select--", new { style = "width: 200px; height:30px;", htmlAttributes = new { @class = "form-control" } })
-
-                        <div style="height: 20px;">
-                            @* @Html.ValidationMessageFor(model => model.Event_Type, "", new { @class = "text-danger" })*@
-                        </div>
-
-                    </td>
-                </tr>
-
-                <tr>
-                    <td valign="middle">
-                        @Html.LabelFor(model => model.Event_Description)
-                    </td>
-                    <td>
-                        @Html.TextAreaFor(model => model.Event_Description, new { htmlAttributes = new { @class = "form-control" }, style = "width: 250px; height:70px;" })
-                        <div style="height: 20px;">
-                            @Html.ValidationMessageFor(model => model.Event_Description, "", new { @class = "text-danger" })
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td valign="top">
-                        @Html.LabelFor(model => model.Event_Picture)
-                    </td>
-                    <td>
-                        @Html.TextBoxFor(model => model.Event_Picture, new { type = "file" })
-                        <div style="height: 20px;">
-                            @Html.ValidationMessageFor(model => model.Event_Picture, "", new { @class = "text-danger" })
-                        </div>
-                    </td>
-                </tr>
-
-            </table>
-
-            <table cellpadding="2" cellspacing="2" border="0">
-                <tr>
-
-                    <td>  <div style="height: 100px; width :650px" id="partial">@{Html.RenderAction("EventLocationDetails");}</div></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td height="50px">
-                        <input type="button" value="Add Row" id="Add" class="btn btn-default" />
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td height="50px">
-                        <input type="submit" value="Save" class="btn btn-default" />
-                    </td>
-                </tr>
-
-
-
-            </table>
-
+    <script type="text/javascript">
+        function DeleteItem(btn) {
+            $(btn).closest('tr').remove();
         }
-    </div>
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-</body>
 
+        function AddItem(btn, tableIndex) {
+            var table = document.getElementById('tblDetail');
+            var rows = table.getElementsByTagName('tr');
+            var rowOuterHTML = rows[rows.length - 1].outerHTML;
+
+            var lastRowIdx = document.getElementById('hdnLastIndex').value;
+            var nxtRowIdx = eval(lastRowIdx) + 1;
+            document.getElementById('hdnLastIndex').value = nxtRowIdx;
+            if (nxtRowIdx < 3) {
+                rowOuterHTML = rowOuterHTML.replaceAll('/_' + lastRowIdx + '_/', '_' + nxtRowIdx + '_');
+                rowOuterHTML = rowOuterHTML.replaceAll('[' + lastRowIdx + ']', '[' + nxtRowIdx + ']');
+                rowOuterHTML = rowOuterHTML.replaceAll('-' + lastRowIdx, '-' + nxtRowIdx);
+
+                var newRow = table.insertRow();
+                newRow.innerHTML = rowOuterHTML;
+
+                var buttonAddId = btn.id;
+                var btnDeleteid = buttonAddId.replaceAll('btnAdd', 'btnRemove');
+
+                var delbtn = document.getElementById(btnDeleteid);
+                delbtn.classList.add("visible");
+                delbtn.classList.remove("invisible");
+
+
+                var addbtn = document.getElementById(buttonAddId);
+                addbtn.classList.remove("visible");
+                addbtn.classList.add("invisible");
+            }            
+        }
+    </script>
+    }
+    <!DOCTYPE html>
+    <html>
+    <body>
+        <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px; width: 750px; margin: auto; display: table;">
+            <h4>Event Details :--</h4>
+            @using (Html.BeginForm("AddLocationEvents", "EventDetail", FormMethod.Post, new { id = "form1" }))
+            {
+                <table cellpadding="2" cellspacing="2">
+                    <tr>
+                        <td valign="middle">
+                            @Html.LabelFor(model => model.Event_Name)
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.Event_Name, new { htmlAttributes = new { @class = "form-control" } })
+                            <div style="height: 20px;">
+                                @Html.ValidationMessageFor(model => model.Event_Name, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">
+                            @Html.LabelFor(model => model.Event_Type)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.Event_Type, Model.EventTypeList, "--Select--", new { style = "width: 200px; height:30px;", htmlAttributes = new { @class = "form-control" } })
+                            <div style="height: 20px;">
+                                @* @Html.ValidationMessageFor(model => model.Event_Type, "", new { @class = "text-danger" })*@
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">
+                            @Html.LabelFor(model => model.Event_Description)
+                        </td>
+                        <td>
+                            @Html.TextAreaFor(model => model.Event_Description, new { htmlAttributes = new { @class = "form-control" }, style = "width: 250px; height:70px;" })
+                            <div style="height: 20px;">
+                                @Html.ValidationMessageFor(model => model.Event_Description, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td valign="top">
+                            @Html.LabelFor(model => model.Event_Picture)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Event_Picture, new { type = "file" })
+                            <div style="height: 20px;">
+                                @Html.ValidationMessageFor(model => model.Event_Picture, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <table id="tblDetail" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>City</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @for (int i = 0; i < Model.EventList.Count; i++)        
+                        { 
+                            <tr>
+                                    <td>
+                                        @Html.DropDownListFor(model => Model.EventList[i].Location_Id, Model.EventList[i].Cities, "-Select-", new { @Name = "[" + i + "].Location_Id" })
+                                        <div style="height: 20px;">
+                                            @Html.ValidationMessageFor(model => Model.EventList[i].Location_Id, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                    <td height="10">
+                                        @Html.TextBoxFor(model => model.EventList[i].EventLocation_Price, new { @id = i + "Price", @Name = "[" + i + "].EventLocation_Price" })
+                                           <div style="height: 20px;">
+                                            @Html.ValidationMessageFor(model => model.EventList[i].EventLocation_Price, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        @Html.TextBoxFor(model => model.EventList[i].EventLocation_DateAndTime, new { @id = i + "Date", @Name = "[" + i + "].EventLocation_DateAndTime" })
+                                        @*  @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @readonly = "true", Value = Model.ToDate.ToString("dd-MMM-yyyy"), @class = "form-control datepicker", @id = "txtToDate" } })*@
+                                        <div style="height: 20px;">
+                                            @Html.ValidationMessageFor(model => model.EventList[i].EventLocation_DateAndTime, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="btnAdd-@i" type="button" onclick="AddItem(this,@i)" value="Add" class="btn btn-sm btn-primary visible" />
+                                        <input id="btnRemove-@i" type="button" onclick="DeleteItem(this)" value="Delete" class="btn btn-sm btn-danger invisible" />
+                                    </td>
+                                </tr>
+                             }                            
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+                <input type="hidden" id="hdnLastIndex" value="0" />
+            }
+        </div>           
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </body>
 </html>

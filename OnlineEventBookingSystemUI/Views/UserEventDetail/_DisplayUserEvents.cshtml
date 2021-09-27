@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.Event_Picture)
         </th>
     </tr>
-    
+
 
     <tbody>
         @if (Model != null && Model.Count() != 0)
@@ -54,8 +54,8 @@
                             @Html.DisplayFor(modelItem => items.EventLocation_DateAndTime)
                         </td>
                         <td>
-                                <img class="img-responsive" src="@Url.Content(item.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
-                          
+                            <img class="img-responsive" src="@Url.Content(item.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
+
                         </td>
 
                         <td>
@@ -63,15 +63,22 @@
                             {
 
                                 <a>@Html.ActionLink("Book", "DisplayBookingEventDetails", new { id = item.Event_Id, locationId = items.Location_Id, userName = User.Identity.Name })</a>
-                                
+
                             }
 
                         </td>
-                        </tr>
+                    </tr>
                 }
             }
         }
-                </tbody>
+        else
+        {
+            <tr id="lblPartial">
+                No data available
 
-  </table>
+            </tr>
+        }
+    </tbody>
+
+</table>
 

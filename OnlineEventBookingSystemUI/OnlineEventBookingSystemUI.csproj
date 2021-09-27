@@ -251,7 +251,6 @@
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\UserEventDetail\Index.cshtml" />
     <Content Include="Views\EventDetail\Index.cshtml" />
-    <Content Include="Views\EventDetail\EventLocationDetails.cshtml" />
     <Content Include="Views\EventDetail\Create.cshtml" />
     <Content Include="Views\EventDetail\Edit.cshtml" />
     <Content Include="Views\EventDetail\Delete.cshtml" />

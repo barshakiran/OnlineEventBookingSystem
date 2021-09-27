@@ -12,9 +12,9 @@ namespace OnlineEventBookingSystemBL.Interface
         //User CRUD operations
         List<UserRegistrationDomainModel> GetAllUsers();
         string AddUser(UserRegistrationDomainModel user);
-        UserRegistrationDomainModel WhereUser(string username);
-        UserLoginDomainModel CheckLogin(UserLoginDomainModel model);
-        UserRegistrationDomainModel FindUser(int id);
+        UserRegistrationDomainModel GetUserByName(string username);
+        UserRegistrationDomainModel CheckLogin(UserRegistrationDomainModel userRegistrationDomainModel);
+        UserRegistrationDomainModel GetUserById(int id);
         bool DeleteUser(int id);
         string UpdateUser(UserRegistrationDomainModel userDModel);
     }

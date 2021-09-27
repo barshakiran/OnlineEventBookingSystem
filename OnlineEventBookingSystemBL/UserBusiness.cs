@@ -5,6 +5,7 @@ using System.Linq;
 using OnlineEventBookingSystemDAL;
 using OnlineEventBookingSystemDAL.Infrastructure.Contract;
 using AutoMapper;
+using System;
 
 namespace OnlineEventBookingSystemBL
 {
@@ -23,105 +24,165 @@ namespace OnlineEventBookingSystemBL
 
        public List<UserRegistrationDomainModel> GetAllUsers()
         {
-            
-            
-            List<UserRegistrationDomainModel> list = userDataHandler.GetAll().Select(m => new UserRegistrationDomainModel { User_Name = m.User_Name, User_Password = m.User_Password,
-                                                                                    User_Id = m.User_Id ,User_Address= m.User_Address,User_Email = m.User_Email,
-                                                                                       User_PhoneNo = m.User_PhoneNo ,IsAdmin = m.IsAdmin}).ToList();
+            // List<UserRegistrationDomainModel> userRegistrationDomainModels = new 
 
-            return list;
+
+            // List<UserRegistrationDomainModel> list = userDataHandler.GetAll().Select(m => new UserRegistrationDomainModel { User_Name = m.User_Name, User_Password = m.User_Password,
+            // User_Id = m.User_Id ,User_Address= m.User_Address,User_Email = m.User_Email,
+            //  User_PhoneNo = m.User_PhoneNo ,IsAdmin = m.IsAdmin}).ToList();
+
+
+            try
+            {
+                List<UserDetail> userDetailList = new List<UserDetail>();
+                List<UserRegistrationDomainModel> userDetailDomainList = new List<UserRegistrationDomainModel>();
+                userDetailList = userDataHandler.GetAll().ToList();
+                mapper.Map(userDetailList, userDetailDomainList);               
+                return userDetailDomainList;
+            }
+            catch (System.Exception msg)
+            {
+                throw msg;
+            }
         }
 
         public string AddUser(UserRegistrationDomainModel userDModel)
         {
             UserDetail user;
-            if (userDModel != null)
+            try
             {
-                user = new UserDetail();
-                mapper.Map(userDModel, user);
-                userDataHandler.Insert(user);
-                return "Inserted";
+                if (userDModel != null)
+                {
+                    user = new UserDetail();
+                    mapper.Map(userDModel, user);
+                    userDataHandler.Insert(user);
+                    return "Inserted";
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch (Exception msg)
             {
-                return null;
+                throw msg;
             }
         }
       
-        public UserRegistrationDomainModel WhereUser(string username)
+        public UserRegistrationDomainModel GetUserByName(string username)
         {
             UserRegistrationDomainModel userDModel;
-            var data = userDataHandler.SingleOrDefault(s => s.User_Name == username);
-            if (data == null)
+            try
             {
-                return null;
+                var data = userDataHandler.SingleOrDefault(s => s.User_Name == username);
+                if (data == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    userDModel = new UserRegistrationDomainModel();
+                    mapper.Map(data, userDModel);
+                    return userDModel;
+                }
             }
-            else
+            catch (Exception msg)
             {
-                userDModel = new UserRegistrationDomainModel();
-                mapper.Map(data, userDModel);
-                return userDModel ;                
+                throw msg;
             }
         }
 
         public string UpdateUser(UserRegistrationDomainModel userDModel)
         { 
             UserDetail user;
-            if (userDModel != null)
+            try
             {
-                user = new UserDetail();
-                mapper.Map(userDModel, user);
-                userDataHandler.Update(user);
-                return "Updated";
+                if (userDModel != null)
+                {
+                    user = new UserDetail();
+                    mapper.Map(userDModel, user);
+                    userDataHandler.Update(user);
+                    return "Updated";
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch (Exception msg)
             {
-                return null;
-            }
-        }
-
-        public UserLoginDomainModel CheckLogin(UserLoginDomainModel model)
-        {
-            var data = userDataHandler.Where(s => s.User_Name == model.User_Name & s.User_Password == model.User_Password);
-            if(data.Count() != 0)
-            {
-                model.IsAdmin = data.First().IsAdmin;
-                return model;
-            }
-            else
-            {
-                return null;
+                throw msg;
             }
         }
 
-        public UserRegistrationDomainModel FindUser(int id)
+        public UserRegistrationDomainModel CheckLogin(UserRegistrationDomainModel userLoginDomainModel)
         {
-            UserRegistrationDomainModel userDModel = new UserRegistrationDomainModel();
-            if (id == 0)
+            try
             {
-                return null;
+                string username = userLoginDomainModel.User_Name;
+                string password = userLoginDomainModel.User_Password;
+                var data = userDataHandler.SingleOrDefault(s => s.User_Name == username & s.User_Password == password);
+                if (data != null)
+                {
+                    userLoginDomainModel.IsAdmin = data.IsAdmin;
+                    userLoginDomainModel.User_Id = data.User_Id;
+                    return userLoginDomainModel;
+                }
+                else
+                {
+                    return null;
+                }
             }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+        }
+             
+        public UserRegistrationDomainModel GetUserById(int id)
+        {
+            UserRegistrationDomainModel userDModel;
+            try
+            {
+                userDModel = new UserRegistrationDomainModel();
+                if (id == 0)
+                {
+                    return null;
+                }
                 var data = userDataHandler.SingleOrDefault(s => s.User_Id == id);
                 if (data == null)
                 {
                     return null;
                 }
-            mapper.Map(data, userDModel);
-            return userDModel;
+                mapper.Map(data, userDModel);
+                return userDModel;
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+
         }
 
         public bool DeleteUser(int id)
         {
-            if (id == 0)
+            try
             {
-                return false;
+                if (id == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    userDataHandler.Delete(s => s.User_Id == id);
+                    return true;
+                }
             }
-            else
+            catch (Exception msg)
             {
-                userDataHandler.Delete(s => s.User_Id == id);
-                return true;
+                throw msg;
             }
-            
+
         }     
     }
 }

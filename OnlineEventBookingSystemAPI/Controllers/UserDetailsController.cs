@@ -57,7 +57,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
             {
                 return BadRequest();
             }
-            UserRegistrationDomainModel userDetail = userBusiness.FindUser(id);
+            UserRegistrationDomainModel userDetail = userBusiness.GetUserById(id);
             if (userDetail == null)
             {
                 var response = new HttpResponseMessage(HttpStatusCode.NotFound)
@@ -83,7 +83,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var check = userBusiness.FindUser(userDetailModel.User_Id);
+            var check = userBusiness.GetUserById(userDetailModel.User_Id);
 
             if (check != null)
             {
@@ -109,7 +109,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
         [HttpPost]
         public IHttpActionResult Delete(int id)
         {
-            var check = userBusiness.FindUser(id);
+            var check = userBusiness.GetUserById(id);
             //bool isDeleted = false;
             if (check != null)
             {

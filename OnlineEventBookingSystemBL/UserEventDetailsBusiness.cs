@@ -49,9 +49,7 @@ namespace OnlineEventBookingSystemBL
             }
             return true;
         }
-
-        
-        
+              
         public List<EventDetailDomainModel> DisplayAllUserEvent(string eventType, string city)
         {
 

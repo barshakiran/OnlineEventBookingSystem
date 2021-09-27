@@ -9,7 +9,11 @@ namespace OnlineEventBookingSystemUI.Models
 {
     public class EventDetailViewModel
     {
-
+        public EventDetailViewModel()
+        {
+            EventTypeList = new List<SelectListItem>();
+            EventList = new List<EventLocationViewModel>();
+        }
         [Display(Name = "ID :  ")]
         public int Event_Id { get; set; }
 

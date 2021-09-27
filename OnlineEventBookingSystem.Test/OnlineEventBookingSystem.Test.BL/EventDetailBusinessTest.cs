@@ -5,6 +5,8 @@ using OnlineEventBookingSystemDomain;
 using System.Linq;
 using System.Collections.Generic;
 using TestHelper;
+using OnlineEventBookingSystemDAL;
+using OnlineEventBookingSystemBL;
 
 namespace OnlineEventBookingSystem.Tests.BL
 {
@@ -15,103 +17,236 @@ namespace OnlineEventBookingSystem.Tests.BL
     public class EventDetailBusinessTest
     {
         #region Variables
-        private List<EventDetailDomainModel> _event;
-        private EventDetailDomainModel eventDModel;
+        private List<EventDetailDomainModel> eventDetailDomainModels;
+        private List<EventLocation> eventLocations;
+        private List<UserRegistrationDomainModel> userDetailDomainModels;
+        private List<UserDetail> userDetails;
+        private List<EventDetail> eventDetails;
+        private List<BookingDetailDomainModel> bookingDetailDomainModels;
+        private List<BookingDetail> bookingDetails;
+        private EventDetailDomainModel eventDetailDomainModel;
+        private EventDetail eventDetail;
+        private EventLocation eventLocation;
+        private BookingDetailDomainModel bookingDetailDomainModel;
+        private UserRegistrationDomainModel userDetailDomainModel;
+
+        private Mock<IBookingDetailDataHandler> mockBookingDetailDataHandler;
+        private Mock<IEventDetailDataHandler> mockEventDetailDataHandler;
+        private Mock<IUserDataHandler> mockUserDataHandler; 
+        private Mock<IEventLocationDataHandler> mockEventLocationDataHandler;
+        private Mock<ILocationDataHandler> mockLocationDataHandler;
+
+        private EventDetailBusiness eventDetailBusiness;
         #endregion
         public EventDetailBusinessTest()
         {
-            //
-            // TODO: Add constructor logic here
-            //
+            mockEventDetailDataHandler = new Mock<IEventDetailDataHandler>();
+            mockBookingDetailDataHandler = new Mock<IBookingDetailDataHandler>();
+            mockUserDataHandler = new Mock<IUserDataHandler>();
+            mockEventLocationDataHandler = new Mock<IEventLocationDataHandler>();
+            mockLocationDataHandler = new Mock<ILocationDataHandler>();
+            eventDetailBusiness = new EventDetailBusiness(mockBookingDetailDataHandler.Object, mockUserDataHandler.Object, mockEventDetailDataHandler.Object, mockEventLocationDataHandler.Object, mockLocationDataHandler.Object);
         }
 
         [TestMethod]
         public void AddEventDetails_ShouldAddEvent()
         {
             //Arrange
-            _event = DataInitializer.GetAllEventDetails();
+            eventDetailDomainModels = DataInitializerEventDetail.GetAllEventDetailDomainModel();
+            eventDetailDomainModel = eventDetailDomainModels[0];
+           // EventDetail eventDetail = new EventDetail();
 
             //Act
-            var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
-            mockEventDetailBusiness.Setup(m => m.AddEventDetails(It.IsAny<EventDetailDomainModel>())).Returns("Inserted");
-            var res = mockEventDetailBusiness.Object.AddEventDetails(_event[0]);
+            mockEventDetailDataHandler.Setup(m => m.Insert(It.IsAny<EventDetail>()));
+            var res= eventDetailBusiness.AddEventDetails(eventDetailDomainModel);
 
             //Assert
             Assert.AreEqual(res, "Inserted");
-        }
 
+        }
+  
         [TestMethod]
         public void AddEventDetails_ShouldReturnNull()
         {
             //Arrange
-            eventDModel = new EventDetailDomainModel();
+            EventDetailDomainModel eventDModel = null;
 
             //Act
-            var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
-            mockEventDetailBusiness.Setup(m => m.AddEventDetails(It.IsAny<EventDetailDomainModel>())).Returns("null");
-            var res = mockEventDetailBusiness.Object.AddEventDetails(eventDModel);
+            mockEventDetailDataHandler.Setup(m => m.Insert(It.IsAny<EventDetail>()));
+            var res = eventDetailBusiness.AddEventDetails(eventDModel);
 
             //Assert
-            Assert.AreEqual(res, "null");
+             Assert.AreEqual(res, null);
         }
 
         [TestMethod]
-        public void AddEventDetails_ShouldReturnAllEvents()
-        {
+        public void DisplayEventDetailList_ShouldReturnAllEvents()
+         {
             //Arrange
-            _event = DataInitializer.GetAllEventDetails();
+            eventDetails = DataInitializer.GetAllEventDetail();
+            eventDetailDomainModels = DataInitializerEventDetail.GetAllEventDetailDomainModel();
+            List<Location> locationDb = DataInitializer.GetAllDBLocation();
+
             //Act
-            var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
-            mockEventDetailBusiness.Setup(m => m.DisplayEventDetails()).Returns(_event);
-            var res = mockEventDetailBusiness.Object.DisplayEventDetails();
+            mockLocationDataHandler.Setup(m => m.GetAll()).Returns(locationDb);
+            mockEventDetailDataHandler.Setup(m => m.GetAll()).Returns(eventDetails);
+            var res = eventDetailBusiness.DisplayEventDetailList();
 
             //Assert
-            Assert.AreEqual(res, _event);
+            Assert.AreEqual(eventDetailDomainModels[0].Event_Id, res[0].Event_Id);
         }
 
         [TestMethod]
-        public void AddEventDetails_ShouldReturnTheEvent()
+        public void DisplayEventDetail_ShouldReturnTheEvent()
         {
 
             //Arrange
-            _event = DataInitializer.GetAllEventDetails();
+            eventDetailDomainModels = DataInitializerEventDetail.GetAllEventDetailDomainModel();
+            eventDetails = DataInitializer.GetAllEventDetail();
+            eventDetail = eventDetails[0];
+            eventDetailDomainModel = eventDetailDomainModels[0];
+            int eventId = eventDetail.Event_Id;
+            int locationId = eventDetailDomainModel.EventList[0].Location_Id;
+            List<Location> locationDb = DataInitializer.GetAllDBLocation();
 
             //Act
-            var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
-            mockEventDetailBusiness.Setup(m => m.DisplayEvent(It.IsAny<int>())).Returns(_event[0]);
-            var res = mockEventDetailBusiness.Object.DisplayEvent(101);
+
+            mockLocationDataHandler.Setup(m => m.GetAll()).Returns(locationDb);
+            mockEventDetailDataHandler.Setup(m => m.GetAll()).Returns(eventDetails);
+            var res = eventDetailBusiness.DisplayEventDetail(eventId, locationId);
 
             //assert
-            Assert.AreEqual(_event[0].Event_Name, res.Event_Name);
+            Assert.AreEqual(eventDetailDomainModel.Event_Name, res.Event_Name);
         }
 
         [TestMethod]
-        public void AddEventDetails_ShouldUpdateTheEvent()
+        public void DisplayEventDetail_ShouldReturnTheEventAtAllLoc()
         {
 
             //Arrange
-            _event = DataInitializer.GetAllEventDetails();
+            eventDetailDomainModels = DataInitializerEventDetail.GetAllEventDetailDomainModel();
+            eventDetails = DataInitializer.GetAllEventDetail();
+            eventDetail = eventDetails[0];
+            eventDetailDomainModel = eventDetailDomainModels[0];
+            int eventId = eventDetail.Event_Id;
+            int locationId = 0;
+            List<Location> locationDb = DataInitializer.GetAllDBLocation();
 
             //Act
-            var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
-            mockEventDetailBusiness.Setup(m => m.UpdateEventDetails(It.IsAny<EventDetailDomainModel>())).Returns("Updated");
-            var res = mockEventDetailBusiness.Object.UpdateEventDetails(_event[0]);
+
+            mockLocationDataHandler.Setup(m => m.GetAll()).Returns(locationDb);
+            mockEventDetailDataHandler.Setup(m => m.GetAll()).Returns(eventDetails);
+            var res = eventDetailBusiness.DisplayEventDetail(eventId, locationId);
 
             //assert
-            Assert.AreEqual("Updated", res);
+            Assert.AreEqual(eventDetailDomainModel.Event_Name, res.Event_Name);
+
         }
 
         [TestMethod]
-        public void DeleteTest_ShouldDeleteTheEvent()
+        public void LocationDetailList_ShouldReturnLocations()
         {
+
             //Arrange
+            List<Location>locationDb = DataInitializer.GetAllDBLocation();
+            List<LocationDomainModel> location = DataInitializer.GetAllLocation();
 
             //Act
-            var mockUserBusiness = new Mock<IEventDetailBusiness>();
-            mockUserBusiness.Setup(m => m.DeleteEvent(It.IsAny<int>())).Returns(true);
+            mockLocationDataHandler.Setup(m => m.GetAll()).Returns(locationDb);
+            var res = eventDetailBusiness.LocationDetailList();
 
             //assert
-            var res = mockUserBusiness.Object.DeleteEvent(101);
+            Assert.AreEqual(location[0].Location_Id,res[0].Location_Id);
+        }
+
+        [TestMethod]
+        public void UserDetailList_ShouldReturnUserDetails()
+        {
+
+            //Arrange
+            userDetails = DataInitializer.GetAllDbUsers();
+            userDetailDomainModels = DataInitializer.GetAllUsers();
+            userDetailDomainModel = userDetailDomainModels[0];
+
+            //Act
+            mockUserDataHandler.Setup(m => m.GetAll()).Returns(userDetails);
+            var res = eventDetailBusiness.UserDetailList();
+
+            //assert
+            Assert.AreEqual(userDetailDomainModel.User_Id, res[0].User_Id);
+        }
+
+        [TestMethod]
+        public void EventDetailList_ShouldReturnEvents()
+        {
+
+            //Arrange
+            eventDetails = DataInitializer.GetAllEventDetail();
+            eventDetailDomainModels = DataInitializerEventDetail.GetAllEventDetailDomainModel();
+           
+
+            //Act
+            mockEventDetailDataHandler.Setup(m => m.GetAll()).Returns(eventDetails);
+            var res = eventDetailBusiness.EventDetailList();
+
+            //assert
+            Assert.AreEqual(eventDetailDomainModels[0].Event_Id, res[0].Event_Id);
+        }
+
+        [TestMethod]
+        public void UpdateEventDetails_ShouldUpdateTheEvent()
+        {
+
+            //Arrange
+            eventDetailDomainModels = DataInitializerEventDetail.GetAllEventDetailDomainModel();
+            eventDetails = DataInitializer.GetAllEventDetail();
+            eventDetail = eventDetails[1];
+            eventDetailDomainModel = eventDetailDomainModels[1];
+
+            //Act
+            mockEventDetailDataHandler.Setup(m => m.Update(It.IsAny<EventDetail>()));
+            var res = eventDetailBusiness.UpdateEventDetails(eventDetailDomainModel);
+
+            //Assert
+            Assert.AreEqual(res, "Updated");
+        }
+
+        [TestMethod]
+        public void DeleteEvent_ShouldDeleteTheEvent()
+        {
+            //Arrange
+            eventLocations = DataInitializer.GetAllEventLocation();
+            eventDetails = DataInitializer.GetAllEventDetail();
+            eventDetail = eventDetails[1];
+            eventLocation = eventLocations[1];
+
+            //Act//
+            mockEventLocationDataHandler.Setup(m => m.Delete(repo => repo.Event_Id == eventDetail.Event_Id && repo.Location_Id == eventLocation.Location_Id ));
+            mockEventDetailDataHandler.Setup(m => m.Delete(repo=>repo.Event_Id == eventDetail.Event_Id));
+            DisplayEventDetail_ShouldReturnTheEventAtAllLoc();
+            var res = eventDetailBusiness.DeleteEvent(eventDetail.Event_Id, eventLocation.Location_Id);
+
+            //assert
+            Assert.AreEqual(res, true);
+        }
+
+        [TestMethod]
+        public void DisplayBookedEventsList_ShouldReturnTheEvent()
+        {
+
+            //Arrange
+            bookingDetailDomainModels = DataInitializerBookedEventDetail.GetAllBookedEventDetailDomainModel();
+            bookingDetailDomainModel = bookingDetailDomainModels[0];
+            bookingDetails = DataInitializer.GetAllBookedEventDetail();
+            UserDetailList_ShouldReturnUserDetails();
+            EventDetailList_ShouldReturnEvents();
+
+            //Act           
+            mockBookingDetailDataHandler.Setup(repo => repo.GetAll()).Returns(bookingDetails);
+            var res = eventDetailBusiness.DisplayBookedEventsList();
+
+            //assert
+            Assert.AreEqual(bookingDetailDomainModel.Event_Id, res[0].Event_Id);
         }
     }
 }

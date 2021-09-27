@@ -41,7 +41,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
             }
             else
             {
-                var check = userBusiness.WhereUser(userDetailModel.User_Name);
+                var check = userBusiness.GetUserByName(userDetailModel.User_Name);
 
                 if (check == null)
                 {
@@ -66,12 +66,12 @@ namespace OnlineEventBookingSystemAPI.Controllers
 
         // POST: api/UserDetails
         [CustomExceptionFilterApi]
-        [ResponseType(typeof(UserLoginDomainModel))]
-        public UserLoginModel UserLogin(UserLoginModel userDetailModel)
+        [ResponseType(typeof(UserRegistrationModel))]
+        public UserRegistrationModel UserLogin(UserRegistrationModel userDetailModel)
         {
-            UserLoginDomainModel userDomainModel = new UserLoginDomainModel();
-            config = new MapperConfiguration(x => x.CreateMap<UserLoginModel, UserLoginDomainModel>().ReverseMap());
-            mapper = new Mapper(config);
+            UserRegistrationDomainModel userDomainModel = new UserRegistrationDomainModel();
+           // config = new MapperConfiguration(x => x.CreateMap<UserRegistrationModel, UserRegistrationDomainModel>().ReverseMap());
+           // mapper = new Mapper(config);
             mapper.Map(userDetailModel, userDomainModel);
             var check = userBusiness.CheckLogin(userDomainModel);
             
@@ -89,6 +89,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
             else
             {
                 userDetailModel.IsAdmin = check.IsAdmin;
+                userDetailModel.User_Id = check.User_Id;
                 return userDetailModel;
             }
         }

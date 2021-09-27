@@ -10,7 +10,6 @@ namespace OnlineEventBookingSystemDomain
     public class BookingDetailDomainModel:UserEventDetailsDomainModel
     {
         public int Booking_Id { get; set; }
-        //public int User_Id { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
         public int Booking_TicketCount { get; set; }

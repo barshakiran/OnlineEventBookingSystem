@@ -16,10 +16,6 @@ namespace OnlineEventBookingSystemDomain
 
         public List<EventLocationDomainModel> EventList { get; set; }
 
-        //locationID
-        //    datetime
-        //    price
-
 
     }
 }

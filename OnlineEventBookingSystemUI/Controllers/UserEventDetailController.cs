@@ -19,23 +19,39 @@ namespace OnlineEventBookingSystemUI.Controllers
             UserEventDetailViewModel userEventDetailViewModel = new UserEventDetailViewModel();
             userEventDetailViewModel.EventTypeList = PoputaleEventTypes();
             userEventDetailViewModel.CityList = PopulateCityList();
-            return View(userEventDetailViewModel);
+            userEventDetailViewModel.Booking_Loc = String.Empty;
+            userEventDetailViewModel.Event_Type = String.Empty;
+
+            var response = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/GetUserEventsDetailList", userEventDetailViewModel).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                userEventDetailViewModel.Events = response.Content.ReadAsAsync<List<EventDetailViewModel>>().Result;
+                return View(userEventDetailViewModel);
+            }
+            else
+            {
+                var statusCode = response.ReasonPhrase;
+                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
+                return View();
+            }
         }
 
         [HttpPost]
-        public ActionResult DisplayUserEvents(UserEventDetailViewModel model)
+        public ActionResult DisplayUserEvents(string Event_Type, string Booking_Loc)
         {
             List<EventDetailViewModel> eventDetailViewModels = new List<EventDetailViewModel>();
-
-            if (model.Booking_Loc == "All")
+            UserEventDetailViewModel userEventDetailViewModel = new UserEventDetailViewModel();
+            userEventDetailViewModel.Event_Type = Event_Type;
+            userEventDetailViewModel.Booking_Loc = Booking_Loc;
+            if (userEventDetailViewModel.Booking_Loc == "All")
             {
-                model.Booking_Loc = String.Empty;
+                userEventDetailViewModel.Booking_Loc = String.Empty;
             }
-            if (model.Event_Type == "All")
+            if (userEventDetailViewModel.Event_Type == "All")
             {
-                model.Event_Type = String.Empty;
+                userEventDetailViewModel.Event_Type = String.Empty;
             }
-            var response = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/GetUserEventsDetailList", model).Result;
+            var response = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/GetUserEventsDetailList", userEventDetailViewModel).Result;
             if (response.IsSuccessStatusCode)
             {
                 eventDetailViewModels = response.Content.ReadAsAsync<List<EventDetailViewModel>>().Result;

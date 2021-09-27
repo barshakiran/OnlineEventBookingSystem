@@ -12,16 +12,12 @@ namespace OnlineEventBookingSystemUI.Controllers
 {
     public class EventDetailController : Controller
     {
-        // GET: EventLocationDetail
+        // GET: EventDetail
         private string controller = "api/EventDetails";
 
         public List<SelectListItem> PoputaleEventTypes()
         {
             List<SelectListItem> eventTypes;
-
-            if (ModelState.IsValid)
-            {
-
                 eventTypes = new List<SelectListItem>();
                 foreach (var item in Enum.GetNames(typeof(EventTypes)))
                 {
@@ -32,19 +28,13 @@ namespace OnlineEventBookingSystemUI.Controllers
                     });
                 }
                 return eventTypes;
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "...Server Error. Please contact administrator.");
-                return null;
-            }
         }
 
         public List<SelectListItem> PopulateCityList()
         {
             List<SelectListItem> cityList ;
             var response = OnlineEventBookingSystem.GlobalVariables.WebApiClient.GetAsync(controller + "/GetLocationDetailList").Result;
-            if (response.IsSuccessStatusCode && ModelState.IsValid)
+            if (response.IsSuccessStatusCode )
             {
                 var locationDetailList = response.Content.ReadAsAsync<List<LocationViewModel>>().Result;
 
@@ -67,23 +57,45 @@ namespace OnlineEventBookingSystemUI.Controllers
             }
         }
 
-        public ActionResult AddLocationEvents()
-        {
+        //public ActionResult AddLocationEvents()
+        //{
 
-            return View(new EventDetailViewModel { });
-        }
+        //    return View(new EventDetailViewModel { });
+        //}
      
-        public ActionResult EventLocationDetails(int? i)
+        //public ActionResult EventLocationDetails(int? i)
+        //{
+        //    EventLocationViewModel eventLocationViewModel = new EventLocationViewModel();
+        //    eventLocationViewModel.Cities = PopulateCityList();
+        //    ViewBag.i = i;
+        //    return PartialView(eventLocationViewModel);
+        //}       
+
+        public ActionResult Create()
         {
+            EventDetailViewModel eventDetailViewModel = new EventDetailViewModel();
+            eventDetailViewModel.EventTypeList = PoputaleEventTypes();
             EventLocationViewModel eventLocationViewModel = new EventLocationViewModel();
             eventLocationViewModel.Cities = PopulateCityList();
-            ViewBag.i = i;
-            return PartialView(eventLocationViewModel);
+            eventDetailViewModel.EventList.Add(eventLocationViewModel);
+            return View(eventDetailViewModel);
         }
+
 
         [HttpPost]
         public async Task<ActionResult> AddLocationEvents(EventDetailViewModel eventDetailViewModel,List<EventLocationViewModel> objloc)
         {
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState
+                                 .Where(x => x.Value.Errors.Count > 0)
+                                 .Select(x => new { x.Key, x.Value.Errors })
+                                 .ToArray();
+               
+                ModelState.AddModelError(string.Empty,"...Server Error. Please contact administrator.");
+                return RedirectToAction("Create", eventDetailViewModel);
+            }
             eventDetailViewModel.EventList = objloc;
             eventDetailViewModel.Event_Picture = "~/Images/" + eventDetailViewModel.Event_Picture;
             var consume = await OnlineEventBookingSystem.GlobalVariables.WebApiClient.PostAsJsonAsync<EventDetailViewModel>(controller + "/PostEventDetail", eventDetailViewModel);
@@ -195,14 +207,7 @@ namespace OnlineEventBookingSystemUI.Controllers
                 return View();
             }
         }
-
-        public ActionResult Create()
-        {
-            EventDetailViewModel eventDetailViewModel = new EventDetailViewModel();
-            eventDetailViewModel.EventTypeList = PoputaleEventTypes();
-            return View(eventDetailViewModel);
-        }
-
+     
         public ActionResult Index()
         {
             List<EventDetailViewModel> eventDetailViewModels;
