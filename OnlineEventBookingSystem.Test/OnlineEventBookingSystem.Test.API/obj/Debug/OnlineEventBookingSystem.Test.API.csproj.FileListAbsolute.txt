@@ -61,3 +61,4 @@ C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookin
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\obj\Debug\OnlineEventBookingSystem.Test.API.csproj.CopyComplete
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\obj\Debug\OnlineEventBookingSystem.Test.API.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\obj\Debug\OnlineEventBookingSystem.Test.API.pdb
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.Test\OnlineEventBookingSystem.Test.API\bin\Debug\TestHelper.pdb

@@ -7,6 +7,7 @@ using OnlineEventBookingSystemAPI.Controllers;
 using OnlineEventBookingSystemBL.Interface;
 using OnlineEventBookingSystemDomain;
 using System.Web.Http.Results;
+using System.Collections.Generic;
 
 namespace OnlineEventBookingSystem.Test.API
 {
@@ -17,23 +18,28 @@ namespace OnlineEventBookingSystem.Test.API
     public class LoginControllerTest
     {
         #region Variables
-        private MapperConfiguration configuration;
-        private Mapper mapper;
+        private List<UserRegistrationDomainModel> userDetailDomainModels;
+        private UserRegistrationDomainModel userDetailDomainModel;
+        private List<UserRegistrationModel> userDetails;
+        private UserRegistrationModel userDetail;
+
         #endregion
 
         [TestMethod]
         public void PostUserDetail_ShouldInsertUserDetail()
         {
-            UserRegistrationModel user = new UserRegistrationModel();
-            configuration = new MapperConfiguration(x => x.CreateMap<UserRegistrationDomainModel, UserRegistrationModel>().ReverseMap());
-            mapper = new Mapper(configuration);
-            var testUsers = DataInitializer.GetAllUsers();
+            //Arrange
+
+            userDetails = DataInitializerAPIUserDetailModels.GetAllUserDetailModel();
+            userDetail = userDetails[0];
             var mockUserBusiness = new Mock<IUserBusiness>();
-            //smockUserBusiness.Setup(x => x.WhereUser(It.IsAny<string>())).Returns(newUser);
+
+            //Act
             mockUserBusiness.Setup(x => x.AddUser(It.IsAny<UserRegistrationDomainModel>())).Returns("inserted");
             var controller = new LoginController(mockUserBusiness.Object);
-            mapper.Map(testUsers[0], user);
-            var result = controller.PostUserDetail(user) as OkNegotiatedContentResult<string>;
+            var result = controller.PostUserDetail(userDetail) as OkNegotiatedContentResult<string>;
+
+            //Assert
             Assert.IsNotNull(result);
             Assert.AreEqual("inserted", result.Content);
         }
@@ -41,17 +47,22 @@ namespace OnlineEventBookingSystem.Test.API
         [TestMethod]
         public void UserLogin_ShouldLoginUSer()
         {
-            UserLoginModel userLoginModel = new UserLoginModel();
-            var testUser = DataInitializer.GetUserLoginData();
-            var mockUserBusiness = new Mock<IUserBusiness>();           
-            mockUserBusiness.Setup(x => x.CheckLogin(It.IsAny<UserLoginDomainModel>())).Returns(testUser);
+            //Arrange
+
+            userDetails = DataInitializerAPIUserDetailModels.GetAllUserDetailModel();
+            userDetail = userDetails[0];
+            userDetailDomainModels = DataInitializer.GetAllUsers();
+            userDetailDomainModel = userDetailDomainModels[0];
+            var mockUserBusiness = new Mock<IUserBusiness>();
+
+            //Act
+            mockUserBusiness.Setup(x => x.CheckLogin(It.IsAny<UserRegistrationDomainModel>())).Returns(userDetailDomainModel);
             var controller = new LoginController(mockUserBusiness.Object);
-            configuration = new MapperConfiguration(x => x.CreateMap<UserLoginDomainModel, UserLoginModel>().ReverseMap());
-            mapper = new Mapper(configuration);
-            mapper.Map(testUser, userLoginModel);
-            var result = controller.UserLogin(userLoginModel);
+            var result = controller.UserLogin(userDetail);
+           
+            //Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(userLoginModel.User_Id, result.User_Id);
+            Assert.AreEqual(userDetail.User_Id, result.User_Id);
         }
     }
 }

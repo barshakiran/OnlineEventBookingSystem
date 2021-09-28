@@ -17,11 +17,6 @@ namespace OnlineEventBookingSystem.Tests.BL
     public class UserBusinessTest
     {
         #region Variables
-        //private List<UserRegistrationDomainModel> _users;
-        //private UserRegistrationDomainModel userDModel;
-        //private UserLoginDomainModel userDLoginModel;
-
-       // private List<UserRegistrationDomainModel> userDetailDomainModels;
         private UserRegistrationDomainModel userDetailDomainModel;
         private List<UserDetail> userDetails;
         private UserDetail userDetail;
@@ -38,7 +33,6 @@ namespace OnlineEventBookingSystem.Tests.BL
         public void DisplayAllUserDetail_ShouldReturnAllUserDetail()
         {
             //Arrange
-          //  userDetailDomainModels = DataInitializer.GetAllUsers();
             userDetails = DataInitializer.GetAllDbUsers();
             userDetail = userDetails[0];
 

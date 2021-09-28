@@ -66,7 +66,7 @@
                 </td>
 
                 <td>
-                    @Html.EditorFor(model => model.Booking_Loc)
+                    @Html.EditorFor(model => model.Booking_Loc, new { htmlAttributes = new { @readonly = "readonly" } })
 
                 </td>
             </tr>
@@ -76,7 +76,8 @@
                 </td>
 
                 <td id="Price">
-                    @Html.DisplayFor(model => model.EventLocation_Price)
+                    @Html.EditorFor(model => model.EventLocation_Price, new { htmlAttributes = new { @readonly = "readonly" } })
+                   @* @Html.DisplayFor(model => model.EventLocation_Price)*@
                 </td>
             </tr>
             <tr>
@@ -85,8 +86,7 @@
                 </td>
 
                 <td>
-                    @Html.EditorFor(model => model.Booking_Date)
-
+                    @Html.EditorFor(model => model.Booking_Date, new { htmlAttributes = new { @readonly = "readonly" } })
                 </td>
             </tr>
             <tr>
@@ -95,7 +95,7 @@
                 </td>
 
                 <td>
-                    @Html.EditorFor(model => model.userName)
+                    @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @readonly = "readonly" } })
 
                 </td>
             </tr>

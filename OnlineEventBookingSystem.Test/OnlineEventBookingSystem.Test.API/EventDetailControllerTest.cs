@@ -13,62 +13,105 @@ namespace OnlineEventBookingSystem.Test.API
     [TestClass]
     public class EventDetailControllerTest
     {
-    //    #region Variables
-    //    private MapperConfiguration configuration;
-    //    private Mapper mapper;
-    //    #endregion
+        #region Variables
+        private List<EventDetailDomainModel> eventDetailDomainModels;
+        private List<EventDetailModel> eventDetails;
+        private EventDetailDomainModel eventDetailDomainModel;
+        private EventDetailModel eventDetail;
+        
+        #endregion
 
-    //    [TestMethod]
-    //    public void GetEventDetails_ShouldReturnAllEvents()
-    //    {
-    //        var testUsers = DataInitializer.GetAllEventDetails();
-    //        var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
-    //        mockEventDetailBusiness.Setup(x => x.DisplayEventDetails()).Returns(testUsers);
-    //        var controller = new EventDetailsController(mockEventDetailBusiness.Object);
-    //        var result = controller.GetEventDetails() as List<EventDetailModel>;
-    //        Assert.AreEqual(testUsers.Count, result.Count);
-    //    }
+        [TestMethod]
+        public void GetEventDetailList_ShouldReturnAllEventDetails()
+        {
+            //Arrange
 
-    //    [TestMethod]
-    //    public void GetEventDetail_ShouldReturnCorrectEvent()
-    //    {
-    //        var testUsers = DataInitializer.GetAllEventDetails();
-    //        var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
-    //        mockEventDetailBusiness.Setup(x => x.DisplayEvent(It.IsAny<int>())).Returns(testUsers[0]);
-    //        var controller = new EventDetailsController(mockEventDetailBusiness.Object);
-    //        var result = controller.GetEventDetail(101) as OkNegotiatedContentResult<EventDetailModel>;
-    //        Assert.IsNotNull(result);
-    //        Assert.AreEqual(testUsers[0].Event_Name, result.Content.Event_Name);
-    //    }
+            eventDetailDomainModels = DataInitializerEventDetail.GetAllEventDetailDomainModel();
+            var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
+            mockEventDetailBusiness.Setup(x => x.DisplayEventDetailList()).Returns(eventDetailDomainModels);
 
-    //    [TestMethod]
-    //    public void UpdateEventDetail_ShouldUpdateCorrectEvent()
-    //    {
-    //        var user = new EventDetailModel();
-    //        configuration = new MapperConfiguration(x => x.CreateMap<EventDetailDomainModel, EventDetailModel>().ReverseMap());
-    //        mapper = new Mapper(configuration);
-    //        var testUsers = DataInitializer.GetAllEventDetails();
-    //        var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
-    //        mockEventDetailBusiness.Setup(x => x.DisplayEvent(It.IsAny<int>())).Returns(testUsers[0]);
-    //        mockEventDetailBusiness.Setup(x => x.UpdateEventDetails(It.IsAny<EventDetailDomainModel>())).Returns("Updated");
-    //        var controller = new EventDetailsController(mockEventDetailBusiness.Object);
-    //        mapper.Map(testUsers[0], user);
-    //        var result = controller.UpdateEventDetail(user) as OkNegotiatedContentResult<string>;
-    //        Assert.IsNotNull(result);
-    //        Assert.AreEqual("Updated", result.Content);
-    //    }
+            //Act
+            var controller = new EventDetailsController(mockEventDetailBusiness.Object);
+            var result = controller.GetEventDetailList() as List<EventDetailModel>;
 
-    //    [TestMethod]
-    //    public void Delete_ShouldDeleteCorrectEvent()
-    //    {
-    //        var testUsers = DataInitializer.GetAllEventDetails();
-    //        var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
-    //        mockEventDetailBusiness.Setup(x => x.DisplayEvent(It.IsAny<int>())).Returns(testUsers[0]);
-    //        mockEventDetailBusiness.Setup(x => x.DeleteEvent(It.IsAny<int>())).Returns(true);
-    //        var controller = new EventDetailsController(mockEventDetailBusiness.Object);
-    //        var result = controller.Delete(10) as OkNegotiatedContentResult<bool>;
-    //        Assert.IsNotNull(result);
-    //        Assert.AreEqual(true, result.Content);
-    //    }
+            //Assert
+            Assert.AreEqual(eventDetailDomainModels.Count, result.Count);
+        }
+
+        [TestMethod]
+        public void GetEventDetail_ShouldDisplayTheEventDetails()
+        {
+            eventDetailDomainModels = DataInitializerEventDetail.GetAllEventDetailDomainModel();
+            eventDetailDomainModel = eventDetailDomainModels[0];
+            var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
+            mockEventDetailBusiness.Setup(x => x.DisplayEventDetail(It.IsAny<int>(), It.IsAny<int>())).Returns(eventDetailDomainModel);
+            var controller = new EventDetailsController(mockEventDetailBusiness.Object);
+            var result = controller.GetEventDetail(101,10) as OkNegotiatedContentResult<EventDetailModel>;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(eventDetailDomainModel.Event_Name, result.Content.Event_Name);
+        }
+
+        [TestMethod]
+        public void UpdateEventDetail_ShouldUpdateTheEvent()
+        {
+            //Arrange
+
+            eventDetails = DataInitializerAPIEventDetailModels.GetAllEventDetailModel();
+            eventDetail = eventDetails[0];
+            eventDetailDomainModels = DataInitializerEventDetail.GetAllEventDetailDomainModel();
+            eventDetailDomainModel = eventDetailDomainModels[0];
+            var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
+
+            //Act
+            mockEventDetailBusiness.Setup(x => x.DisplayEventDetail(It.IsAny<int>(), It.IsAny<int>())).Returns(eventDetailDomainModel);
+            mockEventDetailBusiness.Setup(x => x.UpdateEventDetails(It.IsAny<EventDetailDomainModel>())).Returns("Updated");
+            var controller = new EventDetailsController(mockEventDetailBusiness.Object);
+            var result = controller.UpdateEventDetail(eventDetail) as OkNegotiatedContentResult<string>;
+           
+            //Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Updated", result.Content);
+        }
+
+        [TestMethod]
+        public void Delete_ShouldDeleteTheEvent()
+        {
+            //Arrange
+
+            eventDetailDomainModels = DataInitializerEventDetail.GetAllEventDetailDomainModel();
+            eventDetailDomainModel = eventDetailDomainModels[0];
+            var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
+
+            //Act
+            mockEventDetailBusiness.Setup(x => x.DisplayEventDetail(It.IsAny<int>(), It.IsAny<int>())).Returns(eventDetailDomainModel);
+            mockEventDetailBusiness.Setup(x => x.DeleteEvent(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            var controller = new EventDetailsController(mockEventDetailBusiness.Object);
+            var result = controller.Delete(10,101) as OkNegotiatedContentResult<bool>;
+            
+            //Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(true, result.Content);
+        }
+
+        [TestMethod]
+        public void PostEventDetail_ShouldAddTheEvent()
+        {
+            //Arrange
+
+            eventDetails = DataInitializerAPIEventDetailModels.GetAllEventDetailModel();
+            eventDetail = eventDetails[0];
+            eventDetailDomainModels = DataInitializerEventDetail.GetAllEventDetailDomainModel();
+            eventDetailDomainModel = eventDetailDomainModels[0];
+            var mockEventDetailBusiness = new Mock<IEventDetailBusiness>();
+
+            //Act
+            mockEventDetailBusiness.Setup(x => x.AddEventDetails(It.IsAny<EventDetailDomainModel>())).Returns("Inserted");
+            var controller = new EventDetailsController(mockEventDetailBusiness.Object);
+            var result = controller.PostEventDetail(eventDetail) as OkNegotiatedContentResult<string>;
+
+            //Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Inserted", result.Content);
+        }
     }
 }

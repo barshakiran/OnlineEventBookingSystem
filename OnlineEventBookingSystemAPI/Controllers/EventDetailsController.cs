@@ -137,7 +137,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
                 var mapper = InitializeAutomapper();
                 var eventDetailDomainModel = mapper.Map<EventDetailDomainModel>(eventDetailModel);
                 eventDetailBusiness.UpdateEventDetails(eventDetailDomainModel);
-                return Ok("Inserted");
+                return Ok("Updated");
             }
         }
 
@@ -177,16 +177,16 @@ namespace OnlineEventBookingSystemAPI.Controllers
                     return Ok(true);
                 }
                 
-            else
-            {
-                var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                else
                 {
-                    Content = new StringContent(string.Format("Data not found for the Id: {0}", id)),
-                    ReasonPhrase = "Data not found"
-                };
-
-                throw new HttpResponseException(response);
-            }
+                    var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                    {
+                        Content = new StringContent(string.Format("Data not found for the Id: {0}", id)),
+                        ReasonPhrase = "Data not found"
+                    };
+                    //return Ok(false);
+                    throw new HttpResponseException(response);
+                }
         }
 
         // Get: api/EventDetails

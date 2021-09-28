@@ -17,13 +17,16 @@ namespace OnlineEventBookingSystemBL
         private string clientAddress;
         private string netPassword;
 
+        public EmailHelper()
+        {
+        }
         public EmailHelper(string sender, string client,string Password)
         {
             senderAddress = sender;
             netPassword = Password;
             clientAddress = client;
         }
-        public bool SendEMail(string recipient, string subject, string message)
+       virtual public bool SendEMail(string recipient, string subject, string message)
         {
             bool isMessageSent = false;
             //Intialise Parameters  

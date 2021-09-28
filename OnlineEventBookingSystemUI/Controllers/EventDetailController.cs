@@ -57,20 +57,7 @@ namespace OnlineEventBookingSystemUI.Controllers
             }
         }
 
-        //public ActionResult AddLocationEvents()
-        //{
-
-        //    return View(new EventDetailViewModel { });
-        //}
-     
-        //public ActionResult EventLocationDetails(int? i)
-        //{
-        //    EventLocationViewModel eventLocationViewModel = new EventLocationViewModel();
-        //    eventLocationViewModel.Cities = PopulateCityList();
-        //    ViewBag.i = i;
-        //    return PartialView(eventLocationViewModel);
-        //}       
-
+       
         public ActionResult Create()
         {
             EventDetailViewModel eventDetailViewModel = new EventDetailViewModel();
@@ -183,6 +170,7 @@ namespace OnlineEventBookingSystemUI.Controllers
             else
             {
                 ModelState.AddModelError(string.Empty, consume.Result.StatusCode + "...Server Error. Please contact administrator.");
+               // return RedirectToAction("Delete" , new { id, locationId});
                 return RedirectToAction("Index");
             }
         }

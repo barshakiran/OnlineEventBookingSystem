@@ -54,7 +54,6 @@ namespace OnlineEventBookingSystem.Tests.BL
             //Arrange
             eventDetailDomainModels = DataInitializerEventDetail.GetAllEventDetailDomainModel();
             eventDetailDomainModel = eventDetailDomainModels[0];
-           // EventDetail eventDetail = new EventDetail();
 
             //Act
             mockEventDetailDataHandler.Setup(m => m.Insert(It.IsAny<EventDetail>()));
@@ -76,7 +75,7 @@ namespace OnlineEventBookingSystem.Tests.BL
             var res = eventDetailBusiness.AddEventDetails(eventDModel);
 
             //Assert
-             Assert.AreEqual(res, null);
+            Assert.AreEqual(res, null);
         }
 
         [TestMethod]

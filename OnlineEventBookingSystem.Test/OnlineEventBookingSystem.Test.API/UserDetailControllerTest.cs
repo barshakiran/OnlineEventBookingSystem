@@ -18,53 +18,71 @@ namespace OnlineEventBookingSystem.Test.API
     public class UserDetailsControllerTest
     {
         #region Variables
-        private MapperConfiguration configuration;
-        private Mapper mapper;
+        private List<UserRegistrationDomainModel> userDetailDomainModels;
+        private UserRegistrationDomainModel userDetailDomainModel;
+        private List<UserRegistrationModel> userDetails;
+        private UserRegistrationModel userDetail;
+
         #endregion
 
-        public UserDetailsControllerTest()
-        {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
 
         [TestMethod]
-        public void GetUserDetails_ShouldReturnAllUsers()
+        public void GetUserDetailsList_ShouldReturnAllUsersDetail()
         {
-            var testUsers = DataInitializer.GetAllUsers();
+            //Arrange
+            userDetailDomainModels = DataInitializer.GetAllUsers();
+            userDetails = DataInitializerAPIUserDetailModels.GetAllUserDetailModel();
             var mockUserBusiness = new Mock<IUserBusiness>();
-            mockUserBusiness.Setup(x => x.GetAllUsers()).Returns(testUsers);
+
+            //Act
+            mockUserBusiness.Setup(x => x.GetAllUsers()).Returns(userDetailDomainModels);
             var controller = new UserDetailsController(mockUserBusiness.Object);
             var result = controller.GetUserDetails() as List<UserRegistrationModel>;
-            Assert.AreEqual(testUsers.Count, result.Count);
+
+            //Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(userDetails.Count, result.Count);
         }
 
         [TestMethod]
-        public void GetUser_ShouldReturnCorrectUser()
+        public void GetDetails_ShouldReturnTheUserDetail()
         {
-            var testUsers = DataInitializer.GetAllUsers();
+            //Arrange
+
+            userDetailDomainModels = DataInitializer.GetAllUsers();
+            userDetailDomainModel = userDetailDomainModels[0];
+            userDetails = DataInitializerAPIUserDetailModels.GetAllUserDetailModel();
+            userDetail = userDetails[0];
             var mockUserBusiness = new Mock<IUserBusiness>();
-            mockUserBusiness.Setup(x => x.FindUser(It.IsAny<int>())).Returns(testUsers[0]);
+            
+            //Act
+            mockUserBusiness.Setup(x => x.GetUserById(It.IsAny<int>())).Returns(userDetailDomainModel);
             var controller = new UserDetailsController(mockUserBusiness.Object);
             var result = controller.GetDetails(10) as OkNegotiatedContentResult<UserRegistrationModel>;
+
+            //Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(testUsers[0].User_Name, result.Content.User_Name);
+            Assert.AreEqual(userDetail.User_Name, result.Content.User_Name);
         }
 
         [TestMethod]
         public void UpdateUserDetail_ShouldUpdateCorrectUser()
         {
-            UserRegistrationModel user = new UserRegistrationModel();
-            configuration = new MapperConfiguration(x => x.CreateMap<UserRegistrationDomainModel, UserRegistrationModel>().ReverseMap());
-            mapper = new Mapper(configuration);
-            var testUsers = DataInitializer.GetAllUsers();
+            //Arrange
+
+            userDetailDomainModels = DataInitializer.GetAllUsers();
+            userDetailDomainModel = userDetailDomainModels[0];
+            userDetails = DataInitializerAPIUserDetailModels.GetAllUserDetailModel();
+            userDetail = userDetails[0];
             var mockUserBusiness = new Mock<IUserBusiness>();
-            mockUserBusiness.Setup(x => x.FindUser(It.IsAny<int>())).Returns(testUsers[0]);
+
+            //Act
+            mockUserBusiness.Setup(x => x.GetUserById(It.IsAny<int>())).Returns(userDetailDomainModel);
             mockUserBusiness.Setup(x => x.UpdateUser(It.IsAny<UserRegistrationDomainModel>())).Returns("Updated");
             var controller = new UserDetailsController(mockUserBusiness.Object);
-            mapper.Map(testUsers[0], user);
-            var result = controller.UpdateUserDetail(user) as OkNegotiatedContentResult<string>;
+            var result = controller.UpdateUserDetail(userDetail) as OkNegotiatedContentResult<string>;
+
+            //Assert
             Assert.IsNotNull(result);
             Assert.AreEqual("Updated", result.Content);
         }
@@ -72,12 +90,19 @@ namespace OnlineEventBookingSystem.Test.API
         [TestMethod]
         public void Delete_ShouldDeleteCorrectUser()
         {
-            var testUsers = DataInitializer.GetAllUsers();
+
+            //Arrange
+            userDetailDomainModels = DataInitializer.GetAllUsers();
+            userDetailDomainModel = userDetailDomainModels[0];
             var mockUserBusiness = new Mock<IUserBusiness>();
-            mockUserBusiness.Setup(x => x.FindUser(It.IsAny<int>())).Returns(testUsers[0]);
+
+            //Act
+            mockUserBusiness.Setup(x => x.GetUserById(It.IsAny<int>())).Returns(userDetailDomainModel);
             mockUserBusiness.Setup(x => x.DeleteUser(It.IsAny<int>())).Returns(true);
-            var controller = new UserDetailsController(mockUserBusiness.Object);           
+            var controller = new UserDetailsController(mockUserBusiness.Object);
             var result = controller.Delete(10) as OkNegotiatedContentResult<bool>;
+           
+            //Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(true, result.Content);
         }

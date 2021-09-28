@@ -48,6 +48,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\OnlineEventBookingSystemAPI\OnlineEventBookingSystemAPI.csproj">
+      <Project>{5D6D696F-1042-4CAB-84E2-B6A5A51C21F4}</Project>
+      <Name>OnlineEventBookingSystemAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\OnlineEventBookingSystemDAL\OnlineEventBookingSystemDAL.csproj">
       <Project>{7995ED0A-A48E-424D-A3C4-2CC2F959A447}</Project>
       <Name>OnlineEventBookingSystemDAL</Name>
