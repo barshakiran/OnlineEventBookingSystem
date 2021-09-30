@@ -223,6 +223,8 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -240,7 +242,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\User\WelcomePage.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Registration.cshtml" />
@@ -257,7 +258,6 @@
     <Content Include="Views\EventDetail\Details.cshtml" />
     <Content Include="Views\UserEventDetail\_DisplayUserEvents.cshtml" />
     <Content Include="Views\UserEventDetail\DisplayBookingEventDetails.cshtml" />
-    <Content Include="Views\UserEventDetail\UserEventDisplay.cshtml" />
     <Content Include="Views\UserEventDetail\DisplayBookedEventDetails.cshtml" />
     <Content Include="Views\UserEventDetail\DisplayUserBookedEventsList.cshtml" />
     <Content Include="Views\UserEventDetail\Delete.cshtml" />

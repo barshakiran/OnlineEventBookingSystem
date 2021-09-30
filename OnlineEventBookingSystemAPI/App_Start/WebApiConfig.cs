@@ -15,7 +15,7 @@ namespace OnlineEventBookingSystemAPI
 
             // Web API routes
             config.Filters.Add(new CustomException.CustomExceptionFilterApi());
-           // config.MapHttpAttributeRoutes();           
+            config.MapHttpAttributeRoutes();           
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{action}/{id}/{locationId}",

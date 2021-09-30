@@ -26,8 +26,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
              config = new MapperConfiguration(x =>x.CreateMap<UserRegistrationDomainModel, UserRegistrationModel>().ReverseMap());
              mapper = new Mapper(config);
         }
-        //[CustomExceptionFilterApi]
-       // [BasicAuthentication]
+        [BasicAuthentication]
         public List<UserRegistrationModel> GetUserDetails()
         {
             
@@ -73,7 +72,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
             return Ok(userRegistrationModel);
         }
 
-        [HttpPost]
+        [HttpPut]
         // PUT: api/UserDetails
         [ResponseType(typeof(UserRegistrationModel))]
         public IHttpActionResult UpdateUserDetail(UserRegistrationModel userDetailModel)
@@ -101,12 +100,11 @@ namespace OnlineEventBookingSystemAPI.Controllers
                 };
 
                 throw new HttpResponseException(response);
-                //return NotFound();
             }
         }
 
         // DELETE: api/UserDetails
-        [HttpPost]
+        [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
             var check = userBusiness.GetUserById(id);
@@ -131,7 +129,6 @@ namespace OnlineEventBookingSystemAPI.Controllers
                 };
 
                 throw new HttpResponseException(response);
-                //return BadRequest();
             }
         }
     }

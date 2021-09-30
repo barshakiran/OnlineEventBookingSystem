@@ -128,7 +128,8 @@ namespace OnlineEventBookingSystemAPI.Controllers
             }
         }
 
-        public IHttpActionResult PostUserBookingEventDetail(BookingDetailModel bookingDetailModel)
+        [HttpPost]
+        public IHttpActionResult AddUserBookingEventDetail(BookingDetailModel bookingDetailModel)
         {
             BookingDetailDomainModel bookingDetailDomainModel;
             if (!ModelState.IsValid)
@@ -153,7 +154,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
 
         //DELETE: api/UserEventDetails/5
         //[ResponseType(typeof(UserEventDetail))]
-        [HttpPost]
+        [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
             if (userEventDetailBusiness.DeleteBookedEvent(id) == true)

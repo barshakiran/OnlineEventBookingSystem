@@ -94,7 +94,7 @@ namespace OnlineEventBookingSystem.Test.API
         }
 
         [TestMethod]
-        public void PostEventDetail_ShouldAddTheEvent()
+        public void AddEventDetail_ShouldAddTheEvent()
         {
             //Arrange
 
@@ -107,7 +107,7 @@ namespace OnlineEventBookingSystem.Test.API
             //Act
             mockEventDetailBusiness.Setup(x => x.AddEventDetails(It.IsAny<EventDetailDomainModel>())).Returns("Inserted");
             var controller = new EventDetailsController(mockEventDetailBusiness.Object);
-            var result = controller.PostEventDetail(eventDetail) as OkNegotiatedContentResult<string>;
+            var result = controller.AddEventDetail(eventDetail) as OkNegotiatedContentResult<string>;
 
             //Assert
             Assert.IsNotNull(result);

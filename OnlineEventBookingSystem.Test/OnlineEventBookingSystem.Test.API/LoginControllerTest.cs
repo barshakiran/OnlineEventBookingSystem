@@ -37,7 +37,7 @@ namespace OnlineEventBookingSystem.Test.API
             //Act
             mockUserBusiness.Setup(x => x.AddUser(It.IsAny<UserRegistrationDomainModel>())).Returns("inserted");
             var controller = new LoginController(mockUserBusiness.Object);
-            var result = controller.PostUserDetail(userDetail) as OkNegotiatedContentResult<string>;
+            var result = controller.AddUserDetail(userDetail) as OkNegotiatedContentResult<string>;
 
             //Assert
             Assert.IsNotNull(result);

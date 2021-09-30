@@ -14,7 +14,7 @@ namespace OnlineEventBookingSystemUI.Controllers
     {
         private string controller = "api/UserEventDetails";
         // GET: UserEventDetail
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             UserEventDetailViewModel userEventDetailViewModel = new UserEventDetailViewModel();
             userEventDetailViewModel.EventTypeList = PoputaleEventTypes();
@@ -22,7 +22,7 @@ namespace OnlineEventBookingSystemUI.Controllers
             userEventDetailViewModel.Booking_Loc = String.Empty;
             userEventDetailViewModel.Event_Type = String.Empty;
 
-            var response = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/GetUserEventsDetailList", userEventDetailViewModel).Result;
+            var response = await GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/GetUserEventsDetailList", userEventDetailViewModel);
             if (response.IsSuccessStatusCode)
             {
                 userEventDetailViewModel.Events = response.Content.ReadAsAsync<List<EventDetailViewModel>>().Result;
@@ -31,13 +31,12 @@ namespace OnlineEventBookingSystemUI.Controllers
             else
             {
                 var statusCode = response.ReasonPhrase;
-                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
-                return View();
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, statusCode+"No data found. Please contact administrator.");
             }
         }
 
         [HttpPost]
-        public ActionResult DisplayUserEvents(string Event_Type, string Booking_Loc)
+        public async Task<ActionResult> DisplayUserEvents(string Event_Type, string Booking_Loc)
         {
             List<EventDetailViewModel> eventDetailViewModels = new List<EventDetailViewModel>();
             UserEventDetailViewModel userEventDetailViewModel = new UserEventDetailViewModel();
@@ -51,7 +50,7 @@ namespace OnlineEventBookingSystemUI.Controllers
             {
                 userEventDetailViewModel.Event_Type = String.Empty;
             }
-            var response = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/GetUserEventsDetailList", userEventDetailViewModel).Result;
+            var response =await GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/GetUserEventsDetailList", userEventDetailViewModel);
             if (response.IsSuccessStatusCode)
             {
                 eventDetailViewModels = response.Content.ReadAsAsync<List<EventDetailViewModel>>().Result;
@@ -59,9 +58,7 @@ namespace OnlineEventBookingSystemUI.Controllers
             }
             else
             {
-                var statusCode = response.ReasonPhrase;
-                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
-                return View();
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound,response.ReasonPhrase +"No data found. Please contact administrator.");
             }
         }
 
@@ -136,7 +133,7 @@ namespace OnlineEventBookingSystemUI.Controllers
             }
         }
 
-        public ActionResult DisplayBookingEventDetails(int id,int locationId ,string  userName)
+        public async Task<ActionResult> DisplayBookingEventDetails(int id,int locationId ,string  userName)
         {
             
             BookingDetailViewModel bookingDetailViewModel = new BookingDetailViewModel();
@@ -145,7 +142,7 @@ namespace OnlineEventBookingSystemUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var consume = GlobalVariables.WebApiClient.GetAsync(controller + "/GetUserBookingEventDetail/" + id + "/" + locationId).Result;
+            var consume = await GlobalVariables.WebApiClient.GetAsync(controller + "/GetUserBookingEventDetail/" + id + "/" + locationId);
 
             if (consume.IsSuccessStatusCode == false)
             {
@@ -163,8 +160,7 @@ namespace OnlineEventBookingSystemUI.Controllers
         public async Task<ActionResult> AddUserBookingEventDetail(BookingDetailViewModel bookingDetailViewModel)
         {
             int bookingId;
-             var consume = await OnlineEventBookingSystem.GlobalVariables.WebApiClient.PostAsJsonAsync<EventDetailViewModel>(controller + "/PostUserBookingEventDetail", bookingDetailViewModel);
-            var displayRecord = consume;
+             var consume = await OnlineEventBookingSystem.GlobalVariables.WebApiClient.PostAsJsonAsync<EventDetailViewModel>(controller + "/AddUserBookingEventDetail", bookingDetailViewModel);
             if (consume.IsSuccessStatusCode)
             {
                 bookingId = consume.Content.ReadAsAsync<int>().Result;
@@ -174,7 +170,7 @@ namespace OnlineEventBookingSystemUI.Controllers
                     userEventDetailViewModel.EventTypeList = PoputaleEventTypes();
                     userEventDetailViewModel.CityList = PopulateCityList();
                     ModelState.AddModelError(string.Empty, "Event already booked.");
-                    return View("Index", userEventDetailViewModel);
+                    return new HttpStatusCodeResult(HttpStatusCode.Gone, "The Event already booked or event date is expired");
                 }
                 return RedirectToAction("DisplayBookedEventDetails", new { @id = bookingId });
             }
@@ -186,38 +182,39 @@ namespace OnlineEventBookingSystemUI.Controllers
                  .ToArray();
                 var statusCode = consume.ReasonPhrase;
                 ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
-                return View(bookingDetailViewModel);
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Unable to book event. Please contact administrator.");
             }
         }
 
-        public ActionResult DisplayBookedEventDetails(int id)
+        public async Task<ActionResult> DisplayBookedEventDetails(int id)
         {
 
             BookingDetailViewModel bookingDetailViewModel = new BookingDetailViewModel();
             if (id == 0 )
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Please provide a valid booking id.");
             }
-            var consume = GlobalVariables.WebApiClient.GetAsync(controller + "/GetUserBookedEventDetail/" + id).Result;
+            var consume = await GlobalVariables.WebApiClient.GetAsync(controller + "/GetUserBookedEventDetail/" + id) ;
 
             if (consume.IsSuccessStatusCode == false)
             {
-                var statusCode = consume.ReasonPhrase;
-                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
-                View(bookingDetailViewModel);
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, consume.ReasonPhrase+"No data found. Please contact administrator.");
             }
-            bookingDetailViewModel = consume.Content.ReadAsAsync<BookingDetailViewModel>().Result;
-            return View(bookingDetailViewModel);
+            else
+            {
+                bookingDetailViewModel = consume.Content.ReadAsAsync<BookingDetailViewModel>().Result;
+                return View(bookingDetailViewModel);
+            }
+            
         }
 
-       
-        public ActionResult DisplayUserBookedEventsList(string id)
+
+        public async Task<ActionResult> DisplayUserBookedEventsList(string id)
         {
             List<BookingDetailViewModel> bookedEventDetailViewModels = new List<BookingDetailViewModel>();
 
 
-            var response = GlobalVariables.WebApiClient.GetAsync(controller + "/GetUserBookedEventsDetailList/"+id).Result;
+            var response = await GlobalVariables.WebApiClient.GetAsync(controller + "/GetUserBookedEventsDetailList/" + id) ;
             if (response.IsSuccessStatusCode)
             {
                 bookedEventDetailViewModels = response.Content.ReadAsAsync<List<BookingDetailViewModel>>().Result;
@@ -225,26 +222,22 @@ namespace OnlineEventBookingSystemUI.Controllers
             }
             else
             {
-                var statusCode = response.ReasonPhrase;
-                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
-                return View();
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "No data found. Please contact administrator.");
             }
         }
 
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             BookingDetailViewModel bookedEventDetailViewModel = new BookingDetailViewModel();
             if (id == 0)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Please provide a valid booking id.");
             }
-            var consume = GlobalVariables.WebApiClient.GetAsync(controller + "/GetUserBookedEventDetail/" + id).Result;
+            var consume = await GlobalVariables.WebApiClient.GetAsync(controller + "/GetUserBookedEventDetail/" + id) ;
 
             if (consume.IsSuccessStatusCode == false)
             {
-                var statusCode = consume.ReasonPhrase;
-                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
-                return RedirectToAction("DisplayUserBookedEventsList", new { @id = id });
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, consume.ReasonPhrase+ "No data found. Please contact administrator.");
             }
             var list = consume.Content.ReadAsAsync<BookingDetailViewModel>().Result;
             bookedEventDetailViewModel = list;
@@ -253,11 +246,11 @@ namespace OnlineEventBookingSystemUI.Controllers
 
         [HttpPost, ActionName("Delete")]
 
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
             string name = User.Identity.Name;
-            var consume = GlobalVariables.WebApiClient.PostAsJsonAsync(controller + "/Delete/" + id , id);
-            if (ModelState.IsValid && consume.Result.IsSuccessStatusCode)
+            var consume = await GlobalVariables.WebApiClient.DeleteAsync(controller + "/Delete/" + id);
+            if (ModelState.IsValid && consume.IsSuccessStatusCode)
             {
                 name=User.Identity.Name;
                 return RedirectToAction("DisplayUserBookedEventsList",new { @id = name });
@@ -265,35 +258,9 @@ namespace OnlineEventBookingSystemUI.Controllers
 
             else
             {
-                ModelState.AddModelError(string.Empty, consume.Result.StatusCode + "...Server Error. Please contact administrator.");
-                return RedirectToAction("DisplayUserBookedEventsList", new { @id = name });
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Unable to delete booking. Please contact administrator");
             }
-        }
-        [HttpPost]
-        public async Task<ActionResult> UpdateLocationEvents(EventDetailViewModel eventDetailViewModel, List<EventLocationViewModel> objloc)
-        {
-            eventDetailViewModel.EventList = objloc;
-            var consume = await GlobalVariables.WebApiClient.PostAsJsonAsync<EventDetailViewModel>(controller + "/UpdateEventDetail", eventDetailViewModel);
-            var displayRecord = consume;
-            if (ModelState.IsValid && consume.IsSuccessStatusCode)
-            {
-                
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                var errors = ModelState
-                 .Where(x => x.Value.Errors.Count > 0)
-                 .Select(x => new { x.Key, x.Value.Errors })
-                 .ToArray();
-                var statusCode = consume.ReasonPhrase;
-                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
-                return View();
-            }
-        }
-
-        
-
+        }       
     }
        
 }

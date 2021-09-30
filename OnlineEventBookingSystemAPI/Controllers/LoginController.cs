@@ -27,7 +27,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
 
         // POST: api/UserDetails
         [ResponseType(typeof(UserRegistrationModel))]
-        public IHttpActionResult PostUserDetail(UserRegistrationModel userDetailModel)
+        public IHttpActionResult AddUserDetail(UserRegistrationModel userDetailModel)
         {
             UserRegistrationDomainModel userDomainModel = new UserRegistrationDomainModel();
             if (userDetailModel == null)
@@ -65,13 +65,10 @@ namespace OnlineEventBookingSystemAPI.Controllers
         }
 
         // POST: api/UserDetails
-        [CustomExceptionFilterApi]
         [ResponseType(typeof(UserRegistrationModel))]
         public UserRegistrationModel UserLogin(UserRegistrationModel userDetailModel)
         {
             UserRegistrationDomainModel userDomainModel = new UserRegistrationDomainModel();
-           // config = new MapperConfiguration(x => x.CreateMap<UserRegistrationModel, UserRegistrationDomainModel>().ReverseMap());
-           // mapper = new Mapper(config);
             mapper.Map(userDetailModel, userDomainModel);
             var check = userBusiness.CheckLogin(userDomainModel);
             

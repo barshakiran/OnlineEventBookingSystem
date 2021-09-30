@@ -109,7 +109,7 @@ namespace OnlineEventBookingSystem.Test.API
         }
 
         [TestMethod]
-        public void PostUserBookingEventDetail_ShouldAddBookingEventDetailsOfTheUser()
+        public void AddUserBookingEventDetail_ShouldAddBookingEventDetailsOfTheUser()
         {
             //Arrange
             bookingDetailModels = DataInitializerAPIBookingDetailModels.GetAllBookedEventDetailModel();
@@ -121,7 +121,7 @@ namespace OnlineEventBookingSystem.Test.API
             //Act
             mockUserEventDetailBusiness.Setup(x => x.AddUserBookingEventDetails(It.IsAny<BookingDetailDomainModel>())).Returns(bookingDetailDomainModel.Booking_Id);
             var controller = new UserEventDetailsController(mockUserEventDetailBusiness.Object);
-            var result = controller.PostUserBookingEventDetail(bookingDetailModel) as OkNegotiatedContentResult<int>;
+            var result = controller.AddUserBookingEventDetail(bookingDetailModel) as OkNegotiatedContentResult<int>;
 
             //Assert
             Assert.IsNotNull(result);

@@ -25,11 +25,7 @@ namespace OnlineEventBookingSystemAPI.CustomException
                 errMsg = "Data is not found";
                 statusCode = HttpStatusCode.NotFound;
             }
-            //else if (exceptionType == typeof(n))
-            //{
-            //    errMsg = "Data is not found";
-            //    statusCode = HttpStatusCode.NotFound;
-            //}
+            
             else
             {
                 errMsg = "Contact to you server administrator";

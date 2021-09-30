@@ -10,10 +10,10 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#btnCalculate").click(function () {
-                var price = $("#Price").text();
+                var price = $("#EventLocation_Price").val();
                 var tCount = $("#Booking_TicketCount").val();
                 var total = parseFloat(price * tCount);
-                // alert(price);
+                 //alert(price);
                 $("#Booking_TotalAmount").val(total);
 
             });
@@ -75,8 +75,8 @@
                     @Html.DisplayNameFor(model => model.EventLocation_Price)
                 </td>
 
-                <td id="Price">
-                    @Html.EditorFor(model => model.EventLocation_Price, new { htmlAttributes = new { @readonly = "readonly" } })
+                <td >
+                    @Html.EditorFor(model => model.EventLocation_Price,new { htmlAttributes = new { @readonly = "readonly" } })
                    @* @Html.DisplayFor(model => model.EventLocation_Price)*@
                 </td>
             </tr>

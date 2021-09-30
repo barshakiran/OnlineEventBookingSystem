@@ -70,7 +70,8 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Event_Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Event_Id ,locationId = items.Location_Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Event_Id ,locationId = items.Location_Id })
+           @* @Ajax.ActionLink("Delete", "Delete",new AjaxOptions { id = item.Event_Id,locationId = items.Location_Id*@
+              @Html.ActionLink("Delete", "Delete", new { id = item.Event_Id ,locationId = items.Location_Id })
         </td>
 
     </tr>

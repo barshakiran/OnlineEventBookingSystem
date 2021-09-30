@@ -73,7 +73,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
         [HttpPost]
         // POST: api/EventDetails
         [ResponseType(typeof(EventDetailModel))]
-        public IHttpActionResult PostEventDetail(EventDetailModel eventDetailModel)
+        public IHttpActionResult AddEventDetail(EventDetailModel eventDetailModel)
         {
             if (!ModelState.IsValid)
             {
@@ -118,8 +118,8 @@ namespace OnlineEventBookingSystemAPI.Controllers
             }
         }
 
-        [HttpPost]
-        // POST: api/EventDetails
+        [HttpPut]
+        
         [ResponseType(typeof(EventDetailModel))]
         public IHttpActionResult UpdateEventDetail(EventDetailModel eventDetailModel)
         {
@@ -169,7 +169,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
 
         //DELETE: api/EventDetails/5
         //[ResponseType(typeof(EventDetail))]
-        [HttpPost]
+        [HttpDelete]
         public IHttpActionResult Delete(int id ,int locationId)
         {
                 if (eventDetailBusiness.DeleteEvent(id,locationId) == true)

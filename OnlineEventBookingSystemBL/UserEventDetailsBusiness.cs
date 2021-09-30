@@ -35,7 +35,7 @@ namespace OnlineEventBookingSystemBL
             try
             {
                 var eventName = EventDetailList().SingleOrDefault(x => x.Event_Id == bookingDetailDomainModel.Event_Id).Event_Name;
-                var emailBody = EmailHelper.EMAIL_BODY+ Environment.NewLine+ bookingDetailDomainModel.Booking_TicketCount +" "+ " tickets for the event " + eventName + " is booked."
+                var emailBody = "Event is booked " + bookingDetailDomainModel.Booking_TicketCount +" "+ " tickets for the event " + eventName + " is booked."
                     + Environment.NewLine + "For ticket detail login to the website.";
                 string subject = "Event Booking Confirmation";
                 bool sent = SendEMail(bookingDetailDomainModel.Email, subject, emailBody);
@@ -58,8 +58,8 @@ namespace OnlineEventBookingSystemBL
         {
             bool isMessageSent = false;
             string clientAddress = "smtp.gmail.com";
-            string senderAddress = "xxxxxxx";
-            string netPassword = "xxxxx";
+            string senderAddress = "usert4185@gmail.com";
+            string netPassword = "usertest@4185";
             //Intialise Parameters  
             SmtpClient client = new System.Net.Mail.SmtpClient(clientAddress);
             client.Port = 587;
@@ -276,8 +276,7 @@ namespace OnlineEventBookingSystemBL
 
                     var userBookedEventList = bookingDetailDataHandler.GetAll(e => e.Event_Id == bookingDetailDomainModel .Event_Id && e.User_Id == bookingDetail.User_Id ).ToList();
                    if(userBookedEventList.Count == 0 && bookingDetailDomainModel.Booking_Date > System.DateTime.Now)
-                    {
-                       
+                    {                       
                         bookingDetailDataHandler.Insert(bookingDetail);
                         bookingId = bookingDetail.Booking_Id;
                         bookingDetailDomainModel.Email = userList.SingleOrDefault(x => x.User_Id == bookingDetail.User_Id).User_Email;

@@ -253,7 +253,7 @@ namespace OnlineEventBookingSystemBL
             }
             catch (Exception msg)
             {
-                throw msg;
+                 throw msg;
             }
 
         }
@@ -272,14 +272,13 @@ namespace OnlineEventBookingSystemBL
                 else
                 {
                     var bookedEventDetail = bookingDetailDataHandler.GetAll(s => s.Event_Id == id).ToList();
-                    if(bookedEventDetail!= null && bookedEventDetail.Count == 0)
-                    {
+                   
                         eventLocationDataHandler.Delete(s => s.Event_Id == id && s.Location_Id == locationId);
                         isDeleted = true;
-                    }
+                    
                    
                     eventDetailDomainModels = DisplayEventDetail(id, 0);
-                    if(eventDetailDomainModels!= null && eventDetailDomainModels.EventList.Count==0 )
+                    if(eventDetailDomainModels!= null && eventDetailDomainModels.EventList.Count==0 && bookedEventDetail != null && bookedEventDetail.Count == 0)
                     {
                         eventDetailDataHandler.Delete(x => x.Event_Id == id);
                         isDeleted = true;
