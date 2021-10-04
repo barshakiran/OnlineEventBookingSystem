@@ -111,6 +111,7 @@ namespace OnlineEventBookingSystemAPI.Controllers
             //bool isDeleted = false;
             if (check != null)
             {
+               
                if(userBusiness.DeleteUser(id) == true)
                 {
                     return Ok(true);

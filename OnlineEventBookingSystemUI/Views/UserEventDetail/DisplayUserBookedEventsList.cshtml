@@ -4,6 +4,16 @@
     ViewBag.Title = "DisplayUserBookedEventsList";
 }
 
+<script type="text/javascript">
+        function RemoveRow(element) {
+            var obj = document.getElementById(element);
+            var $tr = $(obj).remove();
+        }
+            function OnFailure(result)
+            {
+                alert(result.statusText);
+            }
+</script>
 <h2>
 </h2>
 
@@ -45,7 +55,7 @@
 
         @foreach (var item in Model)
         {
-            <tr>
+            <tr id =@item.Booking_Id>
                 <td width="40px">
                     @Html.DisplayFor(modelItem => item.Booking_Id)
                 </td>
@@ -76,7 +86,14 @@
                 </td>
                 <td>
                     @Html.ActionLink("Details", "DisplayBookedEventDetails", new { id = item.Booking_Id })|
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Booking_Id })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Booking_Id })*@
+                    @Ajax.ActionLink("Delete ", "Delete", new { id = item.Booking_Id }, new AjaxOptions
+                          {
+                              HttpMethod = "DELETE",
+                              Confirm = "Are you Sure You Want to Delete ",
+                              OnSuccess = "RemoveRow(" + @item.Booking_Id + ")",
+                              OnFailure = "OnFailure"
+                          })
                 </td>
             </tr>
         }

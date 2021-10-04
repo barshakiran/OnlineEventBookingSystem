@@ -58,8 +58,8 @@ namespace OnlineEventBookingSystemBL
         {
             bool isMessageSent = false;
             string clientAddress = "smtp.gmail.com";
-            string senderAddress = "usert4185@gmail.com";
-            string netPassword = "usertest@4185";
+            string senderAddress = "xxxx";
+            string netPassword = "xxx";
             //Intialise Parameters  
             SmtpClient client = new System.Net.Mail.SmtpClient(clientAddress);
             client.Port = 587;

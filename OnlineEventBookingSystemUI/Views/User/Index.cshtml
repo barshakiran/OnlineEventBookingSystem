@@ -11,11 +11,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <script type="text/javascript">
+        function RemoveRow(element) {
+            var obj = document.getElementById(element);
+            var $tr = $(obj).remove();
+        }     
+            function OnFailure(result)
+            {
+                alert(result.statusText);
+            }
+    </script>
 </head>
-
-
 <body>
-
     <h2>@ViewBag.UserName</h2>
     <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
         width: 1350px; margin: auto; display: table;">
@@ -36,7 +43,7 @@
                 {
                     foreach (var user in ViewBag.UserList)
                     {
-                        <tr>
+                        <tr id=@user.User_Id>
                             <td>@user.User_Id</td>
                             <td>@user.User_Name </td>
                             <td>@user.User_Password </td>
@@ -45,9 +52,19 @@
                             <td>@user.User_PhoneNo</td>
                             <td>@user.IsAdmin</td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new {  id= user.User_Id }) |
-                                @Html.ActionLink("Details", "Details", new { id = user.User_Id } ) |
-                                @Html.ActionLink("Delete", "Delete", new {id = user.User_Id })
+                                @Html.ActionLink("Edit", "Edit", new { id = user.User_Id }) |
+                                @Html.ActionLink("Details", "Details", new { id = user.User_Id }) |
+                                @* @Html.ActionLink("Delete", "Delete", new { id = user.User_Id })*@
+                               
+
+                                @Ajax.ActionLink("Delete ", "Delete", new { id = user.User_Id }, new AjaxOptions
+                                { 
+                                     HttpMethod = "DELETE",
+                                     Confirm = "Are you Sure You Want to Delete ", 
+                                     OnSuccess = "RemoveRow("+ @user.User_Id +")" , 
+                                     OnFailure = "OnFailure"
+                                })
+                               
                             </td>
                         </tr>
                     }

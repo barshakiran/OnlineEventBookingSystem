@@ -4,8 +4,18 @@
     ViewBag.Title = "Event";
 }
 
+<script type="text/javascript">
+        function RemoveRow(element) {
+            var obj = document.getElementById(element);
+            var $tr = $(obj).remove();
+        }
+            function OnFailure(result)
+            {
+                alert(result.statusText);
+            }
+</script>
 
-<p>   
+<p>
     @Html.ActionLink("Create New", "Create") |
     @Html.ActionLink("Booked Events", "DisplayBookedEventsList")
 
@@ -38,45 +48,51 @@
         {
             foreach (var items in item.EventList)
             {
-    <tr>
-        <td width="10">
-            @Html.DisplayFor(modelItem => item.Event_Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Event_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Event_Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Event_Description)
-        </td>
+                <tr id =@item.Event_Id@items.Location_Id>
+                    <td width="10" >
+                        @Html.DisplayFor(modelItem => item.Event_Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Event_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Event_Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Event_Description)
+                    </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => items.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => items.EventLocation_Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => items.EventLocation_DateAndTime)
-        </td>
-        <td>
-           
-                <img class="img-responsive" src="@Url.Content(item.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
-         
-        </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => items.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => items.EventLocation_Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => items.EventLocation_DateAndTime)
+                    </td>
+                    <td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Event_Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Event_Id ,locationId = items.Location_Id }) |
-           @* @Ajax.ActionLink("Delete", "Delete",new AjaxOptions { id = item.Event_Id,locationId = items.Location_Id*@
-              @Html.ActionLink("Delete", "Delete", new { id = item.Event_Id ,locationId = items.Location_Id })
-        </td>
+                        <img class="img-responsive" src="@Url.Content(item.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
 
-    </tr>
-                    }
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Event_Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Event_Id, locationId = items.Location_Id }) |
+                       @* @Html.ActionLink("Delete", "Delete", new { id = item.Event_Id, locationId = items.Location_Id })*@
+                        @Ajax.ActionLink("Delete ", "Delete", new { id = item.Event_Id, locationId = items.Location_Id }, new AjaxOptions
+                           {
+                               HttpMethod = "DELETE",
+                               Confirm = "Are you Sure You Want to Delete ",
+                               OnSuccess = "RemoveRow("+ @item.Event_Id +""+ @items.Location_Id + ")",
+                               OnFailure = "OnFailure"
+                           })
+                    </td>
+
+                </tr>
             }
+        }
 
-        </table>
+    </table>
 </div>

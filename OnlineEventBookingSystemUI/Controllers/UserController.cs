@@ -10,10 +10,11 @@ using System.Web.Security;
 using System.Net;
 using OnlineEventBookingSystemUI.Filters;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace OnlineEventBookingSystem.Controllers
 {
-   
+   [Authorize]
     public class UserController : Controller
     {
         private string controller = "api/UserDetails";
@@ -38,7 +39,7 @@ namespace OnlineEventBookingSystem.Controllers
             }
 
         }  
- 
+        [AllowAnonymous]
         public ActionResult Registration()
         {
 
@@ -47,6 +48,7 @@ namespace OnlineEventBookingSystem.Controllers
         }       
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult> Registration(RegistrationViewModel model)
         {
             var consume =await GlobalVariables.WebApiClient.PostAsJsonAsync<RegistrationViewModel>("api/Login" + "/AddUserDetail", model);
@@ -69,7 +71,7 @@ namespace OnlineEventBookingSystem.Controllers
             }
 
         }
-       
+        [AllowAnonymous]
         public ActionResult Login()
         {
 
@@ -77,6 +79,7 @@ namespace OnlineEventBookingSystem.Controllers
 
         }      
 
+        [AllowAnonymous]
         [HttpPost]        
         public async Task<ActionResult> Login(LoginViewModel loginViewModel)
         {
@@ -88,7 +91,6 @@ namespace OnlineEventBookingSystem.Controllers
                 if (loginViewModel != null)
                 {
                     FormsAuthentication.SetAuthCookie(loginViewModel.User_Name, false);
-                   // return RedirectToAction("Index", "EventDetail");
                     if (loginViewModel.IsAdmin == true)
                     {
                         return RedirectToAction("Index", "EventDetail");
@@ -171,9 +173,8 @@ namespace OnlineEventBookingSystem.Controllers
             return View(registrationVM);
         }
 
-        // POST: UserDetails/Delete/5
-        [HttpPost, ActionName("Delete")]
-        // [ValidateAntiForgeryToken]
+        // DELETE: UserDetails/Delete/5
+        [HttpDelete, ActionName("Delete")]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             var consume = await GlobalVariables.WebApiClient.DeleteAsync(controller + "/Delete/" + id);
@@ -185,7 +186,7 @@ namespace OnlineEventBookingSystem.Controllers
                 }
                 else
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, string.Empty);
+                    return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Unable to delete as booking exists for this user. Please contact administrator.");
                 }
             }
             else
@@ -194,27 +195,7 @@ namespace OnlineEventBookingSystem.Controllers
                 return RedirectToAction("Index");
             }
         }
-
-        public async Task<ActionResult> Delete(int id)
-        {
-            RegistrationViewModel registrationVM = new RegistrationViewModel();
-            if (id == 0)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var consume = await GlobalVariables.WebApiClient.GetAsync(controller + "/GetDetails/" + id);           
-            if (consume.IsSuccessStatusCode == false)
-            {
-                var statusCode = consume.ReasonPhrase;
-                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
-                View(registrationVM);
-
-            }
-           
-            registrationVM = consume.Content.ReadAsAsync<RegistrationViewModel>().Result;
-            return View(registrationVM);
-        }
-
+       
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace OnlineEventBookingSystemUI.Controllers
 {
+    [Authorize]
     public class EventDetailController : Controller
     {
         // GET: EventDetail
@@ -133,35 +134,8 @@ namespace OnlineEventBookingSystemUI.Controllers
                 return View(eventDetailViewModel);
             }           
         }
-
-        public async Task<ActionResult> Delete(int id, int locationId)
-        {
-            EventDetailViewModel eventDetailViewModel = new EventDetailViewModel();
-            if (id == 0 || locationId ==0)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "No data found.");
-            }
-            var consume = await GlobalVariables.WebApiClient.GetAsync(controller + "/GetEventDetail/" + id + "/" + locationId);
-
-            if (consume.IsSuccessStatusCode == false)
-            {
-                var statusCode = consume.ReasonPhrase;
-                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Date not found. Please contact administrator.");
-            }           
-            var eventDetailViewModelList = consume.Content.ReadAsAsync<EventDetailViewModel>().Result;
-            if(eventDetailViewModelList == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                eventDetailViewModel = eventDetailViewModelList;
-                return View(eventDetailViewModel);
-            }            
-        }
-
-        [HttpPost, ActionName("Delete")]
+        
+        [HttpDelete, ActionName("Delete")]
         public async Task<ActionResult> DeleteConfirmed(int id,int locationId)
         {
             var consume = await GlobalVariables.WebApiClient.DeleteAsync(controller + "/Delete/" + id + "/" + locationId);
@@ -190,6 +164,7 @@ namespace OnlineEventBookingSystemUI.Controllers
             }
             else
             {
+                TempData["msg"] = "<script>alert(HttpStatusCode.InternalServerError. Unable to update. Please contact administrator.');</script>";
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Unable to update. Please contact administrator.");
             }
         }

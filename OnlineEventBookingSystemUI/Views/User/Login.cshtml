@@ -42,7 +42,7 @@
                     <td>
                         @Html.EditorFor(model => model.User_Password)
                         <div style="height: 20px;">
-                            @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" ,@id="password"})
                         </div>
                     </td>
                 </tr>
@@ -60,7 +60,7 @@
                     <td>
                     </td>
                     <td>
-                        <input type="submit" value="Login" />
+                        <input type="submit" value="Login" id="btnLogin" />
                     </td>
                 </tr>
             </table>

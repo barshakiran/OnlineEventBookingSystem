@@ -10,10 +10,12 @@ using System.Threading.Tasks;
 
 namespace OnlineEventBookingSystemUI.Controllers
 {
+    [Authorize]
     public class UserEventDetailController : Controller
     {
         private string controller = "api/UserEventDetails";
         // GET: UserEventDetail
+        [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
             UserEventDetailViewModel userEventDetailViewModel = new UserEventDetailViewModel();
@@ -36,6 +38,7 @@ namespace OnlineEventBookingSystemUI.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult> DisplayUserEvents(string Event_Type, string Booking_Loc)
         {
             List<EventDetailViewModel> eventDetailViewModels = new List<EventDetailViewModel>();
@@ -133,12 +136,13 @@ namespace OnlineEventBookingSystemUI.Controllers
             }
         }
 
-        public async Task<ActionResult> DisplayBookingEventDetails(int id,int locationId ,string  userName)
+       
+        public async Task<ActionResult> DisplayBookingEventDetails(int id,int locationId)
         {
             
             BookingDetailViewModel bookingDetailViewModel = new BookingDetailViewModel();
             
-            if (id == 0 || locationId == 0 || string.IsNullOrEmpty(userName))
+            if (id == 0 || locationId == 0 || string.IsNullOrEmpty(User.Identity.Name))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -152,7 +156,7 @@ namespace OnlineEventBookingSystemUI.Controllers
             }
             bookingDetailViewModel = consume.Content.ReadAsAsync<BookingDetailViewModel>().Result;
             bookingDetailViewModel.PaymentModeList = PoputaleModeOfPayment();
-            bookingDetailViewModel.userName = userName;
+           bookingDetailViewModel.userName = User.Identity.Name;
             return View(bookingDetailViewModel);
         }
 
@@ -160,6 +164,10 @@ namespace OnlineEventBookingSystemUI.Controllers
         public async Task<ActionResult> AddUserBookingEventDetail(BookingDetailViewModel bookingDetailViewModel)
         {
             int bookingId;
+            if(bookingDetailViewModel != null)
+            {
+                bookingDetailViewModel.userName = User.Identity.Name;
+            }
              var consume = await OnlineEventBookingSystem.GlobalVariables.WebApiClient.PostAsJsonAsync<EventDetailViewModel>(controller + "/AddUserBookingEventDetail", bookingDetailViewModel);
             if (consume.IsSuccessStatusCode)
             {
@@ -209,11 +217,11 @@ namespace OnlineEventBookingSystemUI.Controllers
         }
 
 
-        public async Task<ActionResult> DisplayUserBookedEventsList(string id)
+        public async Task<ActionResult> DisplayUserBookedEventsList()
         {
             List<BookingDetailViewModel> bookedEventDetailViewModels = new List<BookingDetailViewModel>();
 
-
+            string id = User.Identity.Name;
             var response = await GlobalVariables.WebApiClient.GetAsync(controller + "/GetUserBookedEventsDetailList/" + id) ;
             if (response.IsSuccessStatusCode)
             {
@@ -226,25 +234,7 @@ namespace OnlineEventBookingSystemUI.Controllers
             }
         }
 
-        public async Task<ActionResult> Delete(int id)
-        {
-            BookingDetailViewModel bookedEventDetailViewModel = new BookingDetailViewModel();
-            if (id == 0)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Please provide a valid booking id.");
-            }
-            var consume = await GlobalVariables.WebApiClient.GetAsync(controller + "/GetUserBookedEventDetail/" + id) ;
-
-            if (consume.IsSuccessStatusCode == false)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound, consume.ReasonPhrase+ "No data found. Please contact administrator.");
-            }
-            var list = consume.Content.ReadAsAsync<BookingDetailViewModel>().Result;
-            bookedEventDetailViewModel = list;
-            return View(bookedEventDetailViewModel);
-        }
-
-        [HttpPost, ActionName("Delete")]
+        [HttpDelete, ActionName("Delete")]
 
         public async Task<ActionResult> DeleteConfirmed(int id)
         {

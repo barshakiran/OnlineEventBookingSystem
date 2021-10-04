@@ -91,7 +91,7 @@
             </tr>
             <tr>
                 <td>
-                    @Html.DisplayNameFor(model => model.userName)
+                    @Html.DisplayNameFor(model =>model.userName)
                 </td>
 
                 <td>
@@ -158,37 +158,19 @@
             </td>
         </tr>
 
-        @*<tr>
-            <td width="150">
-                @Html.LabelFor(model => model.IsConfirmationSent)
-                <div style="height: 20px;">
-
-                </div>
-            </td>
-            <td>
-                @Html.EditorFor(model => model.IsConfirmationSent)
-
-
-                <div style="height: 20px;">
-                    @Html.ValidationMessageFor(model => model.IsConfirmationSent, "", new { @class = "text-danger" })
-                </div>
-            </td>
-        </tr>*@
-
         <tr>
             <td></td>
             <td align="left">
-                <input type="submit" value="Book Event" class="btn btn-default" />
+                <input type="submit" value="Book Event" class="btn btn-default" id="btnBookEvent"/>
             </td>
         </tr>
     </table>
 
 </div>
     }
-    <p>
-        @*@if (User.Identity.IsAuthenticated)
-            {*@
-        <a> @Html.ActionLink("Booked Events List", "DisplayUserBookedEventsList", new { id = User.Identity.Name })</a> |
-        <a> @Html.ActionLink("Back to List", "Index")</a>
+<p>
 
-    </p>
+    <a> @Html.ActionLink("Booked Events List", "DisplayUserBookedEventsList")</a> |
+    <a> @Html.ActionLink("Back to List", "Index")</a>
+
+</p>

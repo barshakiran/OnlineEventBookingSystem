@@ -59,7 +59,7 @@
     </table>
     @if (User.Identity.IsAuthenticated)
     {
-        <a> @Html.ActionLink("Booked Events List", "DisplayUserBookedEventsList", new { id = User.Identity.Name })</a>
+         @Html.ActionLink("Booked Events List", "DisplayUserBookedEventsList", new { id = User.Identity.Name })
     }
 
 
