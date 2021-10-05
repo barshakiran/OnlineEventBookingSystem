@@ -12,18 +12,17 @@ namespace OnlineEventBookingSystem.IntegrationTest.Pages
     public class EventPage:DriverHelper
     {
         //UI elements
-      //  public IWebElement lnkLogin => Driver.FindElement(By.LinkText("Login"));
         public IWebElement lnkLogOff => Driver.FindElement(By.LinkText("LogOut"));
         public bool IsLogOffExits() => lnkLogOff.Displayed;
 
-        public void Click_Login()
+        public void Click_LoginLink()
         {
             IWebElement lnkLogin = Wait.Until(x => x.FindElement(By.LinkText("Login")));
             lnkLogin.Click();
         }
         public void LinkBook()
         {
-            IWebElement lnkBook = Wait.Until(x => x.FindElement(By.Id("2210")));
+            IWebElement lnkBook = Wait.Until(x => x.FindElement(By.Id("3065102")));
             lnkBook.Click();
         }
     }

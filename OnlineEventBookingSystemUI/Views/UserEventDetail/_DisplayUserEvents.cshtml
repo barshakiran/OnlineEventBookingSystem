@@ -23,12 +23,13 @@
     </tr>
 
 
-    <tbody >
+    <tbody>
         @if (Model != null && Model.Count() != 0)
         {
 
             foreach (var item in Model)
             {
+              
                 foreach (var items in item.EventList)
                 {
                     <tr>
@@ -58,11 +59,11 @@
 
                         </td>
 
-                        <td >
+                        <td>
                             @if (User.Identity.IsAuthenticated)
                             {
 
-                                @Html.ActionLink("Book", "DisplayBookingEventDetails", new { id = item.Event_Id, locationId = items.Location_Id}, new { id = @item.Event_Id + items.Location_Id })
+                                @Html.ActionLink("Book", "DisplayBookingEventDetails", new { id = item.Event_Id, locationId = items.Location_Id }, new { id = string.Concat(@item.Event_Id, items.Location_Id) })
 
                             }
 

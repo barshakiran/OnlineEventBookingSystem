@@ -21,8 +21,6 @@ namespace OnlineEventBookingSystem.IntegrationTest.Pages
             txtUserName.SendKeys(username);
             txtPassword.SendKeys(password);
         }
-        public void Click_Login() => btnLogin.Click();
-        public bool IsEventDetailsExits() => lnkEventDetails.Displayed;
-
+        public void Click_LoginButton() => btnLogin.Click();
     }
 }

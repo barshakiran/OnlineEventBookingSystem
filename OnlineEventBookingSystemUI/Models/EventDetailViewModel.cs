@@ -35,6 +35,7 @@ namespace OnlineEventBookingSystemUI.Models
 
         public List<EventLocationViewModel> EventList { get; set; } = new List<EventLocationViewModel>();
         public List<SelectListItem> EventTypeList { get; set; }
+        public string ErrorMessage { get; set; }
     }
 
     public enum EventTypes

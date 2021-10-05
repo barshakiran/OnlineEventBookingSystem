@@ -1,8 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using OnlineEventBookingSystemBL.Interface;
 using OnlineEventBookingSystemDomain;
-using System.Linq;
 using System.Collections.Generic;
 using TestHelper;
 using OnlineEventBookingSystemDAL;

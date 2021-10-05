@@ -41,7 +41,7 @@
     <title>Index</title>
 </head>
 <body>
-
+   
     <table>
         <tr>
             <td>
@@ -59,14 +59,15 @@
     </table>
     @if (User.Identity.IsAuthenticated)
     {
-         @Html.ActionLink("Booked Events List", "DisplayUserBookedEventsList", new { id = User.Identity.Name })
+        @Html.ActionLink("Booked Events List", "DisplayUserBookedEventsList", new { id = User.Identity.Name })
     }
 
 
-    <div id="partial">
+<div id="partial">
+    
 
-        @Html.Partial("_DisplayUserEvents", Model?.Events)       
-    </div>
+    @Html.Partial("_DisplayUserEvents", Model?.Events)
+</div>
     <div>
         @if (Session["UserName"] == null)
         {

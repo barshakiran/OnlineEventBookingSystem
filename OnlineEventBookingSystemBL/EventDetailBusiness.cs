@@ -94,17 +94,15 @@ namespace OnlineEventBookingSystemBL
             try
             {
                 List<EventDetail> userEventList = new List<EventDetail>();              
-                List<EventDetailDomainModel> userEvents = new List<EventDetailDomainModel>();               
-                //userEventList = eventDetailDataHandler.GetAll().ToList();
+                List<EventDetailDomainModel> userEvents = new List<EventDetailDomainModel>();    
                 userEvents = EventDetailList();
                 var cityList = LocationDetailList();              
                 foreach(var item in userEvents)
                 {
-                    int index = 0;
                     foreach ( var cities in item.EventList)
                     {
+                        int index = cityList.FindIndex(x => x.Location_Id == cities.Location_Id);
                         cities.City = cityList[index].City;
-                        index++;
                     }                    
                 }
                 return userEvents;
@@ -140,11 +138,10 @@ namespace OnlineEventBookingSystemBL
                 }
                 else
                 {
-                    int index = 0;
                     foreach (var item in userEventDomainModel.EventList)
-                    {                       
-                            item.City = cityList[index].City;
-                            index++;
+                    {
+                        int index = cityList.FindIndex(x => x.Location_Id == item.Location_Id);
+                        item.City = cityList[index].City;
                     }
                 }
                 return userEventDomainModel;
@@ -271,18 +268,23 @@ namespace OnlineEventBookingSystemBL
                 }
                 else
                 {
-                    var bookedEventDetail = bookingDetailDataHandler.GetAll(s => s.Event_Id == id).ToList();
-                   
+                    var cityList  = LocationDetailList();
+                    var cityName = cityList.SingleOrDefault(x => x.Location_Id == locationId).City;
+                    var bookedEventDetail = bookingDetailDataHandler.GetAll(s => s.Event_Id == id && s.Booking_Loc == cityName).ToList();
+                   if (bookedEventDetail != null && bookedEventDetail.Count == 0)
+                    {
                         eventLocationDataHandler.Delete(s => s.Event_Id == id && s.Location_Id == locationId);
                         isDeleted = true;
-                    
-                   
-                    eventDetailDomainModels = DisplayEventDetail(id, 0);
-                    if(eventDetailDomainModels!= null && eventDetailDomainModels.EventList.Count==0 && bookedEventDetail != null && bookedEventDetail.Count == 0)
-                    {
-                        eventDetailDataHandler.Delete(x => x.Event_Id == id);
-                        isDeleted = true;
+
+
+                        eventDetailDomainModels = DisplayEventDetail(id, 0);
+                        if (eventDetailDomainModels != null && eventDetailDomainModels.EventList.Count == 0 )
+                        {
+                            eventDetailDataHandler.Delete(x => x.Event_Id == id);
+                            isDeleted = true;
+                        }
                     }
+                        
                     return isDeleted;
                 }
             }

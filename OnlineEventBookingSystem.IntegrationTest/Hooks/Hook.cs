@@ -14,14 +14,12 @@ namespace OnlineEventBookingSystem.IntegrationTest.Hooks
     [Binding]
     public sealed class Hook:DriverHelper
     {
-        //public WebDriverWait wait;
-
         [BeforeScenario]
         public void BeforeScenario()
         {
             ChromeOptions option = new ChromeOptions();
             Driver = new ChromeDriver();
-            Wait= new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            Wait= new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
         }
 
         [AfterScenario]

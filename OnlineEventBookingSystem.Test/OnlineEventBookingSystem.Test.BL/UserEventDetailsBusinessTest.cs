@@ -216,8 +216,9 @@ namespace OnlineEventBookingSystem.Test.BL
             userDetails = DataInitializer.GetAllDbUsers();
             int userId = bookingDetail.User_Id;
             int eventId = bookingDetailDomainModel.Event_Id;
+
             //Act
-            mockBookingDetailDataHandler.Setup(m => m.GetAll(e => e.Event_Id == eventId && e.User_Id == userId)).Returns(bookingDetails);
+            mockBookingDetailDataHandler.Setup(m => m.GetAll()).Returns(bookingDetails);
             mockUserDataHandler.Setup(m => m.GetAll()).Returns(userDetails);
             var res = userEventDetailBusiness.AddUserBookingEventDetails(bookingDetailDomainModel);
 
@@ -226,7 +227,7 @@ namespace OnlineEventBookingSystem.Test.BL
 
         }
 
-        [TestMethod]
+        [TestMethod] `
         public void DeleteBookedEvent_ShouldDeleteBookedEvent()
         {
             //Arrange

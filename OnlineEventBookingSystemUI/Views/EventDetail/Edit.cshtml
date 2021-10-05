@@ -3,13 +3,17 @@
 
 @using (Html.BeginForm("UpdateLocationEvents", "EventDetail", FormMethod.Post, new { id = "form" }))
 {
-    @Html.Raw(TempData["msg"])
     @Html.AntiForgeryToken()
     <h4>Edit Event Details :--</h4>
-
+    if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+       <span style="color:red;">@Model.ErrorMessage</span> 
+      
+    }
     <div class="form-horizontal" style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px; width: 450px; margin: auto; display: table;">
 
         <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Event_Id, htmlAttributes: new { @class = "control-label col-md-2", style = "text-align:left" })

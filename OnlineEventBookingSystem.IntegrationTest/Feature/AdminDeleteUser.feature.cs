@@ -20,22 +20,22 @@ namespace OnlineEventBookingSystem.IntegrationTest.Feature
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Book")]
-    public partial class BookFeature
+    [NUnit.Framework.DescriptionAttribute("AdminDeleteUser")]
+    public partial class AdminDeleteUserFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "BookEvent.feature"
+#line 1 "AdminDeleteUser.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Feature", "Book", "\tCheck if book event functionality works", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Feature", "AdminDeleteUser", "\tCheck if delete user functionality works for admin", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,14 +74,14 @@ namespace OnlineEventBookingSystem.IntegrationTest.Feature
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("BookEvent")]
+        [NUnit.Framework.DescriptionAttribute("AdminDeleteUser")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void BookEvent()
+        public virtual void AdminDeleteUser()
         {
             string[] tagsOfScenario = new string[] {
                     "mytag"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BookEvent", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AdminDeleteUser", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -108,46 +108,32 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.And("I click the Login link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Username",
                             "Password"});
-                table1.AddRow(new string[] {
-                            "xyz",
-                            "xyz"});
+                table5.AddRow(new string[] {
+                            "Admin",
+                            "admin"});
 #line 8
- testRunner.And("I enter username and password", ((string)(null)), table1, "And ");
+ testRunner.And("I enter username and password", ((string)(null)), table5, "And ");
 #line hidden
 #line 11
  testRunner.And("I click login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.Then("I should see user login to the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I should see admin login to the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.And("I click the Book link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click User link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "TicketCount"});
-                table2.AddRow(new string[] {
-                            "4"});
 #line 14
- testRunner.And("I enter number of tickets", ((string)(null)), table2, "And ");
+ testRunner.And("I click Delete link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
- testRunner.And("I click on calculate button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.And("I click OK button on the alert message box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                            "PaymentMode"});
-                table3.AddRow(new string[] {
-                            "Credit_Card"});
-#line 18
- testRunner.And("I selected the payment mode from the drop down", ((string)(null)), table3, "And ");
-#line hidden
-#line 21
- testRunner.And("I click on the book event button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 22
- testRunner.Then("Booked event confirmation page will be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.Then("The user get deleted from the user list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

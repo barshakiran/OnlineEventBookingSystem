@@ -92,8 +92,7 @@ using OnlineEventBookingSystemDAL.Infrastructure.Contract;
                     {
                         _unitOfWork.Db.Entry(local).State = EntityState.Detached;
                     }
-                    // dbSet.Attach(entity);
-                
+                     dbSet.Attach(entity);                
                     _unitOfWork.Db.Entry(entity).State = EntityState.Modified;
                     this._unitOfWork.Db.SaveChanges();
                 }

@@ -36,6 +36,11 @@ C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTset\bin\De
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTset\bin\Debug\net48\SpecFlow.Assist.Dynamic.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTset\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.dll.config
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTset\bin\Debug\net48\WebDriver.Support.dll
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.csproj.AssemblyReference.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.dll.config
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.AssemblyInfoInputs.cache
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.AssemblyInfo.cs
+C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.csproj.CoreCompileInputs.cache
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\bin\Debug\net48\TechTalk.SpecFlow.NUnit.SpecFlowPlugin.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\bin\Debug\net48\NUnit3.TestAdapter.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\bin\Debug\net48\NUnit3.TestAdapter.pdb
@@ -66,11 +71,6 @@ C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\bin\De
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\bin\Debug\net48\System.Text.Encoding.CodePages.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\bin\Debug\net48\System.ValueTuple.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\bin\Debug\net48\WebDriverManager.dll
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.csproj.AssemblyReference.cache
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.dll.config
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.AssemblyInfoInputs.cache
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.AssemblyInfo.cs
-C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.csproj.CoreCompileInputs.cache
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.csproj.CopyComplete
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.dll
 C:\Repo\OnlineEventBookingSystem\OnlineEventBookingSystem.IntegrationTest\obj\Debug\net48\OnlineEventBookingSystem.IntegrationTest.pdb

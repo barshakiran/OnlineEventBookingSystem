@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Feature\AdminBookEvent.feature.cs" />
     <Compile Remove="Feature\EventBooking.feature.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <SpecFlowFeatureFiles Remove="Feature\AdminBookEvent.feature" />
     <SpecFlowFeatureFiles Remove="Feature\EventBooking.feature" />
   </ItemGroup>
 

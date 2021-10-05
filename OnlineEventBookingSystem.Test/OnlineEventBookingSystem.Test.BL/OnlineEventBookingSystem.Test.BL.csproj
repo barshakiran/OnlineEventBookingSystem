@@ -66,8 +66,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\OnlineEventBookingSystemDAL\bin\Debug\OnlineEventBookingSystemDAL.dll</HintPath>
     </Reference>
-    <Reference Include="OnlineEventBookingSystemDomain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="OnlineEventBookingSystemDomain">
       <HintPath>..\..\OnlineEventBookingSystemDomain\bin\Debug\OnlineEventBookingSystemDomain.dll</HintPath>
     </Reference>
     <Reference Include="System" />

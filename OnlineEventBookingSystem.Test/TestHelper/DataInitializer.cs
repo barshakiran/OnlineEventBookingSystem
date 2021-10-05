@@ -71,7 +71,7 @@ namespace TestHelper
                     User_Name = "TestUser",
                     User_Address = "India",
                     User_Email = "testc@123",
-                    User_PhoneNo = "1223456789",
+                    User_PhoneNo = "122345678",
                     IsAdmin = false
                 },
                 new UserDetail {
@@ -80,7 +80,7 @@ namespace TestHelper
                     User_Name = "TestUser1",
                     User_Address = "India",
                     User_Email = "testc@123",
-                    User_PhoneNo = "1223456799",
+                    User_PhoneNo = "122345679",
                     IsAdmin = false
                 }
             };

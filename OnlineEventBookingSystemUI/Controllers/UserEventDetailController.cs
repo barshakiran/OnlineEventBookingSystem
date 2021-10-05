@@ -164,7 +164,8 @@ namespace OnlineEventBookingSystemUI.Controllers
         public async Task<ActionResult> AddUserBookingEventDetail(BookingDetailViewModel bookingDetailViewModel)
         {
             int bookingId;
-            if(bookingDetailViewModel != null)
+            bookingDetailViewModel.ErrorMessage = null;
+            if (bookingDetailViewModel != null)
             {
                 bookingDetailViewModel.userName = User.Identity.Name;
             }
@@ -177,19 +178,13 @@ namespace OnlineEventBookingSystemUI.Controllers
                     UserEventDetailViewModel userEventDetailViewModel = new UserEventDetailViewModel();
                     userEventDetailViewModel.EventTypeList = PoputaleEventTypes();
                     userEventDetailViewModel.CityList = PopulateCityList();
-                    ModelState.AddModelError(string.Empty, "Event already booked.");
-                    return new HttpStatusCodeResult(HttpStatusCode.Gone, "The Event already booked or event date is expired");
+                    return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "The Event already booked or event date is expired");
                 }
                 return RedirectToAction("DisplayBookedEventDetails", new { @id = bookingId });
             }
             else
             {
-                var errors = ModelState
-                 .Where(x => x.Value.Errors.Count > 0)
-                 .Select(x => new { x.Key, x.Value.Errors })
-                 .ToArray();
-                var statusCode = consume.ReasonPhrase;
-                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
+               
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Unable to book event. Please contact administrator.");
             }
         }

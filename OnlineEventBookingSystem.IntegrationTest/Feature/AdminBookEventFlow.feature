@@ -1,15 +1,16 @@
-﻿Feature: Book
-	Check if book event functionality works
+﻿Feature: AdminBookEventFlow
+	Check if book event functionality works for admin
 
 @mytag
-Scenario: BookEvent
-	Given I navigate to the application
+Scenario: Book Event By Admin
+Given I navigate to the application
 	And  I click the Login link
 	And I enter username and password
 		| Username | Password |
-		| xyz    | xyz    |
+		| Admin    | admin    |
 	And I click login
-	Then I should see user login to the application
+	Then I should see admin login to the application
+	And I click Event link
 	And I click the Book link
 	And I enter number of tickets
 		| TicketCount |

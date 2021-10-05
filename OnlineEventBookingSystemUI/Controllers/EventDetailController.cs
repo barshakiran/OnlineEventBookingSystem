@@ -74,6 +74,7 @@ namespace OnlineEventBookingSystemUI.Controllers
         public async Task<ActionResult> AddLocationEvents(EventDetailViewModel eventDetailViewModel,List<EventLocationViewModel> objloc)
         {
             HttpResponseMessage consume = new HttpResponseMessage();
+            eventDetailViewModel.ErrorMessage = null;
             if (eventDetailViewModel != null)
             {                
                 eventDetailViewModel.EventList = objloc;
@@ -87,12 +88,9 @@ namespace OnlineEventBookingSystemUI.Controllers
             }
             else
             {
-                var errors = ModelState
-                 .Where(x => x.Value.Errors.Count > 0)
-                 .Select(x => new { x.Key, x.Value.Errors })
-                 .ToArray();
+                
                 var statusCode = consume.ReasonPhrase;
-                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
+                eventDetailViewModel.ErrorMessage = statusCode.ToString() + ". Unable to create. Please contact administrator.";
                 return RedirectToAction("Create", eventDetailViewModel);
             }
         }
@@ -102,11 +100,11 @@ namespace OnlineEventBookingSystemUI.Controllers
             int locationId = 0;
             EventDetailViewModel eventDetailViewModel = new EventDetailViewModel();
             var consume = await GlobalVariables.WebApiClient.GetAsync(controller + "/GetEventDetail/" + id + "/" + locationId);
-
+            eventDetailViewModel.ErrorMessage = null;
             if (consume.IsSuccessStatusCode == false)
             {
                 var statusCode = consume.ReasonPhrase;
-                ModelState.AddModelError(string.Empty, statusCode + "...Server Error. Please contact administrator.");
+                eventDetailViewModel.ErrorMessage = HttpStatusCode.InternalServerError.ToString() + ". Unable to update. Please contact administrator.";
                 return View(eventDetailViewModel);
             }
             else
@@ -124,8 +122,9 @@ namespace OnlineEventBookingSystemUI.Controllers
                                 city.Selected = true;
                             }
                         }
-                        eventDetailViewModel.EventTypeList = PoputaleEventTypes();
+                        
                     }
+                    eventDetailViewModel.EventTypeList = PoputaleEventTypes();
                 }
                 else
                 {
@@ -148,9 +147,12 @@ namespace OnlineEventBookingSystemUI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Unable to delete record. Please contact administrator.");
             }
         }
+
+
         [HttpPost]
         public async Task<ActionResult> UpdateLocationEvents(EventDetailViewModel eventDetailViewModel, List<EventLocationViewModel> objloc)
         {
+            eventDetailViewModel.ErrorMessage = null;
             HttpResponseMessage consume = new HttpResponseMessage();
             if (eventDetailViewModel != null)
             {
@@ -164,8 +166,13 @@ namespace OnlineEventBookingSystemUI.Controllers
             }
             else
             {
-                TempData["msg"] = "<script>alert(HttpStatusCode.InternalServerError. Unable to update. Please contact administrator.');</script>";
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Unable to update. Please contact administrator.");
+                foreach (var eventList in eventDetailViewModel.EventList)
+                {
+                    eventList.Cities = PopulateCityList();
+                }
+                eventDetailViewModel.EventTypeList = PoputaleEventTypes();
+                eventDetailViewModel.ErrorMessage = HttpStatusCode.InternalServerError.ToString() +". Unable to update. Please contact administrator.";
+                return View("Edit", eventDetailViewModel);
             }
         }
 

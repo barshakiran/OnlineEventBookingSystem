@@ -55,6 +55,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="OnlineEventBookingSystemDAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\OnlineEventBookingSystemDAL\bin\Debug\OnlineEventBookingSystemDAL.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -295,10 +299,6 @@
     <ProjectReference Include="..\OnlineEventBookingSystemBL\OnlineEventBookingSystemBL.csproj">
       <Project>{c43040f6-19c5-400f-b5ae-534bf07420a3}</Project>
       <Name>OnlineEventBookingSystemBL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OnlineEventBookingSystemDAL\OnlineEventBookingSystemDAL.csproj">
-      <Project>{7995ed0a-a48e-424d-a3c4-2cc2f959a447}</Project>
-      <Name>OnlineEventBookingSystemDAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\OnlineEventBookingSystemDomain\OnlineEventBookingSystemDomain.csproj">
       <Project>{c8892856-c64e-47df-8e74-0ffb6234c499}</Project>

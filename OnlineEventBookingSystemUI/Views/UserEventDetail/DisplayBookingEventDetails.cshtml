@@ -6,6 +6,7 @@
 
 <h2>Booking Event</h2>
 
+
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
@@ -13,7 +14,7 @@
                 var price = $("#EventLocation_Price").val();
                 var tCount = $("#Booking_TicketCount").val();
                 var total = parseFloat(price * tCount);
-                 //alert(price);
+                //alert(price);
                 $("#Booking_TotalAmount").val(total);
 
             });
@@ -24,150 +25,156 @@
 
 @using (Html.BeginForm("AddUserBookingEventDetail", "UserEventDetail", FormMethod.Post))
 {
-<div class="form-horizontal" style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px; width: 500px; margin: auto; display: table;">
-    <div class="form-horizontal" style="border: solid 1px; padding: 30px 0 30px 30px; border-radius: 5px; width: 350px; height: 200px; margin: auto; display: table;">
-        <table align="center">
+    if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <span style="color:red;">@Model.ErrorMessage</span>
+
+    }
+
+    <div class="form-horizontal" style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px; width: 500px; margin: auto; display: table;">
+        <div class="form-horizontal" style="border: solid 1px; padding: 30px 0 30px 30px; border-radius: 5px; width: 350px; height: 200px; margin: auto; display: table;">
+            <table align="center">
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <img class="img-responsive" src="@Url.Content(Model.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(model => model.Event_Name)
+                        <div style="height: 20px;">
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        @Html.HiddenFor(model => model.Location_Id)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+
+                    <td>
+                        @Html.HiddenFor(model => model.Event_Id)
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Booking_Loc)
+                    </td>
+
+                    <td>
+                        @Html.EditorFor(model => model.Booking_Loc, new { htmlAttributes = new { @readonly = "readonly" } })
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.EventLocation_Price)
+                    </td>
+
+                    <td>
+                        @Html.EditorFor(model => model.EventLocation_Price, new { htmlAttributes = new { @readonly = "readonly" } })
+                        @* @Html.DisplayFor(model => model.EventLocation_Price)*@
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Booking_Date)
+                    </td>
+
+                    <td>
+                        @Html.EditorFor(model => model.Booking_Date, new { htmlAttributes = new { @readonly = "readonly" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.userName)
+                    </td>
+
+                    <td>
+                        @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @readonly = "readonly" } })
+
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <h4>Enter Details: </h4>
+
+        <hr />
+        <table cellpadding="2" cellspacing="2">
+
             <tr>
-                <td>
+                <td width="150">
+                    @Html.LabelFor(model => model.Booking_TicketCount)
+                    <div style="height: 20px;">
+
+                    </div>
                 </td>
+
                 <td>
-                    <img class="img-responsive" src="@Url.Content(Model.Event_Picture)" alt="IMAGES" height="50px" width="50px" />
+                    @Html.EditorFor(model => model.Booking_TicketCount)
+
+                    <div style="height: 20px;">
+                        @Html.ValidationMessageFor(model => model.Booking_TicketCount, "", new { @class = "text-danger" })
+                    </div>
                 </td>
             </tr>
+
             <tr>
+                <td width="150">
+                    @Html.LabelFor(model => model.Booking_TotalAmount)
+                </td>
+
+                <td>
+                    @Html.EditorFor(model => model.Booking_TotalAmount)
+
+                    <div style="height: 20px;">
+                        @Html.ValidationMessageFor(model => model.Booking_TotalAmount, "", new { @class = "text-danger" })
+                    </div>
+                </td>
                 <td></td>
                 <td>
-                    @Html.DisplayFor(model => model.Event_Name)
+                    <input type="button" id="btnCalculate" value="Calculate" class="btn btn-default" />
                     <div style="height: 20px;">
 
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                    @Html.HiddenFor(model => model.Location_Id)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
 
+            <tr>
+                <td width="150">
+                    @Html.LabelFor(model => model.Payment_Mode)
+                </td>
                 <td>
-                    @Html.HiddenFor(model => model.Event_Id)
+                    @Html.DropDownListFor(model => model.Payment_Mode, Model.PaymentModeList, "--Select--", new { style = "width: 185px; height:25px;", htmlAttributes = new { @class = "form-control" } })
 
+                    <div style="height: 20px;">
+                        @Html.ValidationMessageFor(model => model.Payment_Mode, "", new { @class = "text-danger" })
+                    </div>
                 </td>
             </tr>
 
             <tr>
-                <td>
-                    @Html.DisplayNameFor(model => model.Booking_Loc)
-                </td>
-
-                <td>
-                    @Html.EditorFor(model => model.Booking_Loc, new { htmlAttributes = new { @readonly = "readonly" } })
-
+                <td></td>
+                <td align="left">
+                    <input type="submit" value="Book Event" class="btn btn-default" id="btnBookEvent" />
                 </td>
             </tr>
-            <tr>
-                <td>
-                    @Html.DisplayNameFor(model => model.EventLocation_Price)
-                </td>
-
-                <td >
-                    @Html.EditorFor(model => model.EventLocation_Price,new { htmlAttributes = new { @readonly = "readonly" } })
-                   @* @Html.DisplayFor(model => model.EventLocation_Price)*@
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.DisplayNameFor(model => model.Booking_Date)
-                </td>
-
-                <td>
-                    @Html.EditorFor(model => model.Booking_Date, new { htmlAttributes = new { @readonly = "readonly" } })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.DisplayNameFor(model =>model.userName)
-                </td>
-
-                <td>
-                    @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @readonly = "readonly" } })
-
-                </td>
-            </tr>
-
         </table>
+
     </div>
-    <h4>Enter Details: </h4>
-
-    <hr />
-    <table cellpadding="2" cellspacing="2">
-
-        <tr>
-            <td width="150">
-                @Html.LabelFor(model => model.Booking_TicketCount)
-                <div style="height: 20px;">
-
-                </div>
-            </td>
-
-            <td>
-                @Html.EditorFor(model => model.Booking_TicketCount)
-
-                <div style="height: 20px;">
-                    @Html.ValidationMessageFor(model => model.Booking_TicketCount, "", new { @class = "text-danger" })
-                </div>
-            </td>
-        </tr>
-
-        <tr>
-            <td width="150">
-                @Html.LabelFor(model => model.Booking_TotalAmount)
-            </td>
-
-            <td>
-                @Html.EditorFor(model => model.Booking_TotalAmount)
-
-                <div style="height: 20px;">
-                    @Html.ValidationMessageFor(model => model.Booking_TotalAmount, "", new { @class = "text-danger" })
-                </div>
-            </td>
-            <td></td>
-            <td>
-                <input type="button" id="btnCalculate" value="Calculate" class="btn btn-default" />
-                <div style="height: 20px;">
-
-                </div>
-            </td>
-        </tr>
-
-        <tr>
-            <td width="150">
-                @Html.LabelFor(model => model.Payment_Mode)
-            </td>
-            <td>
-                @Html.DropDownListFor(model => model.Payment_Mode, Model.PaymentModeList, "--Select--", new { style = "width: 185px; height:25px;", htmlAttributes = new { @class = "form-control" } })
-
-                <div style="height: 20px;">
-                    @Html.ValidationMessageFor(model => model.Payment_Mode, "", new { @class = "text-danger" })
-                </div>
-            </td>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td align="left">
-                <input type="submit" value="Book Event" class="btn btn-default" id="btnBookEvent"/>
-            </td>
-        </tr>
-    </table>
-
-</div>
-    }
+}
 <p>
 
     <a> @Html.ActionLink("Booked Events List", "DisplayUserBookedEventsList")</a> |
