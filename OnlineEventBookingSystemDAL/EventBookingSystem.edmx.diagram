@@ -6,12 +6,12 @@
     <edmx:Diagrams>
       <Diagram DiagramId="3512cf4d20664ec4bf796fca4393783a" Name="Diagram1">
         <EntityTypeShape EntityType="EventBookingSystemModel.UserDetail" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EventBookingSystemModel.EventDetail" Width="1.5" PointX="3.125" PointY="0.5" />
-        <EntityTypeShape EntityType="EventBookingSystemModel.EventLocation" Width="2.375" PointX="8.125" PointY="2.875" />
+        <EntityTypeShape EntityType="EventBookingSystemModel.EventDetail" Width="1.5" PointX="3.25" PointY="0.75" />
+        <EntityTypeShape EntityType="EventBookingSystemModel.EventLocation" Width="2.125" PointX="5.875" PointY="0.75" />
         <AssociationConnector Association="EventBookingSystemModel.FK__EventLoca__Event__2D27B809" />
-        <EntityTypeShape EntityType="EventBookingSystemModel.Location" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="EventBookingSystemModel.Location" Width="1.5" PointX="0.75" PointY="4.5" />
         <AssociationConnector Association="EventBookingSystemModel.FK__EventLoca__Locat__2C3393D0" />
-        <EntityTypeShape EntityType="EventBookingSystemModel.BookingDetail" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EventBookingSystemModel.BookingDetail" Width="2.25" PointX="4.375" PointY="3.75" />
         <AssociationConnector Association="EventBookingSystemModel.FK__BookingDe__Event__33D4B598" />
         <AssociationConnector Association="EventBookingSystemModel.FK__BookingDe__User___32E0915F" />
         </Diagram>

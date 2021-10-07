@@ -227,7 +227,7 @@ namespace OnlineEventBookingSystem.Test.BL
 
         }
 
-        [TestMethod] `
+        [TestMethod] 
         public void DeleteBookedEvent_ShouldDeleteBookedEvent()
         {
             //Arrange

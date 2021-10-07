@@ -112,8 +112,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Username",
                             "Password"});
                 table9.AddRow(new string[] {
-                            "xyz",
-                            "xyz"});
+                            "barsha",
+                            "bar"});
 #line 8
  testRunner.And("I enter username and password", ((string)(null)), table9, "And ");
 #line hidden

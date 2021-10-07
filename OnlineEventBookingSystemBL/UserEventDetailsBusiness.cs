@@ -35,7 +35,7 @@ namespace OnlineEventBookingSystemBL
             try
             {
                 var eventName = EventDetailList().SingleOrDefault(x => x.Event_Id == bookingDetailDomainModel.Event_Id).Event_Name;
-                var emailBody = "Event is booked " + bookingDetailDomainModel.Booking_TicketCount +" "+ " tickets for the event " + eventName + " is booked."
+                var emailBody = "Booked  " + bookingDetailDomainModel.Booking_TicketCount +" "+ " tickets for the event " + eventName + "."
                     + Environment.NewLine + "For ticket detail login to the website.";
                 string subject = "Event Booking Confirmation";
                 bool sent = SendEMail(bookingDetailDomainModel.Email, subject, emailBody);
@@ -58,8 +58,8 @@ namespace OnlineEventBookingSystemBL
         {
             bool isMessageSent = false;
             string clientAddress = "smtp.gmail.com";
-            string senderAddress = "xxxx";
-            string netPassword = "xxx";
+            string senderAddress = "usert4185@gmail.com";
+            string netPassword = "usertest@4185";
             //Intialise Parameters  
             SmtpClient client = new System.Net.Mail.SmtpClient(clientAddress);
             client.Port = 587;

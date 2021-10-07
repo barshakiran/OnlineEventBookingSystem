@@ -19,7 +19,7 @@ namespace OnlineEventBookingSystem.IntegrationTest.Pages
 
         public void Click_Delete()
         {
-            IWebElement trDelete = Wait.Until(x => x.FindElement(By.Id("1034")));
+            IWebElement trDelete = Wait.Until(x => x.FindElement(By.Id("35")));
             var lnkDelete=  trDelete.FindElement(By.LinkText("Delete"));
             lnkDelete.Click();
         }
@@ -31,7 +31,7 @@ namespace OnlineEventBookingSystem.IntegrationTest.Pages
 
         public bool CheckIfUserExists()
         {
-            var lnkUsers = Wait.Until(x => x.FindElements(By.Id("1034")));
+            var lnkUsers = Wait.Until(x => x.FindElements(By.Id("35")));
             if(lnkUsers.Count == 0)
             {
                 return false;

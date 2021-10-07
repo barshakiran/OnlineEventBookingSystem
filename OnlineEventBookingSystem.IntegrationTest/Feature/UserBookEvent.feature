@@ -7,7 +7,7 @@ Scenario: UserBookEvent
 	And  I click the Login link
 	And I enter username and password
 		| Username | Password |
-		| xyz    | xyz    |
+		| barsha    | bar    |
 	And I click login
 	Then I should see user login to the application
 	And I click the Book link

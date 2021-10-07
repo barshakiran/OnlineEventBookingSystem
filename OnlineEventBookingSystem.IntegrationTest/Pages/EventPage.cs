@@ -22,7 +22,7 @@ namespace OnlineEventBookingSystem.IntegrationTest.Pages
         }
         public void LinkBook()
         {
-            IWebElement lnkBook = Wait.Until(x => x.FindElement(By.Id("3065102")));
+            IWebElement lnkBook = Wait.Until(x => x.FindElement(By.Id("3075102")));
             lnkBook.Click();
         }
     }
